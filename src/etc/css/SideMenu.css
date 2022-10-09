@@ -1,0 +1,30 @@
+.SideMenu{
+    width: 300px;
+    background-color: rgb(216, 174, 255);
+}
+
+.SideTitle{
+    width: 100%;
+    height: auto;
+}
+
+.menu{
+    width: 100%;
+    height: auto;
+}
+
+ul{
+    list-style: none;
+}
+
+.menu_title{
+    width: 100%;
+    height: auto;
+}
+
+
+
+.li{
+    width: 100%;
+    list-style: none;
+}
