@@ -1,3 +1,4 @@
+import React from 'react';
 import LoginPage from '../src/user/page/Login/LoginPage';
 import SignupPage from '../src/user/page/Signup/SignupPage';
 import UserInfoPage from '../src/worker/page/UserInfo/UserInfoPage';
@@ -7,23 +8,7 @@ import UserApprovalPage from '../src/manager/page/UserApproval/UserApprovalPage'
 import ScheduleManagementPage from '../src/manager/page/ScheduleManagement/ScheduleManagementPage';
 import NotFoundPage from '../src/etc/components/NotFoundPage'
 
-    const managerRout = 
-        [
-            {
-                path:'/managermain',
-                element: <ManagerMainPage />
-            },
-            {
-                path:'/userapproval',
-                element: <UserApprovalPage />
-            },
-            {
-                path:'/notfound',
-                element: <NotFoundPage />
-            }
-        ]
-
-    const userRout = 
+    const route = 
     [
         {
             path:'/',
@@ -40,12 +25,7 @@ import NotFoundPage from '../src/etc/components/NotFoundPage'
         {
             path:'/notfound',
             element: <NotFoundPage />
-        }
-    ]
-
-    const workerRout = 
-    [
-
+        },
         {
             path:'/:username/info',
             element: <UserInfoPage />
@@ -57,10 +37,21 @@ import NotFoundPage from '../src/etc/components/NotFoundPage'
         {
             path:'/schedulemng',
             element: <ScheduleManagementPage />
+        },
+        {
+            path:'/managermain',
+            element: <ManagerMainPage />
+        },
+        {
+            path:'/userapproval',
+            element: <UserApprovalPage />
+        },
+        {
+            path:'/notfound',
+            element: <NotFoundPage />
         }
 
     ]
 
 
-
-export { managerRout, userRout, workerRout };
+export default route;

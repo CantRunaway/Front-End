@@ -1,14 +1,22 @@
 import './App.css';
-import Manager from './manager/Mamager';
-import User from './user/User';
-import Worker from './worker/Worker';
+import {Routes, Route} from 'react-router-dom';
+import route from './routes.js';
 
 function App() {
   return (
-    <>
-      <User />
-
-    </>
+    <Routes>
+    {
+        route.map(route => {
+          return(
+            <Route 
+              key={route.path}
+              path={route.path}
+              element={route.element}
+          />
+          )
+        })
+    }
+    </Routes>
   );
 }
 

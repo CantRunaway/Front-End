@@ -1,0 +1,13 @@
+header {
+    background: lightgray;
+    height: 215px;
+}
+
+main{
+    background: gray;
+}
+
+footer{
+    background: darkgray;
+    height: 310px;
+}
