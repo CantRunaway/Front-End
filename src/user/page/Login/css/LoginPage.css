@@ -1,13 +1,101 @@
-header {
-    background: lightgray;
-    height: 215px;
+html, body{
+    height: 100%;
+}
+#root{
+    height: 100%;
+}
+.login-main{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-main{
-    background: gray;
+.login-logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-footer{
-    background: darkgray;
-    height: 310px;
+.main-icon{
+    width: 20rem;
+}
+
+.login-banner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+}
+
+.login-banner>span:nth-child(1){
+    font-size: 5rem;
+    font-weight: bold;
+    margin: auto;
+}
+
+.login-banner>span:nth-child(2){
+    font-size: 1rem;
+    font-weight: bold;
+    margin: auto;
+}
+
+.login-form-div{
+    margin-top: 3%;
+}
+
+.login-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login input{
+    background-color: #D9D9D9;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 30px;
+    width: 15rem;
+    height: 2rem;
+    padding-left: 1rem;
+}
+
+.login>input:nth-child(1){
+    margin-bottom: 0.3rem;
+}
+
+.login-button:hover{
+    background-color: #E497F7;
+    transition: 0.5s;
+}
+
+.login-button{
+    margin-top: 1rem;
+    width: 13rem;
+    height: 2rem;
+    background-color: #A87EFF;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+
+.login-sign-up{
+    margin-top: 1rem;
+    color: #854BFF;
+    background-color: white;
+    border: none;
+    cursor: pointer;
 }
