@@ -4,7 +4,7 @@ html, body{
 #root{
     height: 100%;
 }
-.login-main{
+.login{
     height: 100%;
     width: 100%;
     display: flex;
@@ -42,7 +42,7 @@ html, body{
     margin: auto;
 }
 
-.login-form-div{
+.login-form-box{
     margin-top: 3%;
 }
 
