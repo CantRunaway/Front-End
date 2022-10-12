@@ -24,16 +24,8 @@ import UserInfoSession from './worker/page/UserInfo/components/UserInfoSession';
             element: <SignupPage />
         },
         {
-            path:'/notfound',
-            element: <NotFoundPage />
-        },
-        {
             path:'/:username/info',
             element: <UserInfoPage />
-        },
-        {
-            path:'/:username/InfoSession',
-            element: <UserInfoSession />
         },
         {
             path:'/:username/scheduleenroll',

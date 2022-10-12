@@ -4,18 +4,16 @@ import React, {useState}from 'react'
 
 function UserInfoPage() {
   const [pwType, setPwType] = useState('password')
+  const [permission, setPermission] = useState(true);
 
-  const handlePWType = () => {
-    setPwType(()=>{
-      if(pwType === '') return 'password'
-      else return ''
-    })
-  }
+
 
   return (
     
     <div className='userInfo'>
-
+      {
+        permission ? <UserInfoSession permission={setPermission} /> : ''
+      }
       <div className='login-logo'>
         <img className="main-icon" alt="main-icon" src="/img/ICON.jpg" />
       </div>
@@ -37,7 +35,6 @@ function UserInfoPage() {
 
         <span className='pw'>
           비밀번호 <input type={pwType} className='pw-input' />
-          <span onClick={handlePWType}>v</span>
         </span>
 
         <span className='select-grade'>
