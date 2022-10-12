@@ -7,6 +7,7 @@ import ManagerMainPage from '../src/manager/page/Main/ManagerMainPage';
 import UserApprovalPage from '../src/manager/page/UserApproval/UserApprovalPage';
 import ScheduleManagementPage from '../src/manager/page/ScheduleManagement/ScheduleManagementPage';
 import NotFoundPage from '../src/etc/components/NotFoundPage'
+import UserInfoSession from './worker/page/UserInfo/components/UserInfoSession';
 
     const route = 
     [
@@ -29,6 +30,10 @@ import NotFoundPage from '../src/etc/components/NotFoundPage'
         {
             path:'/:username/info',
             element: <UserInfoPage />
+        },
+        {
+            path:'/:username/InfoSession',
+            element: <UserInfoSession />
         },
         {
             path:'/:username/scheduleenroll',

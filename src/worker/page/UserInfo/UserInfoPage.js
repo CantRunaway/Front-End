@@ -1,8 +1,19 @@
-import React from 'react'
 import '../UserInfo/css/UserInfoPage.css'
+import UserInfoSession from './components/UserInfoSession'
+import React, {useState}from 'react'
 
 function UserInfoPage() {
+  const [pwType, setPwType] = useState('password')
+
+  const handlePWType = () => {
+    setPwType(()=>{
+      if(pwType === '') return 'password'
+      else return ''
+    })
+  }
+
   return (
+    
     <div className='userInfo'>
 
       <div className='login-logo'>
@@ -25,7 +36,8 @@ function UserInfoPage() {
         </span>
 
         <span className='pw'>
-          비밀번호 <input className='pw-input' />
+          비밀번호 <input type={pwType} className='pw-input' />
+          <span onClick={handlePWType}>v</span>
         </span>
 
         <span className='select-grade'>
