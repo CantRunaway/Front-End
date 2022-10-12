@@ -4,18 +4,8 @@ import './css/LoginPage.css'
 // setlect_num 이 0 이면 input창을 비워놓고
 // 1 이면 DB에서 값을 가져와서 채워 놓고 수정 불가능한 부분은 disable로 변경
 
-function LoginPage({select_num}) {
-  const [infoPage, setInfoPage] = useState('가입');
+function LoginPage() {
   const [id, setId] = useState('');
-
-  useEffect(() => {
-    if(select_num===0){
-      setInfoPage('가입')
-    }
-    else{
-      setInfoPage('수정')
-    }
-  },[])
 
   const onSubmit =(e) => {
     console.log(id)
@@ -48,7 +38,7 @@ function LoginPage({select_num}) {
         </div>
 
         <div>
-          <button className='login-sign-up'>{infoPage}</button>
+          <button className='login-sign-up'>회원가입</button>
         </div>
 
       </div>

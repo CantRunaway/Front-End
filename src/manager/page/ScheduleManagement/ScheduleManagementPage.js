@@ -1,7 +1,7 @@
 import React from 'react'
 import '../ScheduleManagement/css/ScheduleManagementPage.css'
-import Header from '../../../etc/components/Header'
-import SideMenu from '../../../etc/components/SideMenu'
+import Header from '../../../etc/Manager_Components/Header'
+import SideMenu from '../../../etc/Manager_Components/SideMenu'
 import ScheduleManagementSession from '../../../manager/page/ScheduleManagement/components/ScheduleManagementSession'
 
 function ScheduleManagementPage() {

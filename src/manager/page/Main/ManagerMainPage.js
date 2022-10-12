@@ -1,7 +1,7 @@
 import React from 'react'
 import '../Main/css/ManagerMainPage.css';
-import Header from '../../../etc/components/Header'
-import SideMenu from '../../../etc/components/SideMenu'
+import Header from '../../../etc/Manager_Components/Header';
+import SideMenu from '../../../etc/Manager_Components/SideMenu';
 import ManagerSession from '../../../manager/page/Main/components/ManagerMainSession'
 
 function ManagerMainPage() {

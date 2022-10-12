@@ -6,8 +6,8 @@ import ScheuleEnrollPage from '../src/worker/page/ScheduleEnroll/ScheduleEnrollP
 import ManagerMainPage from '../src/manager/page/Main/ManagerMainPage';
 import UserApprovalPage from '../src/manager/page/UserApproval/UserApprovalPage';
 import ScheduleManagementPage from '../src/manager/page/ScheduleManagement/ScheduleManagementPage';
-import NotFoundPage from '../src/etc/components/NotFoundPage'
-import UserInfoSession from './worker/page/UserInfo/components/UserInfoSession';
+import Registration from './worker/page/Registration/Registration';
+import NotFoundPage from '../src/etc/NotFoundPage'
 
     const route = 
     [
@@ -22,6 +22,10 @@ import UserInfoSession from './worker/page/UserInfo/components/UserInfoSession';
         {
             path:'/signup',
             element: <SignupPage />
+        },
+        {
+            path:'/Registration',
+            element: <Registration />
         },
         {
             path:'/:username/info',

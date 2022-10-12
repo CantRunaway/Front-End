@@ -1,14 +1,11 @@
-import Access_Restrictions from './Access_Restrictions';
-import React, {useState}from 'react'
+import './css/Registration.css'
+import React from 'react'
 
-function UserInfoSession() {
-  const [permission, setPermission] = useState(true);
+function Registration() {
 
   return (
+    
     <div className='userInfo'>
-      {
-        permission ? <Access_Restrictions permission={setPermission} /> : ''
-      }
       <div className='login-logo'>
         <img className="main-icon" alt="main-icon" src="/img/ICON.jpg" />
       </div>
@@ -17,10 +14,13 @@ function UserInfoSession() {
         <span>도망못가</span>
         <span>-- 회원정보 --</span>
       </div>
+
       <div className='userInfo-main'>
+
         <span className='name'>
           이름 <input className='name-input' />
         </span>
+
         <span className='student-code'>
           학번 <input className='student-code-input' />
         </span>
@@ -40,6 +40,7 @@ function UserInfoSession() {
             <option value='5'>5</option>
           </select >
         </span>
+
         <span className='select-department'>
           학과
           <select className='department-list'>
@@ -50,13 +51,16 @@ function UserInfoSession() {
             <option value='4'>기계</option>
           </select>
         </span>
+
         <span className='phone'>
           전화번호 <input className='phone'/>
         </span>
+
         <span className='birth'>
           생년월일 <input className='birth-input' />
         </span>
       
+
         <span className='account'>
           지급 계좌 
           <select className='bank-list'>
@@ -64,8 +68,10 @@ function UserInfoSession() {
             <option value='1'>국민</option>
             <option value='2'>농협</option>
           </select>
+
           <input className='account-input'/>
         </span>
+
         <span className='work-type'>
           근무 종류
           <select className='work-type-list'>
@@ -74,10 +80,13 @@ function UserInfoSession() {
             <option value='2'>식사 확인</option>
           </select>
         </span>
+
       </div>
       
-      <button className='sign-up-button'>수정</button>
+      <button className='sign-up-button'>가입 요청</button>
+
     </div>
   )
 }
-export default UserInfoSession
+
+export default Registration
