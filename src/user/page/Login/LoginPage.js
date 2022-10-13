@@ -2,9 +2,6 @@ import React, {useState} from 'react'
 import {Link} from 'react-router-dom';
 import './css/LoginPage.css'
 
-// setlect_num 이 0 이면 input창을 비워놓고
-// 1 이면 DB에서 값을 가져와서 채워 놓고 수정 불가능한 부분은 disable로 변경
-
 function LoginPage() {
   const [id, setId] = useState('');
 
@@ -15,7 +12,7 @@ function LoginPage() {
   const onChange =(e) => {
     setId((id) => e.target.value)
   }
-
+   
   return (
       <div className='login'>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import LoginPage from '../src/user/page/Login/LoginPage';
 import SignupPage from '../src/user/page/Signup/SignupPage';
 import UserInfoPage from '../src/worker/page/UserInfo/UserInfoPage';
+import WorkerMainPage from './worker/page/Main/WorkerMainPage';
 import ScheuleEnrollPage from '../src/worker/page/ScheduleEnroll/ScheduleEnrollPage';
 import ManagerMainPage from '../src/manager/page/Main/ManagerMainPage';
 import UserApprovalPage from '../src/manager/page/UserApproval/UserApprovalPage';
@@ -30,6 +31,10 @@ import NotFoundPage from '../src/etc/NotFoundPage'
         {
             path:'/:username/info',
             element: <UserInfoPage />
+        },
+        {
+            path:'/:username/main',
+            element: <WorkerMainPage />
         },
         {
             path:'/:username/scheduleenroll',

@@ -1,9 +1,5 @@
 import React,{useState} from 'react'
-import {ModalCSS} from '../css/ModalCSS'
 import '../css/access_restrictions.css'
-import Modal from "react-modal";
-
-Modal.setAppElement("#root");
 
 function Access_Restrictions({permission}) {
   const [modalIsOpen, setIsOpen] = useState(true);
@@ -32,24 +28,34 @@ function Access_Restrictions({permission}) {
     resetPW();
   }
 
+  const onKeyPress = (e) => {
+    if(e.key === 'Enter'){
+      comparePW();
+    }
+  }
+
     return (
-      <Modal 
-        className='modal'
-        isOpen={modalIsOpen}
-        style={ModalCSS}
-      >
-        <div className='authority-main'>
+      <>
+        {
+          modalIsOpen ? 
+            <div className='contents'>
+              <div className='authority-main'>
 
-          <div className='modal-pw-input' >
-            비밀번호 <input type='password' onChange={onChange} value={pw}/>
+                <div className='modal-pw-input' >
+                  비밀번호 <input type='password' onChange={onChange} onKeyPress={onKeyPress} value={pw}/>
+                </div>
+
+                <div>
+                  <button className='submit-button'  onClick={() => comparePW()} >확인</button>
+                </div>
+
+              </div>
           </div>
 
-          <div>
-            <button className='submit-button'  onClick={() => comparePW()} >확인</button>
-          </div>
+            : ''
+        }
+      </>
 
-        </div>
-      </Modal>
 
     );
 }

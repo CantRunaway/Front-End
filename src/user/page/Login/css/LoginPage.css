@@ -29,11 +29,25 @@ html, body{
     justify-items: center;
 }
 
-.login-banner>span:nth-child(1){
-    font-size: 5rem;
-    font-weight: bold;
-    margin: auto;
+
+@media screen and (min-width: 320px){
+
+    .login-banner>span:nth-child(1){
+        font-size: 5rem;
+        font-weight: bold;
+        margin: auto;
+    }
 }
+
+@media screen and (max-width: 320px){
+
+    .login-banner>span:nth-child(1){
+        font-size: 4rem;
+        font-weight: bold;
+        margin: auto;
+    }
+}
+
 
 .login-banner>span:nth-child(2){
     font-size: 1rem;

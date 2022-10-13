@@ -8,7 +8,7 @@ function ScheduleEnrollPage() {
     {/* 상단 */}
       <header>
       </header>
-      {/* 사이드 매뉴 */}
+      {/* 하단 매뉴 */}
       <div className='SideMenu'>
       </div>
       {/* 수업 시간표 등록 영역 */}

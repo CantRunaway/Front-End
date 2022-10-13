@@ -58,6 +58,11 @@ input{
     padding-left: 1rem;
 }
 
+select{
+    margin-left: 5px;
+    margin-right: 3px;
+}
+
 .sign-up-button{
     margin-top: 1rem;
     width: 13rem;

@@ -1,14 +1,18 @@
-import Access_Restrictions from './Access_Restrictions';
+import AccessRestrictions from './Access_Restrictions';
 import '../css/UserInfoSession.css'
-import React, {useState}from 'react'
+import React, {useState, useEffect}from 'react'
 
+// 기존 값이 변경 값과 다른게 없으면 쿼리 보내지 않고 페이지 변경
+// 모달 모바일 버전 설정
+// 모달 출력시 뒷 배경 이벤트 제거
 function UserInfoSession() {
+
   const [permission, setPermission] = useState(true);
 
   return (
     <div className='userInfo'>
       {
-        permission ? <Access_Restrictions permission={setPermission} /> : ''
+        permission ? <AccessRestrictions className='modal' permission={setPermission} /> : ''
       }
       <div className='login-logo'>
         <img className="main-icon" alt="main-icon" src="/img/ICON.jpg" />
