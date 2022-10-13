@@ -1,0 +1,20 @@
+.authority-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-pw-input {
+    margin-top: 10rem;
+}
+
+.submit-button{
+    width: 100px;
+    background: #fa75f1;
+    border: none;
+    font-weight: bold;
+    border-radius: 30px;
+    margin-top: 2rem;
+    cursor: pointer;
+}

@@ -1,4 +1,5 @@
-import React, {useRef, useEffect, useState} from 'react'
+import React, {useState} from 'react'
+import {Link} from 'react-router-dom';
 import './css/LoginPage.css'
 
 // setlect_num 이 0 이면 input창을 비워놓고
@@ -38,7 +39,7 @@ function LoginPage() {
         </div>
 
         <div>
-          <button className='login-sign-up'>회원가입</button>
+          <Link to='/Registration' className='login-sign-up'>회원가입</Link>
         </div>
 
       </div>

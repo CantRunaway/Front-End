@@ -1,10 +1,5 @@
-#root{
-    height: 100%;
-}
 
 .userInfo {
-    height: 100%;
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,15 +7,16 @@
 }
 
 .main-icon{
+    margin-top: 2rem;
     width: 10rem;
 }
 
 .userInfo-banner{
     display: flex;
-    width: 5rem;
     flex-direction: column;
     justify-content: center;
     justify-items: center;
+    min-width: 300px;
 }
 
 .userInfo-banner>span:nth-child(1){
@@ -69,4 +65,5 @@ input{
     font-size: 1.3rem;
     cursor: pointer;
 }
+
 

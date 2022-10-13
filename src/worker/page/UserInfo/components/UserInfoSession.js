@@ -1,4 +1,5 @@
 import Access_Restrictions from './Access_Restrictions';
+import '../css/UserInfoSession.css'
 import React, {useState}from 'react'
 
 function UserInfoSession() {
