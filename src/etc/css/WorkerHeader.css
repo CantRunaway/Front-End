@@ -1,4 +1,4 @@
-@media screen and (min-width: 320px){
+/* @media screen and (min-width: 320px){
     .worker-header{
         display: flex;
         flex-direction: column;
@@ -16,6 +16,13 @@
         align-items: center;
         border-bottom: #854BFF dashed;
     }
+} */
+
+.worker-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: #854BFF dashed;
 }
 
 .logout-button{

@@ -1,0 +1,16 @@
+.worker-main-container{
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 400px){
+    .worker-main-header{
+        width: 50%;
+        margin-left: 25%;
+    }
+
+    .BottomMenu{
+        width: 50%;
+        margin-left: 25%;
+    }
+}

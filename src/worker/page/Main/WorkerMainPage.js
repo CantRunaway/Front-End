@@ -6,18 +6,20 @@ import BottomMenu from '../../../etc/Worker_Components/BottomMenu'
 
 function WorkerMainPage() {
   return (
-    <div className='ScheduleEnrollPage'>
+    <div className='worker-main-container'>
 
-      <header>
+      <header className='worker-main-header'>
         <Header />
       </header>
+      
+      <div className='WorkerMainSession'>
+        중간
+      </div>
 
       <div className='BottomMenu'>
         <BottomMenu />
       </div>
 
-      <div className='WorkerMainSession'>
-      </div>
     </div>
   )
 }
