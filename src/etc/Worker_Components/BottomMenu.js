@@ -1,38 +1,38 @@
 import React from 'react'
-import '../css/BottomMenu.css'
+import '../css/WorkerBottomMenu.css'
 import { NavLink } from "react-router-dom";
 
 function BottomMenu() {
   return (
     <div className='bottom-manu'>
 
-      <span className='request-worker-link'>
+      <div className='request-worker-link'>
         <NavLink to=''>
           <img src='/img/RequestWorker_ICON.png' alt='근로요청' />
-          임시근로 요청
+          <span>임시근로 요청</span>
         </NavLink>
-      </span>
+      </div>
 
-      <span className='schedule-table-link'>
+      <div className='schedule-table-link'>
         <NavLink to=''>
           <img src='/img/ScheduleTable_ICON.png' alt='시간표' />
-          근로 시간표
+          <span>근로 시간표</span>
         </NavLink>
-      </span>
+      </div>
 
-      <span className='schedule-register-link'>
+      <div className='schedule-register-link'>
         <NavLink to=''>
           <img src='/img/ScheduleRegister_ICON.png' alt='시간표등록' />
-          시간표 등록
+          <span>시간표 등록</span>
         </NavLink>
-      </span>
+      </div>
 
-      <span className='user-info-link'>
+      <div className='user-info-link'>
         <NavLink to=''>
           <img src='/img/USER_ICON.png' alt='정보조회' />
-          정보조회
+          <span>정보조회</span>
         </NavLink>
-      </span>
+      </div>
 
     </div>
   )

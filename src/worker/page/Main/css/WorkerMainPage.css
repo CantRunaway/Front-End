@@ -3,7 +3,7 @@
     flex-direction: column;
 }
 
-@media screen and (min-width: 400px){
+@media screen and (min-width: 650px){
     .worker-main-header{
         width: 50%;
         margin-left: 25%;

@@ -6,13 +6,15 @@
     border-top: #854BFF dashed;
 }
 
-.bottom-manu>span{
+.bottom-manu>div{
     margin: 1rem;
-    font-size: 3px;
+    font-size: 0.1rem;
     font-weight: bolder;
+    min-width: 63px;
+
 }
 
-span img{
+div img{
     display: flex;
     flex-direction: column;
     width: 3rem;
@@ -20,4 +22,16 @@ span img{
 
 .user-info-link img{
     width: 2.3rem;
+}
+
+@media screen and (max-width: 350px){
+    .bottom-manu>div{
+        margin: 10px;
+    }
+}
+
+@media screen and (max-width: 320px){
+    .bottom-manu>div{
+        margin: 5px;
+    }
 }
