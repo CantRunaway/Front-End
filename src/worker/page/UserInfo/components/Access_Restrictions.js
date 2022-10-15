@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import '../css/access_restrictions.css'
 
-function Access_Restrictions({permission}) {
+function AccessRestrictions({permission}) {
   const [modalIsOpen, setIsOpen] = useState(true);
   const [pw, setPw] = useState('');
 
@@ -60,4 +60,4 @@ function Access_Restrictions({permission}) {
     );
 }
 
-export default Access_Restrictions;
+export default AccessRestrictions;

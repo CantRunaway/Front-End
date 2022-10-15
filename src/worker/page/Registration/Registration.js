@@ -6,34 +6,33 @@ function Registration() {
 
   return (
     
-    <div className='userInfo'>
-      <div className='login-logo'>
-        <img className="main-icon" alt="main-icon" src="/img/ICON.jpg" />
+    <div className='registration-userInfo'>
+      <div className='registration-login-logo'>
+        <img className="registration-main-icon" alt="main-icon" src="/img/ICON.jpg" />
       </div>
       
-      <div className='userInfo-banner'>
+      <div className='registration-userInfo-banner'>
         <span>도망못가</span>
         <span>-- 회원정보 --</span>
       </div>
 
-      <form>
-      <div className='userInfo-main'>
+      <div className='registration-userInfo-main'>
 
-        <span className='name'>
-          이름 <input className='name-input' required />
+        <span className='registration-name'>
+          이름 <input className='registration-name-input' required />
         </span>
 
-        <span className='student-code'>
+        <span className='registration-student-code'>
           학번 <input className='student-code-input' required />
         </span>
 
-        <span className='pw'>
-          비밀번호 <input type='password' className='pw-input' required />
+        <span className='registration-pw'>
+          비밀번호 <input type='password' className='registration-pw-input' required />
         </span>
 
-        <span className='select-grade'>
+        <span className='registration-select-grade'>
           학년
-          <select className='grade-list' required >
+          <select className='registration-grade-list' required >
             <option value="" >--선택--</option>
             <option value='1'>1</option>
             <option value='2'>2</option>
@@ -43,9 +42,9 @@ function Registration() {
           </select >
         </span>
 
-        <span className='select-department'>
+        <span className='registration-select-department'>
           학과
-          <select className='department-list' required >
+          <select className='registration-department-list' required >
             <option value='' >--선택--</option>
             <option value='1'>컴소공</option>
             <option value='2'>컴터</option>
@@ -54,29 +53,29 @@ function Registration() {
           </select>
         </span>
 
-        <span className='phone'>
+        <span className='registration-phone'>
           전화번호 <input className='phone' required />
         </span>
 
-        <span className='birth'>
-          생년월일 <input className='birth-input' required />
+        <span className='registration-birth'>
+          생년월일 <input className='registration-birth-input' required />
         </span>
       
 
-        <span className='account'>
+        <span className='registration-account'>
           지급 계좌 
-          <select className='bank-list' required >
+          <select className='registration-bank-list' required >
             <option value='' >--선택--</option>
             <option value='1'>국민</option>
             <option value='2'>농협</option>
           </select>
 
-          <input className='account-input' required />
+          <input className='registration-account-input' required />
         </span>
 
-        <span className='work-type'>
+        <span className='registration-work-type'>
           근무 종류
-          <select className='work-type-list' required >
+          <select className='registration-work-type-list' required >
             <option value='' >--선택--</option>
             <option value='1'>식기 세척</option>
             <option value='2'>식사 확인</option>
@@ -84,9 +83,7 @@ function Registration() {
         </span>
 
       </div>
-      
-      <button className='sign-up-button' type='submit'>가입 요청</button>
-      </form>
+        <button className='registration-sign-up-button' type='submit'>가입 요청</button>
     </div>
   )
 }

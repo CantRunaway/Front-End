@@ -24,6 +24,8 @@
     flex-direction: column;
     align-items: center;
     border-bottom: #854BFF dashed;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .logout-button{
@@ -31,6 +33,7 @@
     border: none;
     background: white;
     color: #854BFF;
+    cursor: pointer;
 }
 
 .main-icon{

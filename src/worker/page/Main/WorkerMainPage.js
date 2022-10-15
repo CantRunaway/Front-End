@@ -2,6 +2,7 @@ import React from 'react'
 import './css/WorkerMainPage.css'
 import Header from '../../../etc/Worker_Components/Header'
 import BottomMenu from '../../../etc/Worker_Components/BottomMenu'
+import WorkerMainSession from './components/WorkerMainSession'
 
 
 function WorkerMainPage() {
@@ -13,7 +14,7 @@ function WorkerMainPage() {
       </header>
       
       <div className='WorkerMainSession'>
-        중간
+        <WorkerMainSession />
       </div>
 
       <div className='BottomMenu'>

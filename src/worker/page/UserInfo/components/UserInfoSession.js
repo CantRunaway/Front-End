@@ -1,19 +1,13 @@
-import AccessRestrictions from './Access_Restrictions';
 import '../css/UserInfoSession.css'
-import React, {useState, useEffect}from 'react'
+import React from 'react'
 
 // 기존 값이 변경 값과 다른게 없으면 쿼리 보내지 않고 페이지 변경
 // 모달 모바일 버전 설정
 // 모달 출력시 뒷 배경 이벤트 제거
 function UserInfoSession() {
 
-  const [permission, setPermission] = useState(true);
-
   return (
     <div className='userInfo'>
-      {
-        permission ? <AccessRestrictions className='modal' permission={setPermission} /> : ''
-      }
       <div className='login-logo'>
         <img className="main-icon" alt="main-icon" src="/img/ICON.jpg" />
       </div>
@@ -37,7 +31,7 @@ function UserInfoSession() {
         <span className='select-grade'>
           학년
           <select className='grade-list'>
-            <option value='none' disabled>--선택--</option>
+            <option value='' >--선택--</option>
             <option value='1'>1</option>
             <option value='2'>2</option>
             <option value='3'>3</option>
@@ -48,7 +42,7 @@ function UserInfoSession() {
         <span className='select-department'>
           학과
           <select className='department-list'>
-            <option value='none' disabled>--선택--</option>
+            <option value='' >--선택--</option>
             <option value='1'>컴소공</option>
             <option value='2'>컴터</option>
             <option value='3'>전자</option>
@@ -65,7 +59,7 @@ function UserInfoSession() {
         <span className='account'>
           지급 계좌 
           <select className='bank-list'>
-            <option value='none' disabled>--선택--</option>
+            <option value='' >--선택--</option>
             <option value='1'>국민</option>
             <option value='2'>농협</option>
           </select>
@@ -74,7 +68,7 @@ function UserInfoSession() {
         <span className='work-type'>
           근무 종류
           <select className='work-type-list'>
-            <option value='none' disabled>--선택--</option>
+            <option value='' >--선택--</option>
             <option value='1'>식기 세척</option>
             <option value='2'>식사 확인</option>
           </select>

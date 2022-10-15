@@ -1,0 +1,45 @@
+
+.worker-main-container{
+    align-items: center;
+}
+
+.display-attend{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #A87EFF;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 30px;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.display-month-year{
+    font-size: 1.7rem;
+    display: flex;
+}
+
+.worker-main-statistics{
+    display: flex;
+    flex-direction: column;
+    background: #E0D1FF;
+    width: 25rem;
+    border-radius: 10px;
+    font-weight: bolder;
+}
+
+.worker-main-statistics-time{
+    display: flex;
+    justify-content: space-around;
+}
+
+.worker-main-statistics-salary{
+    display: flex;
+    justify-content: space-around;
+}
+
+.worker-main-schedule-table{
+    width: 100%;
+    height: 100%;
+}

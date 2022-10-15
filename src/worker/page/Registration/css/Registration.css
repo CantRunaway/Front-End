@@ -3,7 +3,7 @@ html, body{
     height: 100%;
 }
 
-.userInfo {
+.registration-userInfo {
     margin-top: 2rem;
     width: 100%;
     display: flex;
@@ -12,32 +12,32 @@ html, body{
     flex-direction: column;
 }
 
-.main-icon{
+.registration-main-icon{
     width: 10rem;
 }
 
-.userInfo-banner{
+.registration-userInfo-banner{
     display: flex;
     flex-direction: column;
     justify-content: center;
     justify-items: center;
 }
 
-.userInfo-banner>span:nth-child(1){
+.registration-userInfo-banner>span:nth-child(1){
     font-size: 2rem;
     font-weight: bold;
     margin: auto;
     color: #181718
 }
 
-.userInfo-banner>span:nth-child(2){
+.registration-userInfo-banner>span:nth-child(2){
     font-size: 1rem;
     font-weight: bold;
     margin: auto;
     color: #CF5AE6;
 }
 
-.userInfo-main{
+.registration-userInfo-main{
     height: 25rem;
     width:25rem;
     display: flex;
@@ -46,7 +46,7 @@ html, body{
     border-radius: 20px;
 }
 
-.userInfo-main>span{
+.registration-userInfo-main>span{
     margin: 0.5rem;
     padding-left: 1.5rem;
 }
@@ -63,7 +63,7 @@ select{
     margin-right: 3px;
 }
 
-.sign-up-button{
+.registration-sign-up-button{
     margin-top: 1rem;
     width: 13rem;
     height: 2rem;
