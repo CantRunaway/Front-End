@@ -10,7 +10,7 @@ const WorkerMainPage = () => {
   const [totalSalary, setTotalSalary] = useState(0);
 
   return (
-    <div className='worker-main-container'>
+    <div className='worker-session-container'>
 
       <div className='display-attend'>
           {attend ? '붙잡힘' : '도망감...'}
@@ -20,20 +20,20 @@ const WorkerMainPage = () => {
         {day.get("year")}년 {day.get('month')+1}월
       </div>
 
-      <div className='worker-main-schedule-table'>
+      <div className='worker-session-schedule-table'>
         <Calender day={day}/>
       </div>
 
-      <div className='worker-main-statistics'>
+      <div className='worker-session-statistics'>
 
-        <span className='worker-main-statistics-time'>
+        <span className='worker-session-statistics-time'>
           <span>월 근로시간 </span>
           <span>
             {totalTime}시간
           </span>
         </span>
 
-        <span className='worker-main-statistics-salary'>
+        <span className='worker-session-statistics-salary'>
           <span>월 근로장학 금액</span>
           <span>
             {totalSalary}원

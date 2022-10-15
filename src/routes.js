@@ -18,10 +18,6 @@ import Calender from './worker/page/Main/components/Calender';
             element: <LoginPage />
         },
         {
-            path:'/cal',
-            element: <Calender />
-        },
-        {
             path:'/login',
             element: <LoginPage />
         },

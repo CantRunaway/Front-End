@@ -9,9 +9,9 @@ function WorkerMainPage() {
   return (
     <div className='worker-main-container'>
 
-      <header className='worker-main-header'>
+      <div className='worker-main-header'>
         <Header />
-      </header>
+      </div>
       
       <div className='WorkerMainSession'>
         <WorkerMainSession />
