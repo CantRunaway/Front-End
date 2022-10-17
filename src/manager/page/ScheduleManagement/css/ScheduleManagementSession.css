@@ -1,0 +1,41 @@
+.ScheduleManagementSession{
+    width: 100%;
+    height: auto;
+}
+
+.ScheduleTab{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 50px;
+    border-top: 3px solid #A87EFF;
+    background-color: white;
+}
+
+.tabs{
+    width: 40%;
+    height: auto;
+    float: left;
+    list-style: none;
+}
+
+.tab_title {
+    float: left;
+    color: black;
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    margin: 20px;
+    margin-left: 70px;
+    background-color: #E0D1FF;
+}
+
+.tab_title:active{
+    background-color: #A87EFF;
+}

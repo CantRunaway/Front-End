@@ -21,7 +21,7 @@ function ScheduleManagementPage() {
           {/* 상단 */}
           <Header/>
           {/* 시간표 수정기간 설정 영역 */}
-          <ScheduleManagementSession/>
+         <ScheduleManagementSession/>
         </div>
       </div>
       

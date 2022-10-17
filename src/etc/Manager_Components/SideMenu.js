@@ -14,14 +14,15 @@ function SideMenu() {
         🏃‍♀️🏃‍♂️🏃
       </div>
       <div className='menu'>
-        <ul>
+        {/* <ul> */}
           <ul className='menu_title'>🏃‍♂️근무자 목록</ul>
-          <ul className='menu_title' onClick={() => {setView1(!view1)}}>
+          <ul className='menu_title'>
             🏃‍♂️근무자 관리 {" "}
-            {view1 ? <img className="plus-minus" src="/img/sideplus.png" alt='' />
-             : 
-             <img className="plus-minus" src="/img/sideminus.png" alt='' />}
-            
+            {view1 ? <img className="plus-minus" src="/img/sideplus.png" alt=''
+              onClick={() => {setView1(!view1)}}
+            />
+            :
+            <img className="plus-minus" src="/img/sideminus.png" alt='' onClick={() => {setView1(!view1)}}/>}
             {view1 && 
             <>
             <li className='menu_contents'>
@@ -40,28 +41,28 @@ function SideMenu() {
             </>
             }
           </ul>
-          <ul className='menu_title' onClick={() => {setView2(!view2)}}>
+          <ul className='menu_title'>
             🏃‍♂️임시 근로 관리
-            {view2 ? <img className="plus-minus" src="/img/sideplus.png" alt='' />
+            {view2 ? <img className="plus-minus" src="/img/sideplus.png" alt='' onClick={() => {setView2(!view2)}}/>
              : 
-             <img className="plus-minus" src="/img/sideminus.png" alt='' />}
+             <img className="plus-minus" src="/img/sideminus.png" alt='' onClick={() => {setView2(!view2)}}/>}
             {view2 && <li className='menu_contents'>🏃‍♂️임시 근로 모집</li> }
           </ul>
-          <ul className='menu_title' onClick={() => {setView3(!view3)}}>
+          <ul className='menu_title'>
             🏃‍♂️근로 관리{" "}
-            {view3 ? <img className="plus-minus" src="/img/sideplus.png"alt=''  />
+            {view3 ? <img className="plus-minus" src="/img/sideplus.png"alt=''  onClick={() => {setView3(!view3)}}/>
              : 
-             <img className="plus-minus" src="/img/sideminus.png" alt='' />}
+             <img className="plus-minus" src="/img/sideminus.png" alt='' onClick={() => {setView3(!view3)}}/>}
             {view3 && 
             <>
               <li className='menu_contents'>🏃‍♂️근무 항목 및 시급 관리</li>
               <li className='menu_contents'>🏃‍♂️근무자별 근무 확인</li>
-              <li className='menu_contents'>🏃‍♂️근무자 전체 통계</li>
-              <li className='menu_contents'>🏃‍♂️히스토리 확인 </li>
             </>
             }
           </ul>
-        </ul>
+          <ul className='menu_title'>🏃‍♂️근무자 전체 통계</ul>
+          <ul className='menu_title'>🏃‍♂️히스토리 확인 </ul>
+        {/* </ul> */}
       </div>
     </div>
 
