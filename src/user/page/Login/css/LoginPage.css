@@ -98,9 +98,9 @@ html, body{
     height: 2rem;
     background-color: #A87EFF;
     border-radius: 20px;
-    border: none;
-    color: white;
     font-size: 1.3rem;
+    color: white;
+    border: none;
     cursor: pointer;
 }
 

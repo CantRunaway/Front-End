@@ -9,7 +9,6 @@ import UserApprovalPage from '../src/manager/page/UserApproval/UserApprovalPage'
 import ScheduleManagementPage from '../src/manager/page/ScheduleManagement/ScheduleManagementPage';
 import Registration from './worker/page/Registration/Registration';
 import NotFoundPage from '../src/etc/NotFoundPage'
-import Calender from './worker/page/Main/components/Calender';
 
     const route = 
     [

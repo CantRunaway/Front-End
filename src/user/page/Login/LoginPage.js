@@ -1,18 +1,45 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import './css/LoginPage.css'
 
 function LoginPage() {
   const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
+  const history = useNavigate();
 
-  const onSubmit =(e) => {
-    console.log(id)
+  const compareId =(e) => {
+    if(id==='test' && pw==='1234'){
+      history(`/:${id}/main`);
+    }
+    else if(id !=='test'){
+      alert("잘못된 아이디");
+      setId('')
+    }
+    else{
+      alert("잘못된 비밀번호");
+      setPw('')
+    }
   }
 
-  const onChange =(e) => {
+  const onKeyPress = (e) => {
+    if(e.key === 'Enter'){
+      compareId();
+    }
+  }
+
+  const onChangeId =(e) => {
     setId((id) => e.target.value)
   }
+
+  const onChangePw =(e) => {
+    setPw((pw) => e.target.value)
+  }
    
+  const reset = () => {
+    setId('');
+    setPw('');
+  }
+
   return (
       <div className='login'>
 
@@ -28,10 +55,10 @@ function LoginPage() {
         <div className='login-form-box'>
           <form className='login-form'>
               <div className='login'>
-                <input placeholder='ID' onChange={onChange}className='id'></input>
-                <input placeholder='PW' type='password' className='passwd'></input>
+                <input placeholder='ID' onChange={onChangeId} className='id' value={id} required></input>
+                <input placeholder='PW' onChange={onChangePw} type='password' className='passwd' value={pw} required></input>
               </div>
-                <button onSubmit={onSubmit} className='login-button'>Login</button>
+                <button onClick={() => compareId()} onKeyPress={onKeyPress} className='login-button'>Login</button>
             </form>
         </div>
 
