@@ -29,7 +29,6 @@ function SideMenu() {
                 <NavLink to="/userapproval">🏃‍♂️회원가입승인
                 </NavLink>
               </li>
-              <li className='menu_contents'>🏃‍♂️근무자 목록</li>
               <li className='menu_contents'>
                 <NavLink to="/:username/scheduleenroll">🏃‍♂️시간표 등록 / 수정
                 </NavLink>
@@ -46,7 +45,11 @@ function SideMenu() {
             {view2 ? <img className="plus-minus" src="/img/sideplus.png" alt='' onClick={() => {setView2(!view2)}}/>
              : 
              <img className="plus-minus" src="/img/sideminus.png" alt='' onClick={() => {setView2(!view2)}}/>}
-            {view2 && <li className='menu_contents'>🏃‍♂️임시 근로 모집</li> }
+            {view2 && 
+            <>
+              <li className='menu_contents'>🏃‍♂️임시 근로 모집</li>
+              <li className='menu_contents'>🏃‍♂️임시 근로/결근 요청</li>
+            </> }
           </ul>
           <ul className='menu_title'>
             🏃‍♂️근로 관리{" "}
