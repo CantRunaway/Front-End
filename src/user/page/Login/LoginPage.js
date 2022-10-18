@@ -11,6 +11,9 @@ function LoginPage() {
     if(id==='test' && pw==='1234'){
       history(`/:${id}/main`);
     }
+    else if(id==='admin' && pw === 'admin'){
+      history(`/managermain`);
+    }
     else if(id !=='test'){
       alert("잘못된 아이디");
       setId('')
