@@ -9,16 +9,59 @@ function UserApprovalSession() {
   // 임시 데이터
   const userData = [
     {
-      num : 20201111,
-      name : "임수연",
+      num : 20180802,
+      name : "이민형",
       grade : 3,
       major : "컴퓨터소프트웨어공학과",
-      phoneNum : "010-1111-2222",
-      birth : 20011103,
+      phoneNum : "010-1999-0802",
+      birth : 19990802,
+      type : "식기세척"
+    },
+    {
+      num : 20190323,
+      name : "황인준",
+      grade : 4,
+      major : "컴퓨터소프트웨어공학과",
+      phoneNum : "010-2000-0323",
+      birth : 20000323,
+      type : "식사확인"
+    },
+    {
+      num : 20190423,
+      name : "이제노",
+      grade : 2,
+      major : "컴퓨터소프트웨어공학과",
+      phoneNum : "010-2000-0423",
+      birth : 20000423,
+      type : "식기세척"
+    },
+    {
+      num : 20190606,
+      name : "이동혁",
+      grade : 2,
+      major : "컴퓨터소프트웨어공학과",
+      phoneNum : "010-2000-0606",
+      birth : 20000606,
+      type : "식사확인"
+    },
+    {
+      num : 20190813,
+      name : "나재민",
+      grade : 2,
+      major : "컴퓨터소프트웨어공학과",
+      phoneNum : "010-2000-0813",
+      birth : 20000813,
       type : "식기세척"
     }
   ];
 
+  const EnrollClicked = () => {
+    alert("등록되었습니다.");
+  }
+
+  const RefuseClicked = () => {
+    alert("거부되었습니다.");
+  }
   
   function approvalTable() {
     return (
@@ -34,11 +77,11 @@ function UserApprovalSession() {
         <tbody>
           {userData.map(({name, num, grade, major, phoneNum, birth, type }) => (
             <tr key={num}>
-              <td className='table_items'><input type="checkbox"/></td>
+              <input type="checkbox"/>
               <td className='table_items'>{name}</td>
               <td className='table_items'>{num}</td>
-              <td className='table_items'>{grade}</td>
-              <td className='table_items'>{major}</td>
+              <td className='grade_items'>{grade}</td>
+              <td className='major_items'>{major}</td>
               <td className='table_items'>{phoneNum}</td>
               <td className='table_items'>{birth}</td>
               <td className='table_items'>{type}</td>
@@ -56,8 +99,8 @@ function UserApprovalSession() {
           {approvalTable()}
         </div>
         <div className='approvalBtn'>
-          <button className='approval_btn'>등록</button>
-          <button className='approval_btn'>거부</button>
+          <button className='approval_btn' onClick={() => EnrollClicked()}>등록</button>
+          <button className='approval_btn' onClick={() => RefuseClicked()}>거부</button>
         </div>
         </div>
     </div>

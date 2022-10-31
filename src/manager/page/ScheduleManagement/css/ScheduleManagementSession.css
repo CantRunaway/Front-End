@@ -3,11 +3,9 @@
     height: auto;
 }
 
-.ScheduleTab{
+.ScheduleMain{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     height: 100%;
     margin-top: 50px;
@@ -15,9 +13,18 @@
     background-color: white;
 }
 
+.ScheduleTab{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    margin-left: 400px;
+}
+
 .tabs{
-    width: 40%;
-    height: auto;
+    width: 700px;
+    height: 100%;
     float: left;
     list-style: none;
 }

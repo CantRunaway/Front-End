@@ -21,20 +21,23 @@ function ScheduleManagementSession() {
 
   function ScheduleTab () {
     return(
-      <div className='ScheduleTab'>
-        <ul className='tabs'>
-          {tabData.map(tab => (
-            <li
-            className='tab_title' 
-            onClick={() => setClicked(tab.id)}>{tab.title}</li>
-          ))}
-        </ul>
+      <div className='ScheduleMain'>
+        <div className='ScheduleTab'>
+          <ul className='tabs'>
+            {tabData.map(tab => (
+              <li
+              className='tab_title' 
+              onClick={() => setClicked(tab.id)}>{tab.title}</li>
+            ))}
+          </ul>
+        </div>
         <div className='tab_content'>
           {tabData.filter(tab => clicked === tab.id).map(tab => (
             <div>{tab.component}</div>
           ))}
         </div>
       </div>
+      
     )
   }
 
