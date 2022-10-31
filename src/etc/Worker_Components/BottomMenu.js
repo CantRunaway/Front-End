@@ -28,7 +28,7 @@ function BottomMenu() {
       </div>
 
       <div className='user-info-link'>
-        <NavLink to=''>
+        <NavLink to='/:username/info'>
           <img src='/img/USER_ICON.png' alt='정보조회' />
           <span>정보조회</span>
         </NavLink>
