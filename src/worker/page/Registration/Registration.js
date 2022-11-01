@@ -1,8 +1,31 @@
 import './css/Registration.css'
-import React from 'react'
+import React, { useState , useEffect} from 'react'
+import axios from "axios"
+import DepartmentList from './DepartmentList';
 
 // 은행 종류를 선택으로 하면 은행이 변경될 때 데이터 업로드 필요
 function Registration() {
+
+  const [user, setUser] = useState({
+    user_id: "",
+    password: "",
+    name: "",
+    grade: "",
+    phone: "",
+    account: "",
+    birth: "",
+    work_type_index: "",
+    bank_index: ""
+  });
+
+  const onChangeUser = (e) => {
+    setUser({
+      ...user,
+      [e.target.name] : e.target.value,
+    });
+    
+
+  };
 
   return (
     
@@ -19,15 +42,15 @@ function Registration() {
       <div className='registration-userInfo-main'>
 
         <span className='registration-name'>
-          이름 <input className='registration-name-input' required />
+          이름 <input id = "id" name = "name" className='registration-name-input' onChange={onChangeUser} required />
         </span>
 
         <span className='registration-student-code'>
-          학번 <input className='student-code-input' required />
+          학번 <input id = "user_id" name = "user_id" className='student-code-input' onChange={onChangeUser} required />
         </span>
 
         <span className='registration-pw'>
-          비밀번호 <input type='password' className='registration-pw-input' required />
+          비밀번호 <input id = "password" name = "password" type='password' className='registration-pw-input' onChange={onChangeUser} required />
         </span>
 
         <span className='registration-select-grade'>
@@ -44,21 +67,15 @@ function Registration() {
 
         <span className='registration-select-department'>
           학과
-          <select className='registration-department-list' required >
-            <option value='' >--선택--</option>
-            <option value='1'>컴소공</option>
-            <option value='2'>컴터</option>
-            <option value='3'>전자</option>
-            <option value='4'>기계</option>
-          </select>
+            <DepartmentList />
         </span>
 
         <span className='registration-phone'>
-          전화번호 <input className='phone' required />
+          전화번호 <input id = "phone" name = "phone" className='phone' onChange={onChangeUser} required />
         </span>
 
         <span className='registration-birth'>
-          생년월일 <input className='registration-birth-input' required />
+          생년월일 <input id = "birth" name = "birth" className='registration-birth-input' onChange={onChangeUser} required />
         </span>
       
 
@@ -70,7 +87,7 @@ function Registration() {
             <option value='2'>농협</option>
           </select>
 
-          <input className='registration-account-input' required />
+          <input id = "account" name = "account" className='registration-account-input' onChange={onChangeUser} required />
         </span>
 
         <span className='registration-work-type'>
