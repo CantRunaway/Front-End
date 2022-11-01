@@ -4,6 +4,12 @@ import axios from "axios"
 
 const DepartmentList = () => {
     const [departments, setDepartments] = useState([]);
+    const [selectDepartments, setSelectDepartments] = useState([]);
+
+    const handleSelected = (e) => {
+      setSelectDepartments(e.target.value);
+      console.log(e.target.value);
+    }
 
   useEffect(() => {
     if (departments === []) return;
@@ -16,10 +22,15 @@ const DepartmentList = () => {
       })
    }, []);
 
-   const departmentList = departments.map((department) => (<option key = {department.department_index} value = {department.department_name} > {department.department_name}</option>))
+   const departmentList = departments.map((department) => (
+   <option
+      key = {department.department_index}
+      value = {department.department_name}
+    > 
+   {department.department_name}
+   </option>))
     return (
-        
-        <select>
+        <select onChange={handleSelected}>
             {departmentList}
         </select>
     );
