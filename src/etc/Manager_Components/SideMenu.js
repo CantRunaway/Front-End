@@ -11,13 +11,14 @@ function SideMenu() {
   return (
     <div className='SideMenu'>
       <div className='SideTitle'>
-        🏃‍♀️🏃‍♂️🏃
+        <NavLink to="/managermain">🏃‍♀️🏃‍♂️🏃</NavLink>
       </div>
       <div className='menu'>
-        {/* <ul> */}
-          <ul className='menu_title'>🏃‍♂️근무자 목록</ul>
           <ul className='menu_title'>
-            🏃‍♂️근무자 관리 {" "}
+          <NavLink to="/workerlist">🏃‍♂️근무자 목록</NavLink>
+          </ul>
+          <ul className='menu_title'>
+            🏃‍♂️근무자 관리
             {view1 ? <img className="plus-minus" src="/img/sideplus.png" alt=''
               onClick={() => {setView1(!view1)}}
             />
@@ -48,7 +49,9 @@ function SideMenu() {
             {view2 && 
             <>
               <li className='menu_contents'>🏃‍♂️임시 근로 모집</li>
-              <li className='menu_contents'>🏃‍♂️임시 근로/결근 요청</li>
+              <li className='menu_contents'>
+                <NavLink to="/temporalworkrequest">🏃‍♂️임시 근로/결근 요청</NavLink>
+              </li>
             </> }
           </ul>
           <ul className='menu_title'>

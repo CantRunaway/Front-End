@@ -1,9 +1,9 @@
-.ManagerMainSession{
+.TemporalWorkReqeustSession{
     width: 100%;
     height: auto;
 }
 
-.ManagerMain{
+.TemporalWorkReqeustMain{
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -13,53 +13,60 @@
     background-color: white;
 }
 
-.main_element{
+.temporalworker_contents{
     display: flex;
     flex-direction: column;
     width: 740px;
-    height: 100%;
+    height: 600px;
     border-radius: 20px;
-    margin: 20px;
-    margin-top: 50px;
+    margin-left: 20px;
+    margin-top: 20px;
     color: black;
-    background-color: #E0D1FF;
-    
+    background-color: white;
+    border: solid 2px #A87EFF;
 }
 
-.main_element_title{
+.temporalworker_element_title{
     color: black;
-    width: 700px;
+    width: 740px;
     font-size: 25px;
     text-align: center;
     margin: 20px;
-    margin-bottom: 80px;
+    margin-bottom: 30px;
 }
 
-.main_worker_element{
+.temporalworker_element{
     display: flex;
     flex-direction: row;
     width: 650px;
     height: 40px;
     border-radius: 20px;
-    background-color: white;
+    background-color: #E0D1FF;
     margin: 0 auto;
     margin-bottom: 30px;
     justify-content: space-evenly;
+    margin-top: 10px;
 }
 
-.main_request_element{
+.temporal_button{
     display: flex;
-    flex-direction: row;
-    width: 650px;
+    flex: row;
+    width: 740px;
+    height: 400px;
+}
+
+.temporal_btn{
+    margin: 40px;
+    margin-left: 100px;
+    width: 200px;
     height: 40px;
     border-radius: 20px;
+    border-style: none;
+    color: white;
     background-color: #A87EFF;
-    margin: 0 auto;
-    margin-bottom: 30px;
-    justify-content: space-evenly;
+    font-size: 20px;
 }
 
 .main_elements{
     margin: 10px;
 }
-

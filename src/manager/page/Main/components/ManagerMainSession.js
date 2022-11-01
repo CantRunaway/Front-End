@@ -1,5 +1,6 @@
 import React from 'react'
 import '../css/ManagerMainSession.css';
+import { NavLink } from 'react-router-dom';
 
 function ManagerMainSession() {
   const currentData = [
@@ -62,10 +63,10 @@ function ManagerMainSession() {
     ))
   }
 
-  function requesrList () {
+  function requestList () {
     return(
       requestData.map((data) => 
-      <div className='main_worker_element'>
+      <div className='main_request_element'>
         <div className='main_elements'>{data.username}</div>
         <div className='main_elements'>{data.userNum}</div>
         <div className='main_elements'>{data.workTime}</div>
@@ -83,12 +84,14 @@ function ManagerMainSession() {
           </div>
           {currentList()}
         </div>
-        <div className='main_element'>
-          <div className='main_element_title'>
-            임시 근로 요청
+        <NavLink to="/temporalworkrequest">
+          <div className='main_element'>
+            <div className='main_element_title'>
+              임시 근로 요청
+            </div>
+            {requestList()}
           </div>
-          {requesrList()}
-        </div>
+        </NavLink>
       </div>
     </div>
   )

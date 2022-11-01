@@ -1,9 +1,9 @@
-.UserApprovalSession{
+.WorkerListSession{
     width: 100%;
     height: auto;
 }
 
-.UserApprovalMain{
+.WorkerListMain{
     width: 100%;
     height: 100%;
     margin-top: 50px;
@@ -11,27 +11,16 @@
     background-color: white;
 }
 
-.userApprovalTable{
+.workerListTable{
     width: 1500px;
     height: 100%;
+    margin: 0 auto;
     margin-top: 50px;
-    margin-left: 40px;
     color: black;
     text-align: center;
 }
-
-.table_items{
+.workerlist_items{
     width: 900px;
-    height: 50px;
-}
-
-.grade_items{
-    width: 300px;
-    height: 50px;
-}
-
-.major_items{
-    width: 1200px;
     height: 50px;
 }
 
@@ -47,18 +36,18 @@ tbody{
     font-size: 20px;
 }
 
-.approvalBtn{
-    margin-top: 70px;
-    margin-left: 450px;
+.removeButton{
+    width: 1500px;
 }
 
-.approval_btn{
-    margin: 20px;
-    width: 250px;
+.remove_btn{
+    width: 200px;
     height: 40px;
+    margin: 40px;
     border-radius: 20px;
     border-style: none;
     color: white;
     background-color: #A87EFF;
-    font-size: 20px
+    font-size: 20px;
+    float: right;
 }

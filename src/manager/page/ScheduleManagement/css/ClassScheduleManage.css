@@ -7,12 +7,14 @@
 .periodcontents{
     display: flex;
     flex-direction: row;
-    margin: 30px;
+    margin-left: 400px;
+    width: 800px;
 }
 
 .periodTitle{
     margin-right: 10px;
     color: black;
+    width: 200px;
     font-size: 20px;
     text-align: center;
     line-height: 40px;
@@ -33,6 +35,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin: 20px;
+    margin-left: 400px;
+    width: 800px;
+    height: 100%;
 }
 
 .DatePicker{
@@ -42,7 +48,10 @@
 
 .modificationBtn{
     margin-top: 300px;
+    margin-left: 650px;
     text-align: center;
+    width: 300px;
+    height: 40px;
 }
 
 .mofification_btn{
