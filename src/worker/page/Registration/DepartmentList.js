@@ -25,7 +25,7 @@ const DepartmentList = () => {
    const departmentList = departments.map((department) => (
    <option
       key = {department.department_index}
-      value = {department.department_name}
+      value = {department.department_index}
     > 
    {department.department_name}
    </option>))

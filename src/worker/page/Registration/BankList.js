@@ -1,0 +1,41 @@
+import { useEffect, useState } from 'react';
+import './css/Registration.css'
+import axios from "axios"
+
+const BankList = () => {
+    const [banks, setBanks] = useState([]);
+    const [selectBanks, setSelectedBanks] = useState([]);
+
+    const handleSelected = (e) => {
+      setSelectedBanks(e.target.value);
+      console.log(e.target.value);
+    }
+
+  useEffect(() => {
+    if (banks === []) return;
+      axios.get("http://localhost:8080/bank")
+      .then((res) => {
+        setBanks(res.data);
+      })
+      .catch((err) => {
+        throw err;
+      })
+   }, []);
+
+   const bankList = banks.map((bank) => (
+    <option
+       key = {bank.bank_index}
+       value = {bank.bank_index}
+     > 
+    {bank.bank_name}
+    </option>))
+
+    return (
+    <select className='registration-bank-list' required onChange={handleSelected}>
+            <option value='' >--선택--</option>
+            {bankList}
+    </select>
+    );
+}
+
+export default BankList;

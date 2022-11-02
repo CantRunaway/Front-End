@@ -2,6 +2,8 @@ import './css/Registration.css'
 import React, { useState , useEffect} from 'react'
 import axios from "axios"
 import DepartmentList from './DepartmentList';
+import BankList from './BankList';
+import WorkTypeList from './WorkTypeList';
 
 // 은행 종류를 선택으로 하면 은행이 변경될 때 데이터 업로드 필요
 function Registration() {
@@ -80,23 +82,15 @@ function Registration() {
       
 
         <span className='registration-account'>
-          지급 계좌 
-          <select className='registration-bank-list' required >
-            <option value='' >--선택--</option>
-            <option value='1'>국민</option>
-            <option value='2'>농협</option>
-          </select>
-
+          지급 계좌
+            <BankList />
+          
           <input id = "account" name = "account" className='registration-account-input' onChange={onChangeUser} required />
         </span>
 
         <span className='registration-work-type'>
           근무 종류
-          <select className='registration-work-type-list' required >
-            <option value='' >--선택--</option>
-            <option value='1'>식기 세척</option>
-            <option value='2'>식사 확인</option>
-          </select>
+          <WorkTypeList />
         </span>
 
       </div>
