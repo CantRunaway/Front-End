@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import './css/Registration.css'
 import axios from "axios"
 
-const BankList = () => {
+const BankList = ({selectBanks, setSelectedBanks}) => {
     const [banks, setBanks] = useState([]);
-    const [selectBanks, setSelectedBanks] = useState([]);
 
     const handleSelected = (e) => {
       setSelectedBanks(e.target.value);
