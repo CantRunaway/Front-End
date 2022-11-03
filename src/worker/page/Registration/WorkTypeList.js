@@ -2,10 +2,9 @@ import './css/Registration.css'
 import React, { useState , useEffect} from 'react'
 import axios from "axios"
 
-const WorkTypeList = () => {
+const WorkTypeList = ({selectedWorkTypes, setSelectedWorkTypes}) => {
 
     const [workTypes, setWorkTypes] = useState([]);
-    const [selectedWorkTypes, setSelectedWorkTypes] = useState([]);
 
     const handleSelected = (e) => {
       setSelectedWorkTypes(e.target.value);

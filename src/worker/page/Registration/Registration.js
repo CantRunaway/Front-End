@@ -7,6 +7,9 @@ import WorkTypeList from './WorkTypeList';
 
 // 은행 종류를 선택으로 하면 은행이 변경될 때 데이터 업로드 필요
 function Registration() {
+  const [selectDepartments, setSelectDepartments] = useState([]);
+  const [selectBanks, setSelectedBanks] = useState([]);
+  const [selectedWorkTypes, setSelectedWorkTypes] = useState([]);
 
   const [user, setUser] = useState({
     user_id: "",
@@ -69,7 +72,9 @@ function Registration() {
 
         <span className='registration-select-department'>
           학과
-            <DepartmentList />
+            <DepartmentList
+            selectDepartments={selectDepartments}
+            setSelectDepartments={setSelectDepartments} />
         </span>
 
         <span className='registration-phone'>
@@ -83,14 +88,20 @@ function Registration() {
 
         <span className='registration-account'>
           지급 계좌
-            <BankList />
+            <BankList
+            selectBanks={selectBanks}
+            setSelectedBanks={setSelectedBanks}
+            />
           
           <input id = "account" name = "account" className='registration-account-input' onChange={onChangeUser} required />
         </span>
 
         <span className='registration-work-type'>
           근무 종류
-          <WorkTypeList />
+          <WorkTypeList
+          selectedWorkTypes={selectedWorkTypes}
+          setSelectedWorkTypes={setSelectedWorkTypes}
+          />
         </span>
 
       </div>
