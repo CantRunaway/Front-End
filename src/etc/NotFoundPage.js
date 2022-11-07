@@ -4,7 +4,7 @@ import './css/NotFoundPage.css'
 function NotFoundPage() {
   return (
     <div className='NotFoundPage'>
-      잘못된 접근입니다.
+      잘못된 접근입니다.1234
     </div>
   )
 }
