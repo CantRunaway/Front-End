@@ -8,37 +8,6 @@ const WorkerMainPage = () => {
   const [day, setDay] = useState(dayjs);
   const [totalTime, setTotalTime] = useState(0)
   const [totalSalary, setTotalSalary] = useState(0);
-  const [selectYear, setSelectYear] = useState(day.get("year"))
-  const [selectMonth, setSelectMonth] = useState(day.get("month")+1)
-  
-  const addDay = () => {
-    if(selectMonth+1 > 12){
-      setDay(day.set('y', selectYear+1))
-      setSelectYear(selectYear+1)
-
-      setDay(day.set('M', 1))
-      setSelectMonth(1)
-    }
-    else{
-      setDay(day.set('M', selectMonth+1))
-      setSelectMonth(selectMonth+1)
-    }
-  } 
-
-  const subDay = () => {
-    console.log(selectMonth + " " + selectYear)
-    if(selectMonth-1 < 1){
-      setDay(day.set('y', selectYear-1))
-      setSelectYear(selectYear-1)
-      
-      setDay(day.set('M', 12))
-      setSelectMonth(12)
-    }
-    else{
-      setDay(day.set('M', selectMonth-1))
-      setSelectMonth(selectMonth-1)
-    }
-  } 
 
   return (
     <div className='worker-session-container'>
@@ -48,9 +17,7 @@ const WorkerMainPage = () => {
       </div>
 
       <div className='display-month-year'>
-        <button onClick={subDay}>sub</button>
-        {selectYear}년 {selectMonth}월
-        <button onClick={addDay}>add</button>
+        {day.get("year")}년 {day.get('month')+1}월
       </div>
 
       <div className='worker-session-schedule-table'>
