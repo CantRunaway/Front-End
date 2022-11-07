@@ -28,10 +28,27 @@ function Registration() {
       ...user,
       [e.target.name] : e.target.value,
     });
-    
-
+    console.log(user);
   };
+  
+  useEffect(() => {
+    setUser({
+      ...user,
+      work_type_index: selectedWorkTypes,
+    });
+  }, [selectedWorkTypes])
 
+  useEffect(() => {
+    setUser({
+      ...user,
+      bank_index: selectBanks,
+    });
+  }, [selectBanks])
+
+  const postUser = async () => {
+    const response = await axios.post('http://localhost:8080/users/register', user);
+    console.log(response.data);
+  }
   return (
     
     <div className='registration-userInfo'>
@@ -60,7 +77,7 @@ function Registration() {
 
         <span className='registration-select-grade'>
           학년
-          <select className='registration-grade-list' required >
+          <select className='registration-grade-list' id = "grade" name = "grade" onChange={onChangeUser} required >
             <option value="" >--선택--</option>
             <option value='1'>1</option>
             <option value='2'>2</option>
@@ -72,9 +89,10 @@ function Registration() {
 
         <span className='registration-select-department'>
           학과
-            <DepartmentList
+            <DepartmentList id = "department_index" name = "department_index"
             selectDepartments={selectDepartments}
-            setSelectDepartments={setSelectDepartments} />
+            setSelectDepartments={setSelectDepartments}
+             />
         </span>
 
         <span className='registration-phone'>
@@ -88,9 +106,10 @@ function Registration() {
 
         <span className='registration-account'>
           지급 계좌
-            <BankList
+            <BankList id = "bank_index" name = "bank_index"
             selectBanks={selectBanks}
             setSelectedBanks={setSelectedBanks}
+            
             />
           
           <input id = "account" name = "account" className='registration-account-input' onChange={onChangeUser} required />
@@ -98,14 +117,14 @@ function Registration() {
 
         <span className='registration-work-type'>
           근무 종류
-          <WorkTypeList
+          <WorkTypeList id = "work_type_index" name = "work_type_index"
           selectedWorkTypes={selectedWorkTypes}
           setSelectedWorkTypes={setSelectedWorkTypes}
           />
         </span>
 
       </div>
-        <button className='registration-sign-up-button' type='submit'>가입 요청</button>
+        <button className='registration-sign-up-button' type='submit' onClick={postUser}>가입 요청</button>
     </div>
   )
 }
