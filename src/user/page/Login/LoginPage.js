@@ -11,7 +11,9 @@ function LoginPage() {
   const compareId =(e) => {
     const res = login();
     if (res === "Login OK") {
-      history(`/:${id}/main`);
+      {
+        <Link to = {'/' + id + '/main'}> </Link>
+      }
     }
     else if(id==='admin' && pw === 'admin'){
       history(`/managermain`);
