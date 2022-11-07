@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom';
+import axios from 'axios';
 import './css/LoginPage.css'
 
 function LoginPage() {
@@ -8,7 +9,8 @@ function LoginPage() {
   const history = useNavigate();
 
   const compareId =(e) => {
-    if(id==='test' && pw==='1234'){
+    const res = login();
+    if (res === "Login OK") {
       history(`/:${id}/main`);
     }
     else if(id==='admin' && pw === 'admin'){
@@ -22,6 +24,14 @@ function LoginPage() {
       alert("잘못된 비밀번호");
       setPw('')
     }
+  }
+
+  const login = async () => {
+    const response = await axios.post('http://localhost:8080/users/login', {
+      user_id : id,
+      password: pw
+    });
+    return response;
   }
 
   const onKeyPress = (e) => {
