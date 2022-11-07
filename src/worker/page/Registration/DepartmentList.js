@@ -29,7 +29,8 @@ const DepartmentList = ({selectDepartments, setSelectDepartments}) => {
    {department.department_name}
    </option>))
     return (
-        <select onChange={handleSelected}>
+        <select onChange={handleSelected} required>
+          <option value='' >--선택--</option>
             {departmentList}
         </select>
     );
