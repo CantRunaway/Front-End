@@ -7,25 +7,12 @@ function LoginPage() {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
   const history = useNavigate();
+  const [isLogin, setLogin] = useState(false);
 
   const compareId =(e) => {
-    const res = login();
-    if (res === "Login OK") {
-      {
-        <Link to = {'/' + id + '/main'}> </Link>
-      }
-    }
-    else if(id==='admin' && pw === 'admin'){
-      history(`/managermain`);
-    }
-    else if(id !=='test' && id !== 'admin'){
-      alert("잘못된 아이디");
-      setId('')
-    }
-    else{
-      alert("잘못된 비밀번호");
-      setPw('')
-    }
+    login();
+    console.log(isLogin);
+    isLogin ? alert("true") : alert("false");
   }
 
   const login = async () => {
@@ -33,7 +20,8 @@ function LoginPage() {
       user_id : id,
       password: pw
     });
-    return response;
+    setLogin(response.data);
+    alert(response.data);
   }
 
   const onKeyPress = (e) => {
