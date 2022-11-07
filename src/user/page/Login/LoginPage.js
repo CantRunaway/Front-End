@@ -6,38 +6,47 @@ import './css/LoginPage.css'
 function LoginPage() {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
-  const history = useNavigate();
-  const [isLogin, setLogin] = useState(false);
 
-  const compareId =(e) => {
-    login();
-    console.log(isLogin);
-    isLogin ? alert("true") : alert("false");
-  }
+  const navigate = useNavigate();
 
-  const login = async () => {
-    const response = await axios.post('http://localhost:8080/users/login', {
+  const login = async (event) => {
+    event.preventDefault();
+    await axios.post('http://localhost:8080/users/login', {
       user_id : id,
       password: pw
-    });
-    setLogin(response.data);
-    alert(response.data);
+    })
+    .then((res) => {
+      console.log(res);
+
+      res.data ? navigate(`/${id}/main`) : loginFail();
+    })
+    .catch((err) => {
+      console.error({error: err});
+      navigate('/');
+    })
   }
 
   const onKeyPress = (e) => {
     if(e.key === 'Enter'){
-      compareId();
+      login();
     }
   }
 
-  const onChangeId =(e) => {
-    setId((id) => e.target.value)
+  const onChangeId = (e) => {
+    setId(e.target.value);
+    
   }
 
-  const onChangePw =(e) => {
-    setPw((pw) => e.target.value)
+  const onChangePw = (e) => {
+    setPw(e.target.value);
+    
   }
-   
+  
+  const loginFail = () => {
+    alert("로그인에 실패했습니다.");
+    reset();
+  }
+
   const reset = () => {
     setId('');
     setPw('');
@@ -61,7 +70,8 @@ function LoginPage() {
                 <input placeholder='ID' onChange={onChangeId} className='id' value={id} required></input>
                 <input placeholder='PW' onChange={onChangePw} type='password' className='passwd' value={pw} required></input>
               </div>
-                <button onClick={() => compareId()} onKeyPress={onKeyPress} className='login-button'>Login</button>
+                <button onClick={login} onKeyPress={onKeyPress} className='login-button'>Login</button>
+                
             </form>
         </div>
 
@@ -73,4 +83,4 @@ function LoginPage() {
   )
 }
 
-export default LoginPage
+export default LoginPage;
