@@ -7,7 +7,9 @@ import ScheuleEnrollPage from '../src/worker/page/ScheduleEnroll/ScheduleEnrollP
 import ManagerMainPage from '../src/manager/page/Main/ManagerMainPage';
 import WorkerListPage from './manager/page/WorkerList/WorkerListPage';
 import UserApprovalPage from '../src/manager/page/UserApproval/UserApprovalPage';
+import TemporalManagementPage from './manager/page/TemporalManagement/TemporalManagementPage';
 import TemporalWorkReqeustPage from './manager/page/TemporalWorkReqeust/TemporalWorkReqeustPage';
+import WorkManagementPage from './manager/page/WorkManagement/WorkManagementPage';
 import ScheduleManagementPage from '../src/manager/page/ScheduleManagement/ScheduleManagementPage';
 import Registration from './worker/page/Registration/Registration';
 import NotFoundPage from '../src/etc/NotFoundPage'
@@ -59,8 +61,16 @@ import NotFoundPage from '../src/etc/NotFoundPage'
             element: <UserApprovalPage />
         },
         {
+            path:'/temporalworkmng',
+            element: <TemporalManagementPage />
+        },
+        {
             path:'/temporalworkrequest',
             element: <TemporalWorkReqeustPage />
+        },
+        {
+            path:'/workmng',
+            element: <WorkManagementPage />
         },
         {
             path:'*',

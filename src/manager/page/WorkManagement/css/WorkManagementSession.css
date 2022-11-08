@@ -1,0 +1,132 @@
+.WorkManagementSession{
+    width: 100%;
+    height: auto;
+}
+
+.WorkManagementMain{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin-top: 50px;
+    border-top: 3px solid #A87EFF;
+    background-color: white;
+}
+
+.workmngTitle{
+    font-size: 25px;
+    color: black;
+    margin: 60px;
+    margin-left: 100px;
+}
+
+.workTypeList{
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    height: 100%;
+}
+
+.workTypeTable{
+    width: 1200px;
+    height: 100%;
+    margin-top: 5px;
+    margin-left: 200px;
+    margin-bottom: 30px;
+    color: black;
+    text-align: center;
+}
+
+.workTypetbody{
+    background-color: white;
+    text-align: center;
+    font-size: 20px;
+    border: solid 1px black;
+}
+
+.worktype_items{
+    width: 900px;
+    height: 50px;
+    border: solid 1px black;
+}
+
+.workTypeDelete_btn{
+    width: 200px;
+    height: 35px;
+    color: black;
+    background-color: #E0D1FF;
+    border-radius: 20px;
+    border: none;
+    font-size: 30x;
+    text-align: center;
+    margin-left: 700px;
+    margin-bottom: 30px;
+}
+
+.workTypePlus{
+    display: flex;
+    flex-direction: row;
+    width: 800px;
+    height: 35px;
+    margin: 0 auto;
+}
+
+.workType{
+    width: 200px;
+    height: 100%;
+    color: black;
+    background-color: #D9D9D9;
+    font-size: 20px;
+    border-radius: 20px;
+    margin-right: 20px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.enrolldatepick{
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+    color: black;
+    background-color: white;
+    border: #A87EFF solid 2px;
+    margin-left: 20px;
+    margin-right: 0px;
+}
+
+.react-datepicker-wrapper{
+    width: 200px;
+    height: 30px;
+}
+
+.amount{
+    width: 150px;
+    height: 100%;
+    color: black;
+    background-color: #D9D9D9;
+    font-size: 20px;
+    border-radius: 20px;
+    margin-left: 80px;
+    text-align: center;
+}
+
+.amuont_won{
+    width: 80px;
+    height: 100%;
+    font-size: 20px;
+    color: black;
+    text-align: center;
+    justify-content: center;
+}
+
+.workplus_btn{
+    width: 100px;
+    height: 100%;
+    font-size: 20px;
+    text-align: center;
+    color: black;
+    background-color: #E0D1FF;
+    border-radius: 20px;
+    border: none;
+}
