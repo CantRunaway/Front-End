@@ -65,9 +65,11 @@ function SideMenu() {
             {view3 && 
             <>
               <li className='menu_contents'>
-              <NavLink to="/workmng">🏃‍♂️근무 항목 및 시급 관리</NavLink>
+                <NavLink to="/workmng">🏃‍♂️근무 항목 및 시급 관리</NavLink>
               </li>
-              <li className='menu_contents'>🏃‍♂️근무자별 근무 확인</li>
+              <li className='menu_contents'>
+                <NavLink to="/workcomfirm">🏃‍♂️근무자별 근무 확인</NavLink>
+              </li>
             </>
             }
           </ul>
