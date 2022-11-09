@@ -80,7 +80,6 @@ function WorkManagementSession() {
               locale="ko"
               width="300px"
               />
-            {console.log(editDate)}
             <input className='amount'
             type="text"
             placeholder='0'
