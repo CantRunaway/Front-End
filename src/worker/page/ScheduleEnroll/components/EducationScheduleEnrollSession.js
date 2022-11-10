@@ -3,7 +3,15 @@ import '../css/EducationScheduleEnrollSession.css'
 
 function EducationScheduleEnrollSession() {
   return (
-    <div>수업 및 근로 시간표 등록</div>
+    <div className='schedule-table-box'>
+
+    <div className='schedule-table'>
+    </div>
+
+    <button className='schedule-table-sendButton'>
+      수정
+    </button>
+  </div>
   )
 }
 
