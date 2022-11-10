@@ -1,22 +1,25 @@
 import React from 'react'
 import '../ScheduleEnroll/css/ScheduleEnrollPage.css'
-
+import BottomMenu from '../../../etc/Worker_Components/BottomMenu'
+import WorkScheduleEnrollSession from './components/WorkScheduleEnrollSession'
+import ScheduleHeader from './components/ScheduleHeader'
 
 function ScheduleEnrollPage() {
   return (
     <div className='ScheduleEnrollPage'>
-    {/* 상단 */}
-      <header>
-      </header>
-      {/* 하단 매뉴 */}
-      <div className='SideMenu'>
+
+      <div className='worker-main-header'>
+        <ScheduleHeader />
       </div>
-      {/* 수업 시간표 등록 영역 */}
-      <div className='EducationScheduleEnrollSession'>
+      
+      <div className='WorkerMainSession'>
+        <WorkScheduleEnrollSession />
       </div>
-      {/* 근로 시간표 등록 영역 */}
-      <div className='WorkScheduleEnrollSession'>
+
+      <div className='BottomMenu'>
+        <BottomMenu />
       </div>
+
     </div>
   )
 }

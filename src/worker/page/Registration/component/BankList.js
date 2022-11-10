@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './css/Registration.css'
+import '../css/Registration.css'
 import axios from "axios"
 
 const BankList = ({selectBanks, setSelectedBanks}) => {

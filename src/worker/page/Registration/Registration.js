@@ -1,9 +1,9 @@
 import './css/Registration.css'
 import React, { useState , useEffect} from 'react'
 import axios from "axios"
-import DepartmentList from './DepartmentList';
-import BankList from './BankList';
-import WorkTypeList from './WorkTypeList';
+import DepartmentList from './component/DepartmentList';
+import BankList from './component/BankList';
+import WorkTypeList from './component/WorkTypeList';
 
 // 은행 종류를 선택으로 하면 은행이 변경될 때 데이터 업로드 필요
 function Registration() {

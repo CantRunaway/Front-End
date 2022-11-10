@@ -21,7 +21,7 @@ function BottomMenu() {
       </div>
 
       <div className='schedule-register-link'>
-        <NavLink to=''>
+        <NavLink to='/:username/scheduleenroll'>
           <img src='/img/ScheduleRegister_ICON.png' alt='시간표등록' />
           <span>시간표 등록</span>
         </NavLink>
