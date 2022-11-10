@@ -20,7 +20,8 @@ function Registration() {
     account: "",
     birth: "",
     work_type_index: "",
-    bank_index: ""
+    bank_index: "",
+    department_index: ""
   });
 
   const onChangeUser = (e) => {
@@ -30,7 +31,14 @@ function Registration() {
     });
     console.log(user);
   };
-  
+
+  useEffect(() => {
+    setUser({
+      ...user,
+      department_index: selectDepartments,
+    });
+  }, [selectDepartments])
+
   useEffect(() => {
     setUser({
       ...user,

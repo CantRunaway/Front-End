@@ -2,57 +2,64 @@ import React, {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './css/LoginPage.css'
+import adminInfo from "../../../config/adminInfo";
 
 function LoginPage() {
-  const [id, setId] = useState('');
-  const [pw, setPw] = useState('');
-  const history = useNavigate();
+  
+  const [loginInfo, setLoginInfo] = useState({
+    user_id : "",
+    password : ""
+  })
+  const navigate = useNavigate();
 
-  const compareId =(e) => {
-    const res = login();
-    if (res === "Login OK") {
-      {
-        <Link to = {'/' + id + '/main'}> </Link>
-      }
+  const login = async (event) => {
+    event.preventDefault();
+    
+    if (JSON.stringify(adminInfo) === JSON.stringify(loginInfo)) {
+      navigate('/managermain');
+      return;
     }
-    else if(id==='admin' && pw === 'admin'){
-      history(`/managermain`);
-    }
-    else if(id !=='test' && id !== 'admin'){
-      alert("잘못된 아이디");
-      setId('')
-    }
-    else{
-      alert("잘못된 비밀번호");
-      setPw('')
-    }
-  }
+    await axios.post('http://localhost:8080/users/login', loginInfo)
+    .then((res) => {
+      console.log(res);
 
-  const login = async () => {
-    const response = await axios.post('http://localhost:8080/users/login', {
-      user_id : id,
-      password: pw
-    });
-    return response;
+      res.data ?  loginSuccess() : loginFail();
+    })
+    .catch((err) => {
+      console.error({error: err});
+      navigate('/');
+    })
   }
 
   const onKeyPress = (e) => {
     if(e.key === 'Enter'){
-      compareId();
+      login();
     }
   }
 
-  const onChangeId =(e) => {
-    setId((id) => e.target.value)
+  const onChangeInfo = (e) => {
+    setLoginInfo({
+      ...loginInfo,
+      [e.target.name] : e.target.value
+    });
+    
+  }
+  
+  const loginSuccess = () => {
+    sessionStorage.setItem('user_id', loginInfo.user_id);
+    navigate(`/${loginInfo.user_id}/main`);
   }
 
-  const onChangePw =(e) => {
-    setPw((pw) => e.target.value)
+  const loginFail = () => {
+    alert("로그인에 실패했습니다.");
+    reset();
   }
-   
+
   const reset = () => {
-    setId('');
-    setPw('');
+    setLoginInfo({
+      user_id: "",
+      password: ""
+    })
   }
 
   return (
@@ -70,10 +77,11 @@ function LoginPage() {
         <div className='login-form-box'>
           <form className='login-form'>
               <div className='login'>
-                <input placeholder='ID' onChange={onChangeId} className='id' value={id} required></input>
-                <input placeholder='PW' onChange={onChangePw} type='password' className='passwd' value={pw} required></input>
+                <input placeholder='ID' onChange={onChangeInfo} className='id' name = "user_id" value={loginInfo.user_id} required></input>
+                <input placeholder='PW' onChange={onChangeInfo} type='password' name = "password" className='passwd' value={loginInfo.password} required></input>
               </div>
-                <button onClick={() => compareId()} onKeyPress={onKeyPress} className='login-button'>Login</button>
+                <button onClick={login} onKeyPress={onKeyPress} className='login-button'>Login</button>
+                
             </form>
         </div>
 
@@ -85,4 +93,4 @@ function LoginPage() {
   )
 }
 
-export default LoginPage
+export default LoginPage;

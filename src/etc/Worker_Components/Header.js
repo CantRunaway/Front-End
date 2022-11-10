@@ -1,11 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router';
 import '../css/WorkerHeader.css'
 function Header() {
     // 뒤로가기 동작 제거
+    const navigate = useNavigate();
     function location_replace(){
-      var link_url = "/";
-      window.location.replace(link_url);
-      document.getElementById("location_replace").innerHTML = link_url;
+      sessionStorage.removeItem('user_id');
+      navigate(`/`);
     }
 
   return (

@@ -48,7 +48,10 @@ function SideMenu() {
              <img className="plus-minus" src="/img/sideminus.png" alt='' onClick={() => {setView2(!view2)}}/>}
             {view2 && 
             <>
-              <li className='menu_contents'>🏃‍♂️임시 근로 모집</li>
+
+              <li className='menu_contents'>
+              <NavLink to="/temporalworkmng">🏃‍♂️임시 근로 모집</NavLink>
+              </li>
               <li className='menu_contents'>
                 <NavLink to="/temporalworkrequest">🏃‍♂️임시 근로/결근 요청</NavLink>
               </li>
@@ -61,8 +64,12 @@ function SideMenu() {
              <img className="plus-minus" src="/img/sideminus.png" alt='' onClick={() => {setView3(!view3)}}/>}
             {view3 && 
             <>
-              <li className='menu_contents'>🏃‍♂️근무 항목 및 시급 관리</li>
-              <li className='menu_contents'>🏃‍♂️근무자별 근무 확인</li>
+              <li className='menu_contents'>
+                <NavLink to="/workmng">🏃‍♂️근무 항목 및 시급 관리</NavLink>
+              </li>
+              <li className='menu_contents'>
+                <NavLink to="/workcomfirm">🏃‍♂️근무자별 근무 확인</NavLink>
+              </li>
             </>
             }
           </ul>

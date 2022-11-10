@@ -1,12 +1,12 @@
 import React, {NavLink} from 'react'
+import { useNavigate } from 'react-router';
 import '../../etc/css/TopHeader.css'
 
 function TopHeader() {
-
+  const navigate = useNavigate();
+  
   function location_replace(){
-    var link_url = "/";
-    window.location.replace(link_url);
-    document.getElementById("location_replace").innerHTML = link_url;
+    navigate(`/`);
   }
 
   return (

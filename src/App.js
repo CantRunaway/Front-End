@@ -1,5 +1,5 @@
 import './App.css';
-import {Routes, Route} from 'react-router-dom';
+import {Router, Routes, Route} from 'react-router-dom';
 import route from './routes.js';
 import { Fragment } from 'react';
 import { BrowserRouter } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 function App() {
   return (
     <BrowserRouter>
+    
       <Routes>
       {
           route.map(route => {
@@ -20,6 +21,7 @@ function App() {
           })
       }
       </Routes>
+      
     </BrowserRouter>
   );
 }
