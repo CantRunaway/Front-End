@@ -1,36 +1,16 @@
 import React from 'react'
-import '../css/WorkScheduleEnrollSession.css'
+import '../css/WorkerScheduleEnrollSession.css'
 import ScheduleTable from './ScheduleTable'
 
-function WorkScheduleEnrollSession() {
- 
-  const classSchedule = 
-  [
-    {
-      day:'월',
-      startTime:'9:00',
-      endTime:'11:00',
-
-    },
-    {
-      day:'수',
-      startTime:'9:00',
-      endTime:'11:00',
-
-    },
-    {
-      day:'목',
-      startTime:'13:30',
-      endTime:'15:00',
-
-    }
-  ]
-
+function WorkScheduleEnrollSession({isClassSchedule, workerSchedule}) {
   return (
     <div className='schedule-table-box'>
 
       <div className='schedule-table'>
-        <ScheduleTable></ScheduleTable>
+        <ScheduleTable 
+          isClassSchedule={isClassSchedule}
+          workerSchedule={workerSchedule}
+        />
       </div>
 
       <button className='schedule-table-sendButton'>

@@ -14,6 +14,8 @@ import WorkComfirmPage from './manager/page/WorkComfirm/WorkComfirmPage';
 import ScheduleManagementPage from '../src/manager/page/ScheduleManagement/ScheduleManagementPage';
 import Registration from './worker/page/Registration/Registration';
 import NotFoundPage from '../src/etc/NotFoundPage'
+import TemporaryWork from './worker/page/TemporalWorkmng/TemporalWorkmng';
+import WorkerSchedule from './worker/page/WorkSchedule/WorkerSchedule';
 
     const route = 
     [
@@ -44,6 +46,14 @@ import NotFoundPage from '../src/etc/NotFoundPage'
         {
             path:'/:username/scheduleenroll',
             element: <ScheuleEnrollPage />
+        },
+        {
+            path:'/:username/workerSchedule',
+            element: <WorkerSchedule/>
+        },
+        {
+            path:'/:username/temporalworkmng',
+            element: <TemporaryWork />
         },
         {
             path:'/schedulemng',

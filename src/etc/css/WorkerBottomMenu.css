@@ -12,7 +12,6 @@
     font-size: 0.1rem;
     font-weight: bolder;
     min-width: 63px;
-
 }
 
 div img{
@@ -21,9 +20,25 @@ div img{
     width: 3rem;
 }
 
+.worker-main-link img{
+    margin: auto;
+    width: 2.3rem;
+}
+
 .user-info-link img{
     width: 2.3rem;
 }
+
+.worker-main-link {
+    display: flex;
+    flex-direction: column;
+}
+
+.worker-main-link span{
+    margin: auto;
+}
+
+
 
 @media screen and (max-width: 350px){
     .bottom-manu>div{

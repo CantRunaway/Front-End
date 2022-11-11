@@ -11,7 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #A87EFF;
+    background-color: #9162f7;
     width: 10rem;
     height: 3rem;
     border-radius: 30px;
@@ -21,6 +21,7 @@
 
 .display-month-year{
     font-size: 1.7rem;
+    padding: 10px;
     display: flex;
 }
 

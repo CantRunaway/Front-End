@@ -7,16 +7,23 @@ function BottomMenu() {
     <div className='bottom-manu'>
 
       <div className='request-worker-link'>
-        <NavLink to=''>
+        <NavLink to='/:username/temporalworkmng'>
           <img src='/img/RequestWorker_ICON.png' alt='근로요청' />
           <span>임시근로 요청</span>
         </NavLink>
       </div>
 
       <div className='schedule-table-link'>
-        <NavLink to=''>
+        <NavLink to='/:username/workerSchedule'>
           <img src='/img/ScheduleTable_ICON.png' alt='시간표' />
           <span>근로 시간표</span>
+        </NavLink>
+      </div>
+
+      <div className='worker-main-link'>
+        <NavLink className='worker-main-link' to='/:username/main'>
+          <img src='/img/USER_ICON.png' alt='메인페이지' />
+          <span>메인</span>
         </NavLink>
       </div>
 
