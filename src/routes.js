@@ -12,6 +12,7 @@ import TemporalWorkReqeustPage from './manager/page/TemporalWorkReqeust/Temporal
 import WorkManagementPage from './manager/page/WorkManagement/WorkManagementPage';
 import WorkComfirmPage from './manager/page/WorkComfirm/WorkComfirmPage';
 import ScheduleManagementPage from '../src/manager/page/ScheduleManagement/ScheduleManagementPage';
+import TotalPage from './manager/page/Total/TotalPage';
 import Registration from './worker/page/Registration/Registration';
 import NotFoundPage from '../src/etc/NotFoundPage'
 
@@ -76,6 +77,10 @@ import NotFoundPage from '../src/etc/NotFoundPage'
         {
             path:'/workcomfirm',
             element: <WorkComfirmPage />
+        },
+        {
+            path:'/total',
+            element: <TotalPage />
         },
         {
             path:'*',

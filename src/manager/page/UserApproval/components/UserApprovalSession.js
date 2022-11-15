@@ -55,6 +55,19 @@ function UserApprovalSession() {
     }
   ];
 
+  const [checked, setChecked] = useState([]);
+
+
+  const onChecked = (check, id) => {
+    if(check){
+      setChecked([...userData, id])
+      console.log(checked);
+    }
+    else{
+      setChecked(checked.filter((el) => el !== id))
+    }
+  }
+
   const EnrollClicked = () => {
     alert("등록되었습니다.");
   }
@@ -77,7 +90,7 @@ function UserApprovalSession() {
         <tbody>
           {userData.map(({name, num, grade, major, phoneNum, birth, type }) => (
             <tr key={num}>
-              <input type="checkbox"/>
+              <input type="checkbox" onChange={(e) => onChecked(e.target.checked, userData.num)}/>
               <td className='table_items'>{name}</td>
               <td className='table_items'>{num}</td>
               <td className='grade_items'>{grade}</td>
