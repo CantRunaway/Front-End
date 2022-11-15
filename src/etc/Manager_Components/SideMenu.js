@@ -73,7 +73,9 @@ function SideMenu() {
             </>
             }
           </ul>
-          <ul className='menu_title'>🏃‍♂️근무자 전체 통계</ul>
+          <ul className='menu_title'>
+            <NavLink to="/total">🏃‍♂️근무자 전체 통계</NavLink>
+          </ul>
           <ul className='menu_title'>🏃‍♂️히스토리 확인 </ul>
         {/* </ul> */}
       </div>
