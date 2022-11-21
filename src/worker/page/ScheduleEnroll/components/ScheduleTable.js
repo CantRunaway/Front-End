@@ -12,9 +12,30 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
 
     const settingTable = () => {
         let arr = []
+        let target = ''
         for(let j=0; ; j++){
             if(workerSchedule[j] == null) break;
-            document.getElementById(workerSchedule[j].time + workerSchedule[j].day).click();
+            target = document.getElementById(workerSchedule[j].time + workerSchedule[j].day);
+            target.click();
+            console.log(target)
+
+            if(isClassSchedule){
+                if(workerSchedule[j].type === "class"){
+                    target.style.background='#828282';
+                }
+                else{
+                    target.style.background='#E0D1FF';
+                }
+            }
+            else{
+                if(workerSchedule[j].type === "class"){
+                    target.style.background='#828282';
+                }
+                else{
+                    target.style.background='#E0D1FF';
+                }
+            }
+            
         }
         const newArr = [...workerSchedule];
         setCheckValue(newArr)
@@ -38,7 +59,7 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
         else{
             setCheckValue(checkValue.filter((arr)=> arr.id !== i ))
         }
-
+        console.log('check', checkValue)
     }
 
     const changeBoxColor = (id, check) => {
@@ -55,7 +76,6 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
             let targetTag = document.getElementById(id)
             targetTag.style.background='';
         }
-        console.log('check', checkValue)
 
     }
 
@@ -80,6 +100,7 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
                             key={i+date[j]+1} 
                             className={`schedule-checkBox-Table-contant`} 
                             id={time+date[j]}
+                            disabled
                             onClick={(e)=>
                                 onClickHandler(e, e.target.value, time, day)
                             }
@@ -107,6 +128,7 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
                         <label 
                             key={i+date[j]+1} 
                             className={`schedule-checkBox-Table-contant`}  
+                            disabled
                             id={time+date[j]}
                             onClick={(e)=>
                                 onClickHandler(e, e.target.value, time, day)

@@ -7,7 +7,6 @@ function EducationScheduleEnrollSession({isClassSchedule, workerSchedule, setWor
     <div className='schedule-table-box'>
 
       <div className='schedule-table'>
-        {console.log("호출")}
         <ScheduleTable 
           isClassSchedule={isClassSchedule}
           workerSchedule={workerSchedule}
