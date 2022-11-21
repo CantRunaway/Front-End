@@ -11,37 +11,43 @@ function ScheduleEnrollPage() {
   const [startModifiTime, setStartModifiTime] = useState(dayjs(new Date('2022-09-01')));
   const [endModifiTime, setEndtModifiTime] = useState(dayjs(new Date('2022-12-01')));
   const [currentTime, setCurrentTime] = useState(dayjs());
-  const [modifyAuthority, setModifyAuthority] = useState(false) // 클릭 이벤트 막기용
+  const [modifyAuthority, setModifyAuthority] = useState(
+    startModifiTime <= currentTime && currentTime <= endModifiTime
+    ) // 클릭 이벤트 막기용
   const [workerSchedule, setWorkerSchedule] = useState([
     {
       type:'class',
+      id:'11:00월',
       day:'월',
-      time:'11'
+      time:'11:00',
     },
     {
       type:'class',
+      id:'11:30월',
       day:'월',
       time:'11:30'
     },
     {
       type:'class',
+      id:'12:00월',
       day:'월',
-      time:'12'
+      time:'12:00'
     },
     {
       type:'work',
+      id:'13:00목',
       day:'목',
-      time:'13'
+      time:'13:00'
     },
     {
       type:'work',
+      id:'13:30목',
       day:'목',
       time:'13:30'
     }
   ])
-  useEffect(()=>{
-    modifyAuthoritySetting()
-  },[])
+
+  
 
   const preventModify = (e) =>{
     if(!modifyAuthority){
@@ -50,14 +56,7 @@ function ScheduleEnrollPage() {
     }
   }
 
-  const modifyAuthoritySetting=()=>{
-    if(startModifiTime <= currentTime && currentTime <= endModifiTime){
-      setModifyAuthority(true)
-    }
-    else{
-      setModifyAuthority(false)
-    }
-  }
+
 
   const toggleClass = () => {
     setisClassSchedule(true)
@@ -87,11 +86,13 @@ function ScheduleEnrollPage() {
           <WorkScheduleEnrollSession 
             isClassSchedule={isClassSchedule}
             workerSchedule={workerSchedule}
+            setWorkerSchedule={setWorkerSchedule}
           /> 
           : 
           <EducationScheduleEnrollSession
             isClassSchedule={isClassSchedule}
             workerSchedule={workerSchedule}
+            setWorkerSchedule={setWorkerSchedule}
           />
         }
       </div>

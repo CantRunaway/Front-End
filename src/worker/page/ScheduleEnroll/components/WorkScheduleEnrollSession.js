@@ -2,7 +2,7 @@ import React from 'react'
 import '../css/WorkerScheduleEnrollSession.css'
 import ScheduleTable from './ScheduleTable'
 
-function WorkScheduleEnrollSession({isClassSchedule, workerSchedule}) {
+function WorkScheduleEnrollSession({isClassSchedule, workerSchedule, setWorkerSchedule}) {
   return (
     <div className='schedule-table-box'>
 
@@ -10,6 +10,7 @@ function WorkScheduleEnrollSession({isClassSchedule, workerSchedule}) {
         <ScheduleTable 
           isClassSchedule={isClassSchedule}
           workerSchedule={workerSchedule}
+          setWorkerSchedule={setWorkerSchedule}
         />
       </div>
 

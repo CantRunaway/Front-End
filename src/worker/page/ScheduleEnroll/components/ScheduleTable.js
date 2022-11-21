@@ -1,51 +1,34 @@
-import { secondsToMilliseconds } from 'date-fns'
 import React, { useState, useEffect } from 'react'
 import '../css/ScheduleTable.css'
 
-function ScheduleTable({isClassSchedule, workerSchedule}) {
-    const [checkValue, setCheckValue] = useState([])   
-    const [temp, setTempe] = useState()
+function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
+    let [checkValue, setCheckValue] = useState([])   
 
     const date = ['일', '월', '화', '수', '목', '금', '토']
+
     useEffect(()=>{
         settingTable()
     },[])
-    
+
     const settingTable = () => {
-        let targetTag = '';
-        let i = '';
-        let t = '';
-        let d = '';
-        for(let j=0; j<workerSchedule.value; j++){
-            t = workerSchedule[j].time
-            d = workerSchedule[j].day
-            if(t.includes(':')){
-                i = t.split(':')[0]+'.5'+d;
-            }
-            else{
-                i = t + d;
-            }
-            setTempe({ id:i, day:d, time:t })
-            console.log(temp)
-            setCheckValue([...checkValue, temp])
+        let arr = []
+        for(let j=0; ; j++){
+            if(workerSchedule[j] == null) break;
+            document.getElementById(workerSchedule[j].time + workerSchedule[j].day).click();
         }
-        console.log(checkValue)
+        const newArr = [...workerSchedule];
+        setCheckValue(newArr)
+        return (arr)
     }
 
-
-    const onClickHandler = (e, v, t, d) =>{
-        if(isClassSchedule !== 'readMode'){
-            onCheckedSchedule(e, v, t, d)
-        }
-
-    }
-
-    const onCheckedSchedule = (e, v, t, d) =>{
+    const onClickHandler = (e, i, t, d) =>{
         let checked = e.target.checked
-        const newValue = { id:v, day:d, time:t };
+        let type = isClassSchedule ? "class" : "work"
+        const newValue = { tpye:type, id:i, day:d, time:t };
+        if(i === undefined) return
 
-        if(v){
-            changeBoxColor(v, checked)
+        if(i){
+            changeBoxColor(i, checked)
         }
 
         if(checked){
@@ -53,7 +36,7 @@ function ScheduleTable({isClassSchedule, workerSchedule}) {
             setCheckValue(newArr);
         }
         else{
-            setCheckValue(checkValue.filter((arr)=> arr.id !== v ))
+            setCheckValue(checkValue.filter((arr)=> arr.id !== i ))
         }
 
     }
@@ -72,13 +55,13 @@ function ScheduleTable({isClassSchedule, workerSchedule}) {
             let targetTag = document.getElementById(id)
             targetTag.style.background='';
         }
-        console.log('cha', checkValue)
+        console.log('check', checkValue)
 
     }
 
-    const timeTable = []
     const setCheckBoxTable = () => {
-        
+        const timeTable = []
+
         for(let i=9; i<=18; i+=0.5){
             let temp = []
             for(let j=0; j<date.length; j++){
@@ -89,14 +72,14 @@ function ScheduleTable({isClassSchedule, workerSchedule}) {
                     time = i-0.5+':30'
                     if(j===0){
                         temp.push(
-                            <span key={i+date[j]+3} className={`schedule-timeTable-contant`}></span>
+                            <span key={i+date[j]+3} className={`schedule-timeTable-contant`} ></span>
                         )
                     }
                     temp.push(
                         <label 
                             key={i+date[j]+1} 
                             className={`schedule-checkBox-Table-contant`} 
-                            id={i+date[j]}
+                            id={time+date[j]}
                             onClick={(e)=>
                                 onClickHandler(e, e.target.value, time, day)
                             }
@@ -105,7 +88,7 @@ function ScheduleTable({isClassSchedule, workerSchedule}) {
                                 <input 
                                     className='scadule-check' 
                                     type="checkbox"
-                                    value={i+date[j]}
+                                    value={time+date[j]}
                                 >
                                 </input>
                             </span>
@@ -114,16 +97,17 @@ function ScheduleTable({isClassSchedule, workerSchedule}) {
                     )
                 }
                 else{
+                    time = i+':00'
                     if(j===0){
                         temp.push(
-                            <span key={i+date[j]+3}  className={`schedule-timeTable-contant`} >{i}</span>
+                            <span key={i+':00'+date[j]+3}  className={`schedule-timeTable-contant`} >{i}</span>
                         )
                     }
                     temp.push(
                         <label 
                             key={i+date[j]+1} 
                             className={`schedule-checkBox-Table-contant`}  
-                            id={i+date[j]}
+                            id={time+date[j]}
                             onClick={(e)=>
                                 onClickHandler(e, e.target.value, time, day)
                             }
@@ -132,7 +116,7 @@ function ScheduleTable({isClassSchedule, workerSchedule}) {
                                 <input 
                                     className='scadule-check' 
                                     type="checkbox"
-                                    value={i+date[j]}
+                                    value={time+date[j]}
                                 >
                                 </input>
                             </span>
@@ -152,12 +136,11 @@ function ScheduleTable({isClassSchedule, workerSchedule}) {
             )
 
         }
-
+        
         return(
             timeTable
         )
     }
-
 
   return (
     <div className='schedule-container'>
