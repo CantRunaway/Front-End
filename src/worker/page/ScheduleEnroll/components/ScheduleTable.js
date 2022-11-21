@@ -16,7 +16,7 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
 
     const getEnrollment = async () => {
         
-        axios.get(`http://localhost:8080/enrollment/${sessionStorage.getItem('user_id')}`)
+        await axios.get(`http://localhost:8080/enrollment/${sessionStorage.getItem('user_id')}`)
         .then((res) => {
             console.log(res.data);
 
