@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import '../css/ScheduleTable.css'
 
 function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
@@ -10,6 +11,7 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
         settingTable()
     },[])
 
+    const [enrollmentDay, setUseEnrollmentDay] = useState({})
 
     const getEnrollment = async () => {
         
@@ -44,11 +46,13 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
                 }
                 else{
                     target.style.background='#E0D1FF';
+                    inputTarget.disabled = true;
                 }
             }
             else{
                 if(workerSchedule[j].type === "class"){
                     target.style.background='#828282';
+                    inputTarget.disabled = true;
                 }
                 else{
                     target.style.background='#E0D1FF';
@@ -118,7 +122,6 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
                         <label 
                             key={i+date[j]+1} 
                             className={`schedule-checkBox-Table-contant`} 
-                            for={time+date[j]}
                             id={time+date[j]}
                         >
                             <span>
@@ -127,7 +130,6 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
                                     type="checkbox"
                                     id={time+date[j]+"in"}
                                     value={time+date[j]}
-                                    disabled
                                     onClick={(e)=>
                                         onClickHandler(e, e.target.value, time, day)
                                     }
@@ -149,7 +151,6 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
                         <label 
                             key={i+date[j]+1} 
                             className={`schedule-checkBox-Table-contant`}  
-                            for={time+date[j]}
                             id={time+date[j]}
                         >
                             <span>
