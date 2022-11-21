@@ -10,6 +10,7 @@ function TemporalManagementSession() {
     const month = today.getMonth() + 1;
     const date = today.getDate();
     const daylist = ['일', '월', '화', '수', '목', '금', '토'];
+    const hour = [1, 2, 3, 4, 5, 6, 7 ,8 ,9 , 10, 11, 12];
     const day = daylist[today.getDay()];
     const [recruitDate, setRecruitDate] = useState(new Date());
     registerLocale("ko", ko);
@@ -60,22 +61,6 @@ function TemporalManagementSession() {
         alert("임시 근로 모집글이 등록되었습니다.");
     }
 
-    const temporalHour = () => {
-
-    }
-
-    const temporalMin = () => {
-        
-    }
-
-    const temporalType = () => {
-        <>
-            <option value={1}>식사확인</option>
-            <option value={2}>식기세척</option>
-        </>
-        
-    }
-
   return (
     <div className='TemporalManagementSession'>
         <div className='TemporalManagementMain'>
@@ -106,26 +91,21 @@ function TemporalManagementSession() {
                         <option value='pm'>오후</option>
                     </select>
                     <select className='temporal_select'>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
-                        <option value={6}>6</option>
-                        <option value={7}>7</option>
-                        <option value={8}>8</option>
-                        <option value={9}>9</option>
-                        <option value={10}>10</option>
-                        <option value={11}>11</option>
-                        <option value={12}>12</option>
+                        {hour.map((h) => {
+                            return(
+                                <option>{h}시</option>
+                            )
+                        })}
                     </select>
                     <select className='temporal_select'>
-                        
+                        <option value={0}>00분</option>
+                        <option value={30}>30분</option>
                     </select>
                     <select className='temporal_select'>
                         <option value={1}>식사확인</option>
                         <option value={2}>식기세척</option>
                     </select>
+                    
                     <div className='temporal_enroll'>
                         <button className='temporal_enroll_btn'
                         onClick={() => TemporalEnrollClicked()}>임시근로 모집</button>

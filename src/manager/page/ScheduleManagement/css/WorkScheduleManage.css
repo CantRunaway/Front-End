@@ -6,8 +6,9 @@
 .periodcontents{
     display: flex;
     flex-direction: row;
-    margin-left: 400px;
     width: 800px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 .periodTitle{
@@ -35,7 +36,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     margin: 20px;
-    margin-left: 400px;
+    margin-left: 100px;
     width: 800px;
     height: 100%;
 }
@@ -47,7 +48,7 @@
 
 .modificationBtn{
     margin-top: 300px;
-    margin-left: 650px;
+    margin-left: 350px;
     text-align: center;
     width: 300px;
     height: 40px;

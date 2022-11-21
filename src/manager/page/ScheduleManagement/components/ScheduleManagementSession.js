@@ -4,37 +4,38 @@ import ClassScheduleManage from './ClassScheduleManage';
 import WorkScheduleManage from './WorkScheduleManage';
 
 function ScheduleManagementSession() {
-  const [clicked, setClicked] = useState(0);
-  const tabData = [
-    {
-      id: 0,
-      title: "수업시간표",
-      component: <ClassScheduleManage/>
-    },
-    {
-      id: 1,
-      title: "근로시간표",
-      component: <WorkScheduleManage/>
+  const [isClassTab, setIsClassTab] = useState(true);
+
+    const toggleClass = () => {
+        setIsClassTab(true)
     }
-  ];
-  
+
+    const toggleWork = () => {
+        setIsClassTab(false)
+    }
 
   function ScheduleTab () {
     return(
       <div className='ScheduleMain'>
         <div className='ScheduleTab'>
-          <ul className='tabs'>
-            {tabData.map(tab => (
-              <li
-              className='tab_title' 
-              onClick={() => setClicked(tab.id)}>{tab.title}</li>
-            ))}
-          </ul>
-        </div>
-        <div className='tab_content'>
-          {tabData.filter(tab => clicked === tab.id).map(tab => (
-            <div>{tab.component}</div>
-          ))}
+          <div className='tabs'>
+            <button className='tab_title'
+            style={{background : `${isClassTab ? "#E0D1FF" : "none"}`}}
+            onClick={toggleClass}>
+              수업 시간표
+            </button>
+            <button className='tab_title'
+            style={{background : `${isClassTab ? "none" : "#E0D1FF"}`}}
+            onClick={toggleWork}>
+              근로 시간표
+            </button>
+          </div>  
+          <div className='tab_content'>
+            {isClassTab ?
+              <ClassScheduleManage/>
+            :
+              <WorkScheduleManage/>}
+          </div>
         </div>
       </div>
       
