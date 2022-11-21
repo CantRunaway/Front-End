@@ -10,6 +10,20 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
         settingTable()
     },[])
 
+
+    const getEnrollment = async () => {
+        
+        await axios.get(`http://localhost:8080/enrollment/${sessionStorage.getItem('user_id')}`)
+        .then((res) => {
+            console.log(res.data);
+
+            setUseEnrollmentDay(res.data);
+        })
+        .catch((err) => {
+            console.error({error:err});
+        })
+    }
+
     const settingTable = () => {
         let arr = [];
         let target = '';
