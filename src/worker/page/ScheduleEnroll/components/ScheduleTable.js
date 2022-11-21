@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import '../css/ScheduleTable.css'
 
@@ -8,9 +9,28 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
 
     useEffect(()=>{
         settingTable()
+        getEnrollment();
     },[])
+    
+    const [getEnrollmentDay, setUseEnrollmentDay] = useState({})
 
+    const getEnrollment = async () => {
+        
+        axios.get(`http://localhost:8080/enrollment/${sessionStorage.getItem('user_id')}`)
+        .then((res) => {
+            console.log(res.data);
+
+            setUseEnrollmentDay(res.data);
+        })
+        .catch((err) => {
+            console.error({error:err});
+        })
+    }
+
+    
+    
     const settingTable = () => {
+        
         let arr = []
         for(let j=0; ; j++){
             if(workerSchedule[j] == null) break;

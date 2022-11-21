@@ -1,16 +1,54 @@
+import axios from 'axios';
 import React,{useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 import '../css/access_restrictions.css'
 
 function AccessRestrictions({permission}) {
   const [modalIsOpen, setIsOpen] = useState(true);
-  const [pw, setPw] = useState('');
-
-  const onChange=((e)=>{
-    setPw(e.target.value);
+  const [loginInfo, setLoginInfo] = useState({
+    user_id: sessionStorage.getItem('user_id'),
+    password: ''
   })
   
+
+  const onChange=((e)=>{
+    setLoginInfo({
+      ...loginInfo,
+      [e.target.name] : e.target.value
+    });
+  })
+  
+  const navigate = useNavigate();
+
+  const login = async () => {
+    
+    console.log(loginInfo);
+    await axios.post("http://localhost:8080/users/login", loginInfo)
+    .then((res) => {
+      console.log(res);
+
+      res.data ? loginSuccess() : loginFail();
+    })
+    .catch((err) => {
+      console.error({error:err});
+      navigate('/');
+    })
+  }
+
   const resetPW = () => {
-    setPw('');
+    setLoginInfo({
+      ...loginInfo,
+      password : ''
+    })
+  }
+
+  const loginSuccess = () => {
+    handleModal();
+  }
+
+  const loginFail = () => {
+    alert("잘못된 비밀번호 입니다.");
+    resetPW();
   }
 
   const handleModal = () => {
@@ -19,13 +57,7 @@ function AccessRestrictions({permission}) {
   }
 
   const comparePW = () => {
-    if(pw === '1234'){
-      handleModal();
-    }
-    else{
-      alert('비밀번호가 틀렸습니다.');
-    }
-    resetPW();
+    login();
   }
 
   const onKeyPress = (e) => {
@@ -42,7 +74,7 @@ function AccessRestrictions({permission}) {
               <div className='authority-main'>
 
                 <div className='modal-pw-input' >
-                  비밀번호 <input type='password' onChange={onChange} onKeyPress={onKeyPress} value={pw}/>
+                  비밀번호 <input type='password' onChange={onChange} onKeyPress={onKeyPress} name = "password" value={loginInfo.password}/>
                 </div>
 
                 <div>
