@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import '../css/WorkScheduleManage.css'
+import '../css/ClassScheduleManage.css'
 import DatePicker ,{ registerLocale } from "react-datepicker";  // 한국어적용
 import ko from 'date-fns/locale/ko'; // 한국어적용
 import "react-datepicker/dist/react-datepicker.css";

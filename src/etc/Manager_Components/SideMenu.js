@@ -31,7 +31,7 @@ function SideMenu() {
                 </NavLink>
               </li>
               <li className='menu_contents'>
-                <NavLink to="/:username/scheduleenroll">🏃‍♂️시간표 등록 / 수정
+                <NavLink to="/scheduleenrollmng">🏃‍♂️시간표 등록 / 수정
                 </NavLink>
               </li>
               <li className='menu_contents'>
