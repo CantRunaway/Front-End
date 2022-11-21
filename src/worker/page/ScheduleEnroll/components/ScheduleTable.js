@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import '../css/ScheduleTable.css'
 
@@ -9,33 +8,19 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
 
     useEffect(()=>{
         settingTable()
-        getEnrollment();
     },[])
-    
-    const [getEnrollmentDay, setUseEnrollmentDay] = useState({})
 
-    const getEnrollment = async () => {
-        
-        axios.get(`http://localhost:8080/enrollment/${sessionStorage.getItem('user_id')}`)
-        .then((res) => {
-            console.log(res.data);
-
-            setUseEnrollmentDay(res.data);
-        })
-        .catch((err) => {
-            console.error({error:err});
-        })
-    }
-
-    
-    
     const settingTable = () => {
-        
-        let arr = []
-        let target = ''
+        let arr = [];
+        let target = '';
+        let inputTarget = '';
+        let id = '';
         for(let j=0; ; j++){
             if(workerSchedule[j] == null) break;
-            target = document.getElementById(workerSchedule[j].time + workerSchedule[j].day);
+
+            id = workerSchedule[j].time + workerSchedule[j].day;
+            target = document.getElementById(id);
+            inputTarget = document.getElementById(id+"in");
             target.click();
             console.log(target)
 
@@ -119,17 +104,19 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
                         <label 
                             key={i+date[j]+1} 
                             className={`schedule-checkBox-Table-contant`} 
+                            for={time+date[j]}
                             id={time+date[j]}
-                            disabled
-                            onClick={(e)=>
-                                onClickHandler(e, e.target.value, time, day)
-                            }
                         >
                             <span>
                                 <input 
                                     className='scadule-check' 
                                     type="checkbox"
+                                    id={time+date[j]+"in"}
                                     value={time+date[j]}
+                                    disabled
+                                    onClick={(e)=>
+                                        onClickHandler(e, e.target.value, time, day)
+                                    }
                                 >
                                 </input>
                             </span>
@@ -148,17 +135,18 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
                         <label 
                             key={i+date[j]+1} 
                             className={`schedule-checkBox-Table-contant`}  
-                            disabled
+                            for={time+date[j]}
                             id={time+date[j]}
-                            onClick={(e)=>
-                                onClickHandler(e, e.target.value, time, day)
-                            }
                         >
                             <span>
                                 <input 
                                     className='scadule-check' 
+                                    id={time+date[j]+"in"}
                                     type="checkbox"
                                     value={time+date[j]}
+                                    onClick={(e)=>
+                                        onClickHandler(e, e.target.value, time, day)
+                                    }
                                 >
                                 </input>
                             </span>
