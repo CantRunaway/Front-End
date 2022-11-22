@@ -1,0 +1,77 @@
+.worker-temporary-session-container{
+
+}
+
+
+.worker-temporary-session-reaquist-list-title{
+    color: #0047FF;
+    font-family: 'Inter';
+    font-style: normal;
+    line-height: 24px;
+}
+
+.worker-temporary-session-reaquist-list{
+    border: 1px solid black;
+    height: 300px;
+    overflow: scroll;
+}
+
+.worker-temporary-session{
+    display: flex;
+    justify-content: center;
+}
+
+.worker-temporary-session input{
+    background-color: #E0D1FF;
+    cursor: pointer;
+    padding-right: 0.3rem;
+}
+
+.temporary-date{
+    margin-right: 1rem;
+}
+
+.temporary-start-time-select{
+    margin-right: 1rem;
+}
+
+.temporary-end-time-select{
+    margin-left: 1rem;
+}
+
+.worker-temporary-session-button-container{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.worker-temporary-session-requist-button{
+    display: flex;
+    justify-content: center;
+}
+
+.worker-temporary-session-requist-button > button{
+    width: 10rem;
+    height: 1.3rem;
+    margin: 1rem;
+    border: none;
+    border-radius: 12px;
+    background-color: #A87EFF;
+    cursor: pointer;
+}
+
+
+.worker-temporary-session-select-button>button{
+    width: 10rem;
+    height: 1.3rem;
+    border: none;
+    border-radius: 12px;
+    background-color: #D2D2D2;
+    cursor: pointer;
+}
+
+.worker-temporary-session-select-button{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
