@@ -1,8 +1,9 @@
 import '../css/TemporalManagementSession.css'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DatePicker ,{ registerLocale } from "react-datepicker";  // 한국어적용
 import ko from 'date-fns/locale/ko'; // 한국어적용
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
 
 function TemporalManagementSession() {
     const today = new Date();
@@ -15,29 +16,45 @@ function TemporalManagementSession() {
     const [recruitDate, setRecruitDate] = useState(new Date());
     registerLocale("ko", ko);
 
-    const temporalData = [
-        {
-            recruitDate : '2022-11-08',
-            recruitDay : '화',
-            recruitTime : '17:30-19:30',
-            workType : '식기세척',
-            recruitNum : 3
-        },
-        {
-            recruitDate : '2022-11-09',
-            recruitDay : '수',
-            recruitTime : '17:30-19:30',
-            workType : '식기세척',
-            recruitNum : 1
-        },
-        {
-            recruitDate : '2022-11-10',
-            recruitDay : '목',
-            recruitTime : '17:30-19:30',
-            workType : '식사확인',
-            recruitNum : 1
-        }
-    ]
+    // const temporalData = [
+    //     {
+    //         recruitDate : '2022-11-08',
+    //         recruitDay : '화',
+    //         recruitTime : '17:30-19:30',
+    //         workType : '식기세척',
+    //         recruitNum : 3
+    //     },
+    //     {
+    //         recruitDate : '2022-11-09',
+    //         recruitDay : '수',
+    //         recruitTime : '17:30-19:30',
+    //         workType : '식기세척',
+    //         recruitNum : 1
+    //     },
+    //     {
+    //         recruitDate : '2022-11-10',
+    //         recruitDay : '목',
+    //         recruitTime : '17:30-19:30',
+    //         workType : '식사확인',
+    //         recruitNum : 1
+    //     }
+    // ]
+
+    const [temporalData, setTemporalData] = useState([])
+
+    const getRecruit = async () => {
+        await axios.get("http://localhost:8080/recruit")
+        .then((res) => {
+            setTemporalData(res.data);
+        })
+        .catch((err) => {
+            console.error({error: err})
+        })
+    }
+
+    useEffect(() => {
+        getRecruit();
+    }, [])
 
     function TemporalList(){
         return(

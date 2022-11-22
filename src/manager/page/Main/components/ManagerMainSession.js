@@ -51,6 +51,24 @@ function ManagerMainSession() {
     }
   ];
 
+  const [worker, setWorker] = useState([])
+
+  const getWorker = async() => {
+    await axios.get("http://localhost:8080/work")
+    .then((res) => {
+      console.log(res.data);
+
+      setWorker(res.data);
+    })
+    .catch((err) => {
+      console.error({error: err});
+    })
+  }
+
+  useEffect(() => {
+    getWorker();
+  }, []);
+
   function currentList () {
     return(
       currentData.map((data) => 

@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import DatePicker ,{ registerLocale } from "react-datepicker";  // 한국어적용
 import ko from 'date-fns/locale/ko'; // 한국어적용
 import "react-datepicker/dist/react-datepicker.css";
 import '../css/WorkManagementSession.css'
+import axios from 'axios';
 
 function WorkManagementSession() {
   const [editDate, setEditDate] = useState(new Date());
@@ -10,23 +11,39 @@ function WorkManagementSession() {
   registerLocale("ko", ko);
 
   //임시 데이터
-  const typeData = [
-    {
-      type : '식사확인',
-      date : '2022-11-09',
-      wage : 9160
-    },
-    {
-      type : '식기세척',
-      date : '2022-11-09',
-      wage : 11450
-    },
-    {
-      type : '운반',
-      date : '2022-11-09',
-      wage : 11450
-    },
-  ]
+  // const typeData = [
+  //   {
+  //     type : '식사확인',
+  //     date : '2022-11-09',
+  //     wage : 9160
+  //   },
+  //   {
+  //     type : '식기세척',
+  //     date : '2022-11-09',
+  //     wage : 11450
+  //   },
+  //   {
+  //     type : '운반',
+  //     date : '2022-11-09',
+  //     wage : 11450
+  //   },
+  // ]
+
+  const [typeData, setTypeData] = useState([]);
+
+  const getTypeData = async() => {
+    await axios.get("http://localhost:8080/wage")
+    .then((res) => {
+      setTypeData(res.data);
+    })
+    .catch((err) => {
+      console.error({error:err})
+    })
+  }
+
+  useEffect(() => {
+    getTypeData();
+  }, [])
   const Wage = (e) => {
     setHourlyWage(e.target.value);
   };
