@@ -15,9 +15,9 @@ import ScheduleManagementPage from '../src/manager/page/ScheduleManagement/Sched
 import TotalPage from './manager/page/Total/TotalPage';
 import Registration from './worker/page/Registration/Registration';
 import NotFoundPage from '../src/etc/NotFoundPage'
-import TemporaryWork from './worker/page/TemporalWorkmng/TemporalWorkmng';
 import WorkerSchedule from './worker/page/WorkSchedule/WorkerSchedule';
 import ScheduleEnrollManagerPage from './manager/page/ScheduleEnrollManager/ScheduleEnrollManagerPage';
+import TemporaryWork from './worker/page/TemporaryWork/TemporaryWork';
 
     const route = 
     [
@@ -54,7 +54,7 @@ import ScheduleEnrollManagerPage from './manager/page/ScheduleEnrollManager/Sche
             element: <WorkerSchedule/>
         },
         {
-            path:'/:username/temporalworkmng',
+            path:'/:username/TemporaryWork',
             element: <TemporaryWork />
         },
         {
