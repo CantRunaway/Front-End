@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../css/WorkerListSession.css'
 
 function WorkerListSession() {
@@ -51,7 +51,7 @@ function WorkerListSession() {
   //   }
   // ];
 
-  const [worker, setWorker] = useState([])
+  const [worklistData, setWorker] = useState([])
 
   const getWorker = async() => {
     await axios.get("http://localhost:8080/work")
