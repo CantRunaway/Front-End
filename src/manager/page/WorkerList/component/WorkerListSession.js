@@ -96,8 +96,9 @@ function WorkerListSession() {
     )
   }
   
-  const RemoveClicked = () => {
-    alert("삭제되었습니다.");
+  const RemoveClicked = async() => {
+    
+
   }
 
   return (
