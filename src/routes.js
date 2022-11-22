@@ -46,7 +46,7 @@ import TemporaryWork from './worker/page/TemporaryWork/TemporaryWork';
             element: <WorkerMainPage />
         },
         {
-            path:'/:username/scheduleenroll',
+            path:'/:username/scheduleEnroll',
             element: <ScheuleEnrollPage />
         },
         {

@@ -7,7 +7,7 @@ function BottomMenu() {
     <div className='bottom-manu'>
 
       <div className='request-worker-link'>
-        <NavLink to='/:username/temporalworkmng'>
+        <NavLink to='/:username/TemporaryWork'>
           <img src='/img/RequestWorker_ICON.png' alt='근로요청' />
           <span>임시근로 요청</span>
         </NavLink>
@@ -28,7 +28,7 @@ function BottomMenu() {
       </div>
 
       <div className='schedule-register-link'>
-        <NavLink to='/:username/scheduleenroll'>
+        <NavLink to='/:username/scheduleEnroll'>
           <img src='/img/ScheduleRegister_ICON.png' alt='시간표등록' />
           <span>시간표 등록</span>
         </NavLink>

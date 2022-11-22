@@ -25,6 +25,18 @@
     display: flex;
 }
 
+.display-month-left-allow{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.display-month-ringt-allow{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 .worker-session-statistics{
     display: flex;
     flex-direction: column;

@@ -48,9 +48,9 @@ const WorkerMainPage = () => {
       </div>
 
       <div className='display-month-year'>
-        <button onClick={subDay}>sub</button>
+        <button onClick={subDay} className='display-month-left-allow'><img src='/img/Shedule_Left_Arrow.png'></img></button>
         {selectYear}년 {selectMonth}월
-        <button onClick={addDay}>add</button>
+        <button onClick={addDay} className='display-month-ringt-allow'><img src='/img/Shedule_Right_Arrow.png'></img></button>
       </div>
 
       <div className='worker-session-schedule-table'>
