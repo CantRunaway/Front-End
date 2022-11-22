@@ -1,8 +1,10 @@
 import '../css/UserInfoSession.css'
 import React, { useState , useEffect} from 'react'
+import { Navigate, useNavigate } from 'react-router';
 import DepartmentList from '../../Registration/component/DepartmentList';
 import BankList from '../../Registration/component/BankList';
 import WorkTypeList from '../../Registration/component/WorkTypeList';
+import axios from 'axios';
 
 // 기존 값이 변경 값과 다른게 없으면 쿼리 보내지 않고 페이지 변경
 // 모달 모바일 버전 설정
@@ -11,6 +13,8 @@ function UserInfoSession() {
   const [selectDepartments, setSelectDepartments] = useState([]);
   const [selectBanks, setSelectedBanks] = useState([]);
   const [selectedWorkTypes, setSelectedWorkTypes] = useState([]);
+  
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     user_id: "",
@@ -24,6 +28,38 @@ function UserInfoSession() {
     bank_index: "",
     department_index: ""
   });
+
+  const [defaultUser, setDefault] = useState({})
+
+  const getDefault = async () => {
+    await axios.get(`http://localhost:8080/users/${sessionStorage.getItem('user_id')}`)
+    .then((res) => {
+      setDefault(res.data);
+      
+    })
+    .catch((err) => {
+      console.error({error:err})
+    })
+  }
+
+  useEffect(() => {
+    getDefault()
+  }, [])
+
+
+  const update = async() => {
+    await axios.post("http://localhost:8080/users/update", user)
+    .then((res) => {
+      console.log(res);
+      alert('정보 수정에 성공했습니다.')
+      navigate(`/${sessionStorage.getItem('user_id')}/main`);
+    })
+    .catch((err) => {
+    
+      console.error({error:err})
+      alert('정보 수정에 실패했습니다.')
+    })
+  }
 
   const onChangeUser = (e) => {
     setUser({
@@ -67,19 +103,19 @@ function UserInfoSession() {
       </div>
       <div className='userInfo-main'>
         <span className='name'>
-          이름 <input className='name-input' onChange={onChangeUser} name = {user.name}/>
+          이름 <input className='name-input' onChange={onChangeUser} name = "name" placeholder = {defaultUser.name}/>
         </span>
         <span className='student-code'>
-          학번 <input className='student-code-input' onChange={onChangeUser} name = {user.user_id}/>
+          학번 <input className='student-code-input' onChange={onChangeUser} name = "user_id"/>
         </span>
 
         <span className='pw'>
-          비밀번호 <input type='password' className='pw-input' onChange={onChangeUser} name = {user.password}/>
+          비밀번호 <input type='password' className='pw-input' onChange={onChangeUser} name = "password" placeholder = {defaultUser.password}/>
         </span>
 
         <span className='select-grade'>
           학년
-          <select className='grade-list' onChange={onChangeUser} name = {user.grade}>
+          <select className='grade-list' onChange={onChangeUser} name = "grade" placeholder = {defaultUser.grade}>
             <option value='' >--선택--</option>
             <option value='1'>1</option>
             <option value='2'>2</option>
@@ -96,10 +132,10 @@ function UserInfoSession() {
              />
         </span>
         <span className='phone'>
-          전화번호 <input className='phone' onChange={onChangeUser} name = {user.phone}/>
+          전화번호 <input className='phone' onChange={onChangeUser} name = "phone" placeholder = {defaultUser.phone}/>
         </span>
         <span className='birth'>
-          생년월일 <input className='birth-input' onChange={onChangeUser} name = {user.birth}/>
+          생년월일 <input className='birth-input' onChange={onChangeUser} name = "birth" placeholder = {defaultUser.birth}/>
         </span>
       
         <span className='account'>
@@ -109,7 +145,7 @@ function UserInfoSession() {
             setSelectedBanks={setSelectedBanks}
             
             />
-          <input className='account-input'/>
+          <input className='account-input' name = "account" onChange={onChangeUser}/>
         </span>
         <span className='work-type'>
           근무 종류
@@ -120,7 +156,7 @@ function UserInfoSession() {
         </span>
       </div>
       
-      <button className='sign-up-button'>수정</button>
+      <button className='sign-up-button' type = "submit" onClick={() => update()}>수정</button>
     </div>
   )
 }
