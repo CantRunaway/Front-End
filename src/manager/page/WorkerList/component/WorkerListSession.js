@@ -5,7 +5,7 @@ import '../css/WorkerListSession.css'
 function WorkerListSession() {
 
   // 항목데이터
-  const colums = ["이름", "학번", "근무시간", "근무 종류"];
+  const colums = ["이름", "학번", "근무 시작 시간", "근무 종료 시간", "근무 종류"];
   // const worklistData = [
   //   {
   //     name : '이마크',
@@ -81,13 +81,14 @@ function WorkerListSession() {
           </tr>
         </thead>
         <tbody>
-          {worklistData.map(({name, num, workTime, workType }) => (
-            <tr key={num}>
+          {worklistData.map(({work_index ,name, user_id, start_time, end_time, work_type_name }) => (
+            <tr key={work_index}>
               <input className='chb' type="checkbox"/>
               <td className='workerlist_items'>{name}</td>
-              <td className='workerlist_items'>{num}</td>
-              <td className='workerlist_items'>{workTime}</td>
-              <td className='workerlist_items'>{workType}</td>
+              <td className='workerlist_items'>{user_id}</td>
+              <td className='workerlist_items'>{start_time}</td>
+              <td className='workerlist_items'>{end_time}</td>
+              <td className='workerlist_items'>{work_type_name}</td>
             </tr>
           ))}
         </tbody>
@@ -95,8 +96,9 @@ function WorkerListSession() {
     )
   }
   
-  const RemoveClicked = () => {
-    alert("삭제되었습니다.");
+  const RemoveClicked = async() => {
+    
+
   }
 
   return (

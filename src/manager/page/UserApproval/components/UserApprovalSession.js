@@ -59,9 +59,10 @@ function UserApprovalSession() {
    const [userData, setUserData] = useState([]);
 
    const getUserData = async () => {
-    await axios.get("http://localhost:8080/users/userList")
+    await axios.get("http://localhost:8080/users/userList/wating")
     .then((res) => {
       setUserData(res.data);
+
     })
 
     .catch((err)=> {
@@ -75,6 +76,28 @@ function UserApprovalSession() {
 
   const [checked, setChecked] = useState([]);
 
+  const approval = async (approvalStatus) => {
+    
+    await axios.post("http://localhost:8080/users/register/response", approvalStatus)
+    .then((res) => {
+      alert("성공적으로 승인되었습니다.");
+    })
+    .catch((err) => {
+      alert("요청에 오류가 있습니다.");
+      console.error({error:err})
+    })
+  }//이 함수가 승인 함수
+
+  const refuse = async (refuseStatus) => {
+    await axios.post("http://localhost:8080/users/register/response", refuseStatus)
+    .then((res) => {
+      alert("성공적으로 거절했습니다.")
+    })
+    .catch((err) => {
+      alert("요청에 오류가 있습니다.")
+      console.error({error:err})
+    })
+  }//이 함수가 거절 함수
 
   const onChecked = (check, id) => {
     if(check){
@@ -93,6 +116,24 @@ function UserApprovalSession() {
   const RefuseClicked = () => {
     alert("거부되었습니다.");
   }
+
+  const setBody = () => {
+    userData.map(({user_index, user_id, name, grade, phone, birth, work_type_name, major}) => {
+      <div>
+      
+      <tr key = {user_index} >
+        
+        <td className='table_items'>{name}</td>
+        <td className='table_items'>{user_id}</td>
+        <td className='grade_items'>{grade}</td>
+        <td className='major_items'>{major}</td>
+        <td className='table_items'>{phone}</td>
+        <td className='table_items'>{birth}</td>
+        <td className='table_items'>{work_type_name}</td>
+        </tr>
+        </div>
+    })
+  }
   
   function approvalTable() {
     return (
@@ -106,38 +147,7 @@ function UserApprovalSession() {
           </tr>
         </thead>
         <tbody>
-          {/* {userData.map((user) => (
-            <tr key={user_id}>
-              <input type="checkbox" onChange={(e) => onChecked(e.target.checked, user.user_id)}/>
-              <td className='table_items'>{user.name}</td>
-              <td className='table_items'>{user.user_id}</td>
-              <td className='grade_items'>{user.grade}</td>
-              <td className='major_items'>{user.major}</td>
-              <td className='table_items'>{user.phone}</td>
-              <td className='table_items'>{user.birth}</td>
-              <td className='table_items'>{user.type}</td>
-            </tr>
-          ))} */
-          }
-          {
-            // userData.forEach((user) => {<div>
-            //   <input type="checkbox" onChange = {(e) => onChecked(e.target.checked, user.user_id)}/>
-            //   <tr key={user.user_id}>
-                
-            //     <td className='table_items'>{user.name}</td>
-            //     <td className='table_items'>{user.user_id}</td>
-            //     <td className='grade_items'>{user.grade}</td>
-            //     <td className='major_items'>{user.major}</td>
-            //     <td className='table_items'>{user.phone}</td>
-            //     <td className='table_items'>{user.birth}</td>
-            //     <td className='table_items'>{user.work_type_name}</td>
-            //   </tr>
-            //   </div>
-            // })
-            console.log(userData)
-          }
-
-          
+          {setBody()}
         </tbody>
       </table>
     );

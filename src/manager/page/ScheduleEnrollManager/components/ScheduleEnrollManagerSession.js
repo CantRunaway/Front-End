@@ -1,13 +1,30 @@
 import '../css/ScheduleEnrollManagerSession.css'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import axios from 'axios';
 
 function ScheduleEnrollManagerSession() {
     const date = ['일', '월', '화', '수', '목', '금', '토']
 
+    const [userList, setUserList] = useState([]);
+
+    const getUserList = async() => {
+        await axios.get("http://localhost:8080/work/worker")
+        .then((res) => {
+            setUserList(res.data);
+        })
+        .catch((err) => {
+            console.error({error:err})
+        })
+    }
+
+    useEffect(() => {
+        getUserList()
+    }, [])
+
     const ScheduleEidtClicked = () => {
         alert("수정되었습니다.");
       }
-
+      //근로자 명단 + index
     
     return (
         <div className='ScheduleEnrollManagerSession'>

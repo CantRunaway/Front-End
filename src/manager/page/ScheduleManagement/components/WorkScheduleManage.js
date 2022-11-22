@@ -1,13 +1,34 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import '../css/ClassScheduleManage.css'
 import DatePicker ,{ registerLocale } from "react-datepicker";  // 한국어적용
 import ko from 'date-fns/locale/ko'; // 한국어적용
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
 
 function WorkScheduleManage() {
   registerLocale("ko", ko);
-  const [workStartDate, setWorkStartDate] = useState(new Date());
-  const [workEndDate, setWorkEndDate] = useState(new Date());
+
+  const [workStartDate, setWorkStartDate] = useState(new Date())
+  const [workEndDate, setWorkEndDate] = useState(new Date())
+
+  const [temporal, setTemporal] = useState({})
+  
+  const getTemporal = async () => {
+    await axios.get("http://localhost:8080/temporal")
+    .then((res) => {
+      setTemporal(res.data[0]);
+      setWorkStartDate(Date.parse(temporal.edit_start));
+      setWorkEndDate(Date.parse(temporal.edit_end));
+    }
+    )
+    .catch((err) => {
+      console.error({error:err})
+    })
+  }
+
+  useEffect(() => {
+    getTemporal()
+  }, [])
 
   const ModificationClicked = () => {
     alert("변경되었습니다.");
@@ -18,9 +39,11 @@ function WorkScheduleManage() {
       <div className='periodcontents'>
         <div className='periodTitle'>수정 가능 기간</div>
         <div className='periodResult'>
-        {workStartDate.getFullYear() + "년 " + (workStartDate.getMonth()+1) +"월 " + workStartDate.getDate() +"일 "}
+        {//workStartDate.getFullYear() + "년 " + (workStartDate.getMonth()+1) +"월 " + workStartDate.getDate() +"일 "
+        }
          ~ 
-        {" "+workEndDate.getFullYear() + "년 " + (workEndDate.getMonth()+1) +"월 " + workEndDate.getDate() +"일"}
+        {//" "+workEndDate.getFullYear() + "년 " + (workEndDate.getMonth()+1) +"월 " + workEndDate.getDate() +"일"
+        }
         </div>
       </div>
       <div className='Modificationperiod'>
