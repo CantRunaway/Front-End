@@ -1,0 +1,34 @@
+
+
+.worker-select-temporary-session-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.worker-select-temporary-session-reaquist-list-title{
+    color: #0047FF;
+    font-family: 'Inter';
+    font-style: normal;
+    line-height: 24px;
+}
+
+.worker-select-temporary-session-reaquist-list{
+    border: 1px solid black;
+    height: 300px;
+    overflow: scroll;
+}
+
+.worker-select-temporary-session-reaquist-list input{
+    cursor: pointer;
+}
+
+.worker-select-temporary-session-reaquist-button{
+    width: 10rem;
+    margin-top: 5px;
+    align-self: center;
+    border-radius: 12px;
+    border: none;
+    background-color: #E0D1FF;
+    font-weight: bolder;
+    cursor: pointer;
+}

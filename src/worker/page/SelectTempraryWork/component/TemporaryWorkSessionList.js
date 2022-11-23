@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import '../css/TemporaryWorkList.css'
+import '../css/TemporaryWorkSessionList.css'
 
-const TemporaryWorkList = ({requistList}) => {
+const TemporaryWorkSessionList = ({requistList, checkDataHandler}) => {
     return(
-        <ul>
+        <ul className='temporary-work-session-list-container'>
             {
                 requistList.map((requist, index) => (
-                    <div key={index} className='temporary-work-list'>
+                    <div key={index} className='temporary-work-session-list' onClick={checkDataHandler}>
+                        <input type='checkbox' value={index}></input>
                         <li>
                             <span>{requist.day}</span>
                             <span>{requist.startTime}</span>
@@ -15,7 +16,6 @@ const TemporaryWorkList = ({requistList}) => {
                             <span>{requist.workType}</span>
                             <span>{requist.requistType}</span>
                         </li>
-                        <div>처리 중</div>
                     </div>
                 ))
             }
@@ -23,4 +23,4 @@ const TemporaryWorkList = ({requistList}) => {
     )
 }
 
-export default TemporaryWorkList
+export default TemporaryWorkSessionList

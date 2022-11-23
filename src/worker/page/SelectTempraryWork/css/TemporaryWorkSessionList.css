@@ -1,0 +1,22 @@
+.temporary-work-session-list-container{
+    padding-left: 0px;
+}
+
+.temporary-work-session-list{
+    display: flex;
+    margin: 1rem;
+    justify-content: space-evenly;
+}
+
+.temporary-work-session-list li{
+    background-color: #E0D1FF;
+    padding: 0.5rem;
+    padding-right: 0.7rem;
+    border-radius: 15px;
+    list-style: none;
+}
+
+.temporary-work-session-list li span{
+    margin-left: 1rem;
+}
+

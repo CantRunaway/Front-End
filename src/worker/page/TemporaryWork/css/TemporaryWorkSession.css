@@ -1,7 +1,3 @@
-.worker-temporary-session-container{
-
-}
-
 
 .worker-temporary-session-reaquist-list-title{
     color: #0047FF;
@@ -19,6 +15,7 @@
 .worker-temporary-session{
     display: flex;
     justify-content: center;
+    margin-top: 1.3rem;
 }
 
 .worker-temporary-session input{
@@ -61,7 +58,7 @@
 }
 
 
-.worker-temporary-session-select-button>button{
+.worker-temporary-session-select-button button{
     width: 10rem;
     height: 1.3rem;
     border: none;
@@ -74,4 +71,8 @@
     display: flex;
     justify-content: center;
     margin-top: 1rem;
+}
+
+.test-select{
+
 }

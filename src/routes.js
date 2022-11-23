@@ -18,6 +18,7 @@ import NotFoundPage from '../src/etc/NotFoundPage'
 import WorkerSchedule from './worker/page/WorkSchedule/WorkerSchedule';
 import ScheduleEnrollManagerPage from './manager/page/ScheduleEnrollManager/ScheduleEnrollManagerPage';
 import TemporaryWork from './worker/page/TemporaryWork/TemporaryWork';
+import SelectTempraryWork from './worker/page/SelectTempraryWork/SelectTempraryWork';
 
     const route = 
     [
@@ -52,6 +53,10 @@ import TemporaryWork from './worker/page/TemporaryWork/TemporaryWork';
         {
             path:'/:username/workerSchedule',
             element: <WorkerSchedule/>
+        },
+        {
+            path:'/:username/SelectTempraryWork',
+            element: <SelectTempraryWork />
         },
         {
             path:'/:username/TemporaryWork',
