@@ -36,8 +36,6 @@ function TemporalWorkReqeustSession() {
       })
     }
 
-    
-
     useEffect(() => {
       getTemporalData();
       getAbsenceData();

@@ -10,7 +10,7 @@ import dayjs from 'dayjs'
 
 function ScheduleEnrollPage() {
   const [startModifiTime, setStartModifiTime] = useState(dayjs(new Date('2022-11-22')));
-  const [endModifiTime, setEndtModifiTime] = useState(dayjs(new Date('2022-11-21')));
+  const [endModifiTime, setEndtModifiTime] = useState(dayjs(new Date('2022-11-25')));
   const [currentTime, setCurrentTime] = useState(dayjs());
   const [modifyAuthority, setModifyAuthority] = useState(
     startModifiTime <= currentTime && currentTime < endModifiTime.add(1,'day')

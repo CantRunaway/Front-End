@@ -1,20 +1,19 @@
 import React, { useState } from 'react'
 import '../css/TemporaryWorkSessionList.css'
 
-const TemporaryWorkSessionList = ({requistList, checkDataHandler}) => {
+const TemporaryWorkSessionList = ({reqeustList, checkDataHandler}) => {
+    console.log(reqeustList);
     return(
         <ul className='temporary-work-session-list-container'>
             {
-                requistList.map((requist, index) => (
+                reqeustList.map((requist, index) => (
                     <div key={index} className='temporary-work-session-list' onClick={checkDataHandler}>
                         <input type='checkbox' value={index}></input>
                         <li>
-                            <span>{requist.day}</span>
-                            <span>{requist.startTime}</span>
+                            <span>{requist.work_start}</span>
                             <span>~</span>
-                            <span>{requist.endTime}</span>
-                            <span>{requist.workType}</span>
-                            <span>{requist.requistType}</span>
+                            <span>{requist.work_end}</span>
+                            <span>{requist.work_type_name}</span>
                         </li>
                     </div>
                 ))

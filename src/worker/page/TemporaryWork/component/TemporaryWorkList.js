@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
 import '../css/TemporaryWorkList.css'
 
-const TemporaryWorkList = ({requistList}) => {
+const TemporaryWorkList = ({requestList}) => {
+    console.log(requestList);
     return(
         <ul>
+        {/* 현재 근로자가 올린 추가근로 혹은 결근 리스트 뜸 */}
             {
-                requistList.map((requist, index) => (
+                requestList.map((request, index) => (
                     <div key={index} className='temporary-work-list'>
                         <li>
-                            <span>{requist.day}</span>
-                            <span>{requist.startTime}</span>
+                            {/* <span>{request.day}</span>
+                            <span>{request.startTime}</span>
                             <span>~</span>
-                            <span>{requist.endTime}</span>
-                            <span>{requist.workType}</span>
-                            <span>{requist.requistType}</span>
+                            <span>{request.endTime}</span>
+                            <span>{request.workType}</span>
+                            <span>{request.requistType}</span> */}
+                            <span>{request.absence_start}</span>
+                            <span>{request.absence_end}</span>
                         </li>
                         <div>처리 중</div>
                     </div>

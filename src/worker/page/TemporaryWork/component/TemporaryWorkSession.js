@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
 import ReactDatePicker from 'react-datepicker'
 import { Link } from 'react-router-dom'
 import '../css/TemporaryWorkSession.css'
@@ -6,39 +7,103 @@ import TemporaryWorkList from './TemporaryWorkList'
 import TimeSelctBox from './TimeSelctBox'
 
 function TemporaryWorkSession(){
-
-    const [requistList, setRequistList] = useState(
-        [
-            {
-                day:'2020-12-02',
-                startTime: '11:30',
-                endTime: '12:30',
-                workType: '식기세척',
-                requistType: '추가 근로',
-            },
-            {
-                day:'2020-12-05',
-                startTime: '13:30',
-                endTime: '12:30',
-                workType: '식기세척',
-                requistType: '추가 근로',
-            }
-    ])
-
     const [dayData, setDayData] = useState()
     const [startTimeData, setStartTimeData] = useState()
     const [endTimeData, setEndTimeData] = useState()
-
     const [startDate, setStartDate] = useState(new Date());
+    
+    //근로자가 요청한 추가근로와 결근 리스트
+    const [requestList, setRequestList] = useState([]);
 
-    const addTemporaryRequist = () => {
-        alert("추가 근로 요청")
+    const getRequestData = async() => {
+        await axios.get("http://localhost:8080/absence")
+        .then((res) => {
+            setRequestList(res.data);
+        })
+        .catch((err) => {
+            console.error({error: err});
+        })
     }
 
-    const subTemporaryRequist = () => {
-        alert("결근 요청")
+    useEffect(() => {
+        getRequestData();
+    }, [])
+
+    const [plusWork, setPlusWork] = useState({
+        overtime_day: "",
+        overtime_start: "",
+        overtime_end: "",
+    });
+
+    const [plusAbsence, setPlusAbsence] = useState({
+        // absence_day: "",
+        absence_start: "",
+        absence_end: "",
+    });
+
+    // const onChangeWork = (e) => {
+    //     setPlusWork({
+    //         ...plusWork,
+    //         [e.target.name] : e.target.value,
+    //     });
+    //     console.log(plusWork);
+    // }
+
+    // useEffect(() => {
+    //     setPlusWork({
+
+    //     })
+    // })
+
+    const onChangeAbsence = (e) => {
+        setPlusAbsence({
+            ...plusAbsence,
+            [e.target.name]: e.target.value,
+        });
     }
 
+    console.log(plusAbsence)
+
+    // useEffect(() => {
+    //     setPlusAbsence({
+    //         ...plusAbsence,
+    //         absence_start : startTimeData,
+    //     });
+    // }, [startTimeData])
+
+    // useEffect(() => {
+    //     setPlusAbsence({
+    //         ...plusAbsence,
+    //         absence_end : endTimeData,
+    //     });
+    // }, [endTimeData])
+
+    //추가 근로 요청 버튼 이벤트
+    const addTemporaryRequist = async() => {
+        await axios.post("http://localhost:8080/overtime", plusWork)
+        .then((res) => {
+            console.log(res);
+            alert("추가 근로 요청")
+        })
+        .catch((err) => {
+            console.log({error:err})
+            alert("추가 근로 실패")
+            console.log(plusAbsence)
+        })
+    }
+    //결근 요청 버튼 이벤트
+    const subTemporaryRequist = async() => {
+        await axios.post("http://localhost:8080/absence", plusAbsence)
+        .then((res) => {
+            console.log(res);
+            alert('결근 요청 완료')
+        })
+        .catch((err) => {
+            console.log({error:err})
+            alert('결근 요청 실패')
+            console.log(plusAbsence)
+        })
+    }
 
     const selectTime = () => {
         const timeComboBoxOption = []
@@ -62,7 +127,6 @@ function TemporaryWorkSession(){
                     <option value={temp}>{temp}</option>
                 )
             }
-
         }
         return(
             timeComboBoxOption
@@ -74,7 +138,7 @@ function TemporaryWorkSession(){
             <span className='worker-temporary-session-reaquist-list-title'>요청 처리 상황</span>
             <div className='worker-temporary-session-reaquist-list'>
                 <TemporaryWorkList
-                    requistList={requistList}
+                    requestList={requestList}
                 />
             </div>
             
@@ -86,21 +150,24 @@ function TemporaryWorkSession(){
                             setDayData(e.target.value)
                             console.log(e.target.value)
                         }}
+                        // onChange={onChangeAbsence}
                     />
                 </label>
 
-                <input className='temporary-start-time-select' form='H:mm' type='time' step='1800' required 
-                    onChange={(e)=>{
-                        setStartTimeData(e)
-                        console.log(e.target.value)
-                    }}
+                <input className='temporary-start-time-select' name='absence_start' form='H:mm' type='time' step='1800' required 
+                    // onChange={(e)=>{
+                    //     setStartTimeData(e)
+                    //     console.log(e.target.value)
+                    // }}
+                    onChange={onChangeAbsence}
                 />
                 ~
-                <input className='temporary-end-time-select' type='time' step='1800' required
-                    onChange={(e)=>{
-                        setEndTimeData(e.target.value)
-                        console.log(e.target.value)
-                    }}
+                <input className='temporary-end-time-select' name='absence_end' type='time' step='1800' required
+                    // onChange={(e)=>{
+                    //     setEndTimeData(e.target.value)
+                    //     console.log(e.target.value)
+                    // }}
+                    onChange={onChangeAbsence}
                 />
 
             </div>
@@ -112,7 +179,7 @@ function TemporaryWorkSession(){
                 </div>
 
                 <div className='worker-temporary-session-select-button'>
-                    <Link to='/:username/SelectTempraryWork'>
+                    <Link to='/SelectTempraryWork'>
                         <button>모집 근로 조회</button>
                     </Link>
                 </div>
