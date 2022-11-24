@@ -8,7 +8,12 @@ function NotFoundPage() {
       goBack()
     }
     else{
-      goMain()
+      if(sessionStorage.getItem("user_id") === 'admin'){
+        goManagerrMain()
+      }
+      else{
+        goWorkerMain()
+      }
     }
     console.log("not found page")
   },[])
@@ -20,10 +25,16 @@ function NotFoundPage() {
     window.location.replace(link_url);
   }
 
-  const goMain = () => {
+  const goWorkerMain = () => {
     const link_url = "/main";
     window.location.replace(link_url);
   } 
+
+  const goManagerrMain = () => {
+    const link_url = "/managermain";
+    window.location.replace(link_url);
+  } 
+
 
   return (
     <div className='NotFoundPage'>

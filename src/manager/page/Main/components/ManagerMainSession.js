@@ -22,8 +22,8 @@ function ManagerMainSession() {
 
   function currentList () {
     return(
-      worker.map((data) => 
-      <div className='main_worker_element'>
+      worker.map((data, index) => 
+      <div key={index} className='main_worker_element'>
         <div className='main_elements'>{data.name}</div>
         <div className='main_elements'>{data.user_id}</div>
         <div className='main_elements'>{data.start_time}</div>
@@ -34,8 +34,8 @@ function ManagerMainSession() {
 
   function requestList () {
     return(
-      worker.map((data) => 
-      <div className='main_worker_element'>
+      worker.map((data, index) => 
+      <div key={index} className='main_worker_element'>
         <div className='main_elements'>{data.name}</div>
         <div className='main_elements'>{data.user_id}</div>
         <div className='main_elements'>{data.start_time}</div>

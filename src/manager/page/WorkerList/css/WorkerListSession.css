@@ -4,17 +4,22 @@
 }
 
 .WorkerListMain{
-    position: fixed;
-    /* width: 100%;
-    height: 100%; */
-    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
     border-top: 3px solid #A87EFF;
     background-color: white;
 }
 
+.WorkerListMain-title{
+    color: blue;
+    align-self: flex-start;
+}
+
 .workerListTable{
-    width: 1300px;
-    height: 550px;
+    display: flex;
+    flex-direction: column;
+    width: 90rem;
+    height: 35rem;
     margin: 0 auto;
     margin-top: 50px;
     color: black;
@@ -53,4 +58,5 @@ tbody{
     background-color: #A87EFF;
     font-size: 20px;
     float: right;
+    cursor: pointer;
 }
