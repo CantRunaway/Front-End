@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Link, useNavigate} from 'react-router-dom';
+import { NavLink, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './css/LoginPage.css'
 import adminInfo from "../../../config/adminInfo";
@@ -10,6 +10,7 @@ function LoginPage() {
     user_id : "",
     password : ""
   })
+  
   const navigate = useNavigate();
 
   const login = async (event) => {
@@ -47,7 +48,7 @@ function LoginPage() {
   
   const loginSuccess = () => {
     sessionStorage.setItem('user_id', loginInfo.user_id);
-    navigate(`/${loginInfo.user_id}/main`);
+    navigate(`/main`);
   }
 
   const loginFail = () => {
@@ -86,7 +87,7 @@ function LoginPage() {
         </div>
 
         <div>
-          <Link to='/Registration' className='login-sign-up'>회원가입</Link>
+          <NavLink to='/Registration' className='login-sign-up'>회원가입</NavLink>
         </div>
 
       </div>

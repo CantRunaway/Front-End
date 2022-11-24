@@ -91,7 +91,7 @@ function UserInfoSession() {
   }, [selectBanks])
 
   const backSpace = () =>{
-    navigate('/:username/main')
+    navigate(-1)
   }
 
   return (

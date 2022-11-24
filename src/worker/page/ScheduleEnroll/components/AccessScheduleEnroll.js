@@ -7,7 +7,7 @@ function AccessScheduleEnroll({startModifiTime, endModifiTime}) {
   const navigate = useNavigate();
 
   const backSpace = () =>{
-    navigate('/:username/main')
+    navigate(-1)
   }
 
     return (

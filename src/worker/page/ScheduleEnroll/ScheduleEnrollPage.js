@@ -14,7 +14,7 @@ function ScheduleEnrollPage() {
   const [currentTime, setCurrentTime] = useState(dayjs());
   const [modifyAuthority, setModifyAuthority] = useState(
     startModifiTime <= currentTime && currentTime < endModifiTime.add(1,'day')
-    ) // 클릭 이벤트 막기용
+    ) 
   const [permission, setPermission] = useState(modifyAuthority);
   return (
     <div>
