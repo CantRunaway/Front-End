@@ -16,29 +16,13 @@ function TemporalManagementSession() {
     const [recruitDate, setRecruitDate] = useState(new Date());
     registerLocale("ko", ko);
 
-    // const temporalData = [
-    //     {
-    //         recruitDate : '2022-11-08',
-    //         recruitDay : '화',
-    //         recruitTime : '17:30-19:30',
-    //         workType : '식기세척',
-    //         recruitNum : 3
-    //     },
-    //     {
-    //         recruitDate : '2022-11-09',
-    //         recruitDay : '수',
-    //         recruitTime : '17:30-19:30',
-    //         workType : '식기세척',
-    //         recruitNum : 1
-    //     },
-    //     {
-    //         recruitDate : '2022-11-10',
-    //         recruitDay : '목',
-    //         recruitTime : '17:30-19:30',
-    //         workType : '식사확인',
-    //         recruitNum : 1
-    //     }
-    // ]
+    const DeleteClicked = () => {
+        alert("삭제되었습니다.");
+    }
+
+    const TemporalEnrollClicked = () => {
+        alert("임시 근로 모집글이 등록되었습니다.");
+    }
 
     const [temporalData, setTemporalData] = useState([])
 
@@ -50,32 +34,48 @@ function TemporalManagementSession() {
         .catch((err) => {
             console.error({error: err})
         })
+        console.log(temporalData);
     }
 
     useEffect(() => {
         getRecruit();
     }, [])
 
+    const [temData, setTemData] = useState({
+        work_start: "",
+        work_end: "",
+        work_type_name: "",
+        recruit_worker: ""
+    });
+
+    const plusTemporalData = (e) =>{
+        // setTemporalData({
+        //     ...temporalData,
+        //     [e.target.work_start] : e.target.value,
+        // });
+        // console.log(temporalData);
+        console.log(e.target.value);
+        setTemData({
+            ...temData,
+            [e.work_type_name]: e.target.value
+        });
+        // console.log(temData);
+    }
+
     function TemporalList(){
         return(
-            temporalData.map((data) => 
-            <div className='recruit_list_element'>
-                <input type='checkbox'></input>
-                <div className='recruit_elements'>{data.recruitDate}</div>
-                <div className='recruit_elements'>{data.recruitDay}</div>
-                <div className='recruit_elements'>{data.recruitTime}</div>
-                <div className='recruit_elements'>{data.workType}</div>
-                <div className='recruit_elements'>{data.recruitNum}명</div>
+            <div>
+            { temporalData.map((data) => (
+                <div className='recruit_list_element'>
+                    <input type='checkbox'></input>
+                    <div className='recruit_elements'>{data.work_start}</div>
+                    <div className='recruit_elements'>{data.work_end}</div>
+                    <div className='recruit_elements'>{data.work_type_name}</div>
+                    <div className='recruit_elements'>{data.recruit_worker}</div>
+                </div>
+            ))}
             </div>
-            ))
-    }
-
-    const DeleteClicked = () => {
-        alert("삭제되었습니다.");
-    }
-
-    const TemporalEnrollClicked = () => {
-        alert("임시 근로 모집글이 등록되었습니다.");
+        )
     }
 
   return (
@@ -100,27 +100,30 @@ function TemporalManagementSession() {
                     onChange={date => setRecruitDate(date)}
                     locale="ko"
                     />
-                    {console.log(recruitDate)}
                 </div>
                 <div className='temporal_time'>
-                    <select className='temporal_select'>
+                    <select className='temporal_select'
+                    onChange={plusTemporalData}>
                         <option value='am'>오전</option>
                         <option value='pm'>오후</option>
                     </select>
                     <select className='temporal_select'>
                         {hour.map((h) => {
                             return(
-                                <option>{h}시</option>
+                                <option value={h}>{h}시</option>
                             )
                         })}
                     </select>
-                    <select className='temporal_select'>
+                    <select className='temporal_select'
+                    onChange={plusTemporalData}>
                         <option value={0}>00분</option>
                         <option value={30}>30분</option>
                     </select>
-                    <select className='temporal_select'>
-                        <option value={1}>식사확인</option>
-                        <option value={2}>식기세척</option>
+                    <select className='temporal_select'
+                    onChange={plusTemporalData}>
+                        <option value={'식사확인'}>식사확인</option>
+                        <option value={'식기세척'}>식기세척</option>
+                        <option value={'운반'}>운반</option>
                     </select>
                     
                     <div className='temporal_enroll'>

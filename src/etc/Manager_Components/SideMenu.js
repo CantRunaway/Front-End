@@ -14,10 +14,10 @@ function SideMenu() {
         <NavLink to="/managermain">🏃‍♀️🏃‍♂️🏃</NavLink>
       </div>
       <div className='menu'>
-          <ul className='menu_title'>
+          <ul className='menu_main_title'>
           <NavLink to="/workerlist">🏃‍♂️근무자 목록</NavLink>
           </ul>
-          <ul className='menu_title'>
+          <ul className='menu_main_title'>
             🏃‍♂️근무자 관리
             {view1 ? <img className="plus-minus" src="/img/sideplus.png" alt=''
               onClick={() => {setView1(!view1)}}
@@ -41,7 +41,7 @@ function SideMenu() {
             </>
             }
           </ul>
-          <ul className='menu_title'>
+          <ul className='menu_main_title'>
             🏃‍♂️임시 근로 관리
             {view2 ? <img className="plus-minus" src="/img/sideplus.png" alt='' onClick={() => {setView2(!view2)}}/>
              : 
@@ -57,7 +57,7 @@ function SideMenu() {
               </li>
             </> }
           </ul>
-          <ul className='menu_title'>
+          <ul className='menu_main_title'>
             🏃‍♂️근로 관리{" "}
             {view3 ? <img className="plus-minus" src="/img/sideplus.png"alt=''  onClick={() => {setView3(!view3)}}/>
              : 
@@ -73,7 +73,7 @@ function SideMenu() {
             </>
             }
           </ul>
-          <ul className='menu_title'>
+          <ul className='menu_main_title'>
             <NavLink to="/total">🏃‍♂️근무자 전체 통계</NavLink>
           </ul>
           <ul className='menu_title'>🏃‍♂️히스토리 확인 </ul>

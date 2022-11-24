@@ -36,6 +36,8 @@ function TemporalWorkReqeustSession() {
       })
     }
 
+    
+
     useEffect(() => {
       getTemporalData();
       getAbsenceData();
@@ -78,30 +80,32 @@ function TemporalWorkReqeustSession() {
         })
       }
 
+      // console.log(temporalData);
+      // console.log(absenceData);
+
       function temporalList () {
         return(
-            temporalData.map((data) => 
-          <div className='temporalworker_element'>
-            <input type="checkbox"/>
-            <div className='main_elements'>{data.username}</div>
-            <div className='main_elements'>{data.userNum}</div>
-            <div className='main_elements'>{data.workTime}</div>
-            <div className='main_elements'>{data.workType}</div>
-          </div>
-        ))
+          temporalData.map((data) => (
+            <div>
+              <input type="checkbox"/>
+              <div>{data.name}</div>
+              <div>{data.name}</div>
+              <div>{data.name}</div>
+              <div>{data.name}</div>
+            </div>
+          ))
+        )
       }
 
       function absenceList () {
         return(
-            absenceData.map((data) => 
-          <div className='temporalworker_element'>
-            <input type="checkbox"/>
-            <div className='main_elements'>{data.username}</div>
-            <div className='main_elements'>{data.userNum}</div>
-            <div className='main_elements'>{data.workTime}</div>
-            <div className='main_elements'>{data.workType}</div>
-          </div>
-        ))
+          absenceData.map((data) => (
+            <div>
+              <input type="checkbox"/>
+              <div>{data.name}</div>
+            </div>
+          ))
+        )
       }
       const ApprovalClicked = () => {
         alert("승인되었습니다.");

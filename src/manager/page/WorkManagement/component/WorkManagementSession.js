@@ -10,25 +10,6 @@ function WorkManagementSession() {
   const [hourlyWage, setHourlyWage] = useState();
   registerLocale("ko", ko);
 
-  //임시 데이터
-  // const typeData = [
-  //   {
-  //     type : '식사확인',
-  //     date : '2022-11-09',
-  //     wage : 9160
-  //   },
-  //   {
-  //     type : '식기세척',
-  //     date : '2022-11-09',
-  //     wage : 11450
-  //   },
-  //   {
-  //     type : '운반',
-  //     date : '2022-11-09',
-  //     wage : 11450
-  //   },
-  // ]
-
   const [typeData, setTypeData] = useState([]);
 
   const getTypeData = async() => {
@@ -40,6 +21,7 @@ function WorkManagementSession() {
       console.error({error:err})
     })
   }
+  console.log(typeData);
 
   useEffect(() => {
     getTypeData();
@@ -58,19 +40,21 @@ function WorkManagementSession() {
 
   function workTypeTable() {
     return (
-      <table>
-        <tbody className='workTypetbody'>
-          {typeData.map(({type, date, wage }) => (
-            <tr>
-              <input type="checkbox" className='checkbox'/>
-              <td className='worktype_items'>{type}</td>
-              <td className='worktype_items'>{date}</td>
-              <td className='worktype_items'>{wage}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
+      <>
+        <table>
+          <tbody className='workTypetbody'>
+            {typeData.map((type) => (
+              <tr className='workTr'>
+                <input type='checkbox' className='checkbox'/>
+                <div className='worktype_items'>{type.work_type_name}</div>
+                <div className='worktype_items'>{type.change_date}</div>
+                <div className='worktype_items'>{type.hour_wage}</div>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    )
   }
 
   return (
