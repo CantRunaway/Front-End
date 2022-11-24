@@ -6,58 +6,12 @@ function WorkerListSession() {
 
   // 항목데이터
   const colums = ["이름", "학번", "근무 시작 시간", "근무 종료 시간", "근무 종류"];
-  // const worklistData = [
-  //   {
-  //     name : '이마크',
-  //     num : 20180802,
-  //     workTime : '13:30 - 15: 30',
-  //     workType : '식기세척'
-  //   },
-  //   {
-  //     name : '종천러',
-  //     num : 20201122,
-  //     workTime : '12:30 - 14: 30',
-  //     workType : '식기세척'
-  //   },
-  //   {
-  //     name : '박지성',
-  //     num : 20210205,
-  //     workTime : '12:30 - 14: 30',
-  //     workType : '식기세척'
-  //   },
-  //   {
-  //     name : '황인준',
-  //     num : 20190323,
-  //     workTime : '11:00 - 13:00',
-  //     workType : '식기세척'
-  //   },
-  //   {
-  //     name : '이제노',
-  //     num : 20190423,
-  //     workTime : '12:00 - 14:00',
-  //     workType : '식기세척'
-  //   },
-  //   {
-  //     name : '이해찬',
-  //     num : 20190606,
-  //     workTime : '16:00 - 18:00',
-  //     workType : '식기세척'
-  //   },
-  //   {
-  //     name : '나재민',
-  //     num : 20190813,
-  //     workTime : '17:00 - 19:00',
-  //     workType : '식기세척'
-  //   }
-  // ];
 
   const [worklistData, setWorker] = useState([])
 
   const getWorker = async() => {
     await axios.get("http://localhost:8080/work")
     .then((res) => {
-      console.log(res.data);
-
       setWorker(res.data);
     })
     .catch((err) => {
@@ -69,37 +23,143 @@ function WorkerListSession() {
     getWorker();
   }, []);
 
+  //Ver.1
+  const [checkData, setCheckData] = useState([]);
+
+  const allCheck = (check) => {
+    if(check){
+      console.log("모두 선택");
+      const allArr = [];
+      worklistData.forEach((el) => allArr.push(el.id));
+      setCheckData(allArr);
+    }
+    else {
+      setCheckData([]);
+    }
+  }
+
+  const singleChecked = (check, id) => {
+    console.log(check);
+    if(check){
+      let data = 
+      {
+        user_id: {id}
+      }
+      setCheckData([...checkData, data])
+      // console.log(checked);
+    }
+    else{
+      setCheckData(checkData.filter((el) => el !== id))
+    }
+    console.log(checkData);
+  }
+
+  const RemoveClicked = async() => {
+    
+
+  }
+
+  //Ver.2
+//   const [checkedList, setCheckedList] = useState([]);
+//   const onCheckedAll = ((checked) => {
+//     if(checked){
+//       const checkedArr = [];
+//       worklistData.forEach((list) => checkedList.push(list));
+//       setCheckedList(checkedList);
+//     } else {
+//       setCheckedList([]);
+//     }
+//   }, [worklistData]
+//   );
+
+//  const onCheckedSingle = ((checked, id) => {
+//   if(checked){
+//     setCheckedList([...checkedList, id]);
+//   } else {
+//     setCheckedList(checkedList.filter((el) => el !== id));
+//   }
+//  }, [checkedList]
+//  );
+
+const [chlist, setChlist] = useState([]);
+
+const onChangeAll = (e) => {
+  // 체크할 시 CheckList에 id 값 전체 넣기, 체크 해제할 시 CheckList에 빈 배열 넣기
+  setChlist(e.target.checked ? worklistData : [])
+}
+
+//single
+const onChangeEach = (e, id) => {
+  // 체크할 시 CheckList에 id값 넣기
+  if (e.target.checked) {
+    setChlist([...chlist, id]);
+  // 체크 해제할 시 CheckList에서 해당 id값이 `아닌` 값만 배열에 넣기
+  } else {
+    setChlist(chlist.filter((checkedId) => checkedId !== id));
+  }
+}
+
   function workerlistTable(){
     return(
+      // 기존
       <table>
         <thead>
           <tr>
-            <input className='chb' type="checkbox"/>
+            <th>
+              <input className='chb' type="checkbox"
+                onChange={(e) => allCheck(e.target.checked)}
+                checked={checkData.length === worklistData.length ? true : false}
+                // onChange={(e) => onCheckedAll(e. target.checked)}
+                // checked={checkedList.length === 0 ? false : checkedList === worklistData.length ? true : false}
+              /> 
+            </th> 
             {colums.map((col) => (
               <th className='workerlistTable_header' key={col}>{col}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {worklistData.map(({work_index ,name, user_id, start_time, end_time, work_type_name }) => (
-            <tr key={work_index}>
-              <input className='chb' type="checkbox"/>
-              <td className='workerlist_items'>{name}</td>
-              <td className='workerlist_items'>{user_id}</td>
-              <td className='workerlist_items'>{start_time}</td>
-              <td className='workerlist_items'>{end_time}</td>
-              <td className='workerlist_items'>{work_type_name}</td>
+          {worklistData.map((list) => (
+            <tr key={list.work_index} type="checkbox">
+              <input className='chb' type="checkbox"
+                onChange={(e) => singleChecked(e.target.checked, list.work_index)}
+                checked={checkData.includes(list.work_index) ? true : false}
+                // key={list.work_index}
+                // onChange={(e) => onCheckedSingle(e.target.checked, list.work_index)}
+                // checked={checkedList.includes(list.work_index) ? true : false}
+              />
+              <td className='workerlist_items'>{list.name}</td>
+              <td className='workerlist_items'>{list.user_id}</td>
+              <td className='workerlist_items'>{list.start_time}</td>
+              <td className='workerlist_items'>{list.end_time}</td>
+              <td className='workerlist_items'>{list.work_type_name}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      // <table>
+      //   <thead>
+      //     <th>
+      //       <input type='checkbox' onChange={onChangeAll} checked={chlist.length === worklistData.length}/>
+      //     </th>
+      //       {colums.map((col) => (
+      //          <th className='workerlistTable_header' key={col}>{col}</th>
+      //        ))}
+      //   </thead>
+      //   <tbody>
+      //     {worklistData.map((list, id) => (
+      //       <tr key={id}>
+      //         <td>
+      //           <input onChange={(e) => onChangeEach(e, list.work_index)} checked={}/>
+      //         </td>
+      //       </tr>
+      //     ))}
+      //   </tbody>
+      // </table>
     )
   }
-  
-  const RemoveClicked = async() => {
-    
 
-  }
+  
 
   return (
     <div className='WorkerListSession'>

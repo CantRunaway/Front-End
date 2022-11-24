@@ -70,11 +70,12 @@ function UserApprovalSession() {
     })
    }
 
+   console.log(userData);
+
    useEffect(() => {
     getUserData()
    }, []);
 
-  const [checked, setChecked] = useState([]);
 
   const approval = async (approvalStatus) => {
     
@@ -99,7 +100,11 @@ function UserApprovalSession() {
     })
   }//이 함수가 거절 함수
 
-  const onChecked = (check, id) => {
+
+  //checkBox 단일 선택
+  const [checked, setChecked] = useState([]);
+
+  const singleChecked = (check, id) => {
     if(check){
       setChecked([...userData, id])
       console.log(checked);
@@ -109,31 +114,17 @@ function UserApprovalSession() {
     }
   }
 
-  const EnrollClicked = () => {
-    alert("등록되었습니다.");
-  }
-
-  const RefuseClicked = () => {
-    alert("거부되었습니다.");
-  }
-
-  const setBody = () => {
-    userData.map(({user_index, user_id, name, grade, phone, birth, work_type_name, major}) => {
-      <div>
-      
-      <tr key = {user_index} >
-        
-        <td className='table_items'>{name}</td>
-        <td className='table_items'>{user_id}</td>
-        <td className='grade_items'>{grade}</td>
-        <td className='major_items'>{major}</td>
-        <td className='table_items'>{phone}</td>
-        <td className='table_items'>{birth}</td>
-        <td className='table_items'>{work_type_name}</td>
-        </tr>
-        </div>
-    })
-  }
+  //checkBox 전체 선택
+  // const allChecked = (check, id) => {
+  //   if(check){
+  //     const allArr = [];
+  //     data.forEach((el) => allArr.push(el.id));
+  //     setChecked(allArr);
+  //   }
+  //   else{
+  //     setChecked([]);
+  //   }
+  // }
   
   function approvalTable() {
     return (
@@ -147,7 +138,20 @@ function UserApprovalSession() {
           </tr>
         </thead>
         <tbody>
-          {setBody()}
+          {
+            userData.map((user) => (
+              <tr key = {user.user_index} >
+                <input type="checkbox" onChange={(e) => singleChecked(e.target.checked, user.user_id)}/>
+                <td className='table_items'>{user.name}</td>
+                <td className='table_items'>{user.user_id}</td>
+                <td className='grade_items'>{user.grade}</td>
+                <td className='major_items'>{user.major}</td>
+                <td className='table_items'>{user.phone}</td>
+                <td className='table_items'>{user.birth}</td>
+                <td className='table_items'>{user.work_type_name}</td>
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     );
@@ -160,8 +164,8 @@ function UserApprovalSession() {
           {approvalTable()}
         </div>
         <div className='approvalBtn'>
-          <button className='approval_btn' onClick={() => EnrollClicked()}>등록</button>
-          <button className='approval_btn' onClick={() => RefuseClicked()}>거부</button>
+          <button className='approval_btn' onClick={() => approval()}>등록</button>
+          <button className='approval_btn' onClick={() => refuse()}>거부</button>
         </div>
         </div>
     </div>

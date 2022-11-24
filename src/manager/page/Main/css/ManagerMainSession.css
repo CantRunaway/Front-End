@@ -6,8 +6,8 @@
 .ManagerMain{
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: 100%;
+    width: 1600px;
+    height: auto;
     margin-top: 50px;
     border-top: 3px solid #A87EFF;
     background-color: white;
@@ -17,13 +17,14 @@
     display: flex;
     flex-direction: column;
     width: 740px;
-    height: 100%;
+    height: 600px;
     border-radius: 20px;
     margin: 20px;
     margin-top: 50px;
     color: black;
     background-color: #E0D1FF;
-    
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .main_element_title{
@@ -45,6 +46,7 @@
     margin: 0 auto;
     margin-bottom: 30px;
     justify-content: space-evenly;
+    
 }
 
 .main_request_element{

@@ -15,6 +15,7 @@ function ScheduleEnrollManagerSession() {
         .catch((err) => {
             console.error({error:err})
         })
+        console.log(userList);
     }
 
     useEffect(() => {
