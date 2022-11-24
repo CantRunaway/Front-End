@@ -30,6 +30,7 @@ function TemporalWorkReqeustSession() {
       await axios.get("http://localhost:8080/overtime")
       .then((res) => {
         setTemporalData(res.data);
+        console.log(temporalData);
       })
       .catch((err) => {
         console.error({error: err});
@@ -84,12 +85,12 @@ function TemporalWorkReqeustSession() {
       function temporalList () {
         return(
           temporalData.map((data) => (
-            <div>
+            <div className="temporalworker_element">
               <input type="checkbox"/>
-              <div>{data.name}</div>
-              <div>{data.name}</div>
-              <div>{data.name}</div>
-              <div>{data.name}</div>
+              <div className="element_item">{data.name}</div>
+              <div className="element_item">{data.over_start}</div>
+              <div className="element_item">{data.over_end}</div>
+              <div className="element_item">{data.work_type_name}</div>
             </div>
           ))
         )
@@ -98,21 +99,61 @@ function TemporalWorkReqeustSession() {
       function absenceList () {
         return(
           absenceData.map((data) => (
-            <div>
+            <div className="temporalworker_element">
               <input type="checkbox"/>
-              <div>{data.name}</div>
+              <div className="element_item">{data.name}</div>
+              <div className="element_item">{data.absence_start}</div>
+              <div className="element_item">{data.absence_end}</div>
+              <div className="element_item">{data.work_type_name}</div>
             </div>
           ))
         )
       }
-      const ApprovalClicked = () => {
-        alert("승인되었습니다.");
+
+      const temApprovalClicked = async() => {
+        await axios.post("http://localhost:8080/overtime",)
+        .then((res) => {
+          setTemporalData(res.data);
+          alert("승인되었습니다.");
+        })
+        .catch((err) => {
+          console.log({error:err})
+        })
       }
     
-      const RefuseClicked = () => {
-        alert("거부되었습니다.");
+      const temRefuseClicked = async() => {
+        await axios.post("http://localhost:8080/overtime",)
+        .then((res) => {
+          setTemporalData(res.data);
+          alert("거부되었습니다.");
+        })
+        .catch((err) => {
+          console.log({error:err})
+        })
       }
-
+    
+      const absApprovalClicked = async() => {
+        await axios.post("http://localhost:8080/absence/",)
+        .then((res) => {
+          setAbsenceData(res.data);
+          alert("승인되었습니다.");
+        })
+        .catch((err) => {
+          console.log({error:err})
+        })
+      }
+  
+      const absRefuseClicked = async() => {
+        await axios.post("http://localhost:8080/overtime/",)
+        .then((res) => {
+          setAbsenceData(res.data);
+          alert("거부되었습니다.");
+        })
+        .catch((err) => {
+          console.log({error:err})
+        })
+      }
+    
   return (
     <div className='TemporalWorkReqeustSession'>
       <div className='TemporalWorkReqeustMain'>
@@ -123,8 +164,8 @@ function TemporalWorkReqeustSession() {
         <div className='temporalworker_contents'>
             {temporalList()}
           <div className='temporal_button'>
-            <button className='temporal_btn' onClick={() => ApprovalClicked()}>승인</button>
-            <button className='temporal_btn' onClick={() => RefuseClicked()}>거부</button>
+            <button className='temporal_btn' onClick={() => temApprovalClicked()}>승인</button>
+            <button className='temporal_btn' onClick={() => temRefuseClicked()}>거부</button>
           </div>
         </div>
         
@@ -136,8 +177,8 @@ function TemporalWorkReqeustSession() {
         <div className='temporalworker_contents'>
             {absenceList()}
           <div className='temporal_button'>
-            <button className='temporal_btn' onClick={() => ApprovalClicked()}>승인</button>
-            <button className='temporal_btn' onClick={() => RefuseClicked()}>거부</button>
+            <button className='temporal_btn' onClick={() => absApprovalClicked()}>승인</button>
+            <button className='temporal_btn' onClick={() => absRefuseClicked()}>거부</button>
           </div>
         </div>
       </div>

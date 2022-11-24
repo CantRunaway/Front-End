@@ -19,6 +19,8 @@ function WorkScheduleManage() {
       setTemporal(res.data[0]);
       setWorkStartDate(Date.parse(temporal.edit_start));
       setWorkEndDate(Date.parse(temporal.edit_end));
+      console.log(workStartDate);
+      console.log(workEndDate);
     }
     )
     .catch((err) => {

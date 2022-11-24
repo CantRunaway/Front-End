@@ -21,11 +21,26 @@ function WorkManagementSession() {
       console.error({error:err})
     })
   }
-  console.log(typeData);
+
+  const [type, setType] = useState([]);
+
+  const getType = async() => {
+    await axios.get("http://localhost:8080/workType")
+    .then((res) => {
+      setType(res.data);
+    })
+    .catch((err) => {
+      console.error({error:err})
+    })
+  }
+  console.log(type);
+
 
   useEffect(() => {
     getTypeData();
+    getType();
   }, [])
+
   const Wage = (e) => {
     setHourlyWage(e.target.value);
   };
@@ -72,6 +87,9 @@ function WorkManagementSession() {
               <option value={1}>식사확인</option>
               <option value={2}>식기세척</option>
               <option value={3}>청소 및 운반</option>
+              {/* {type.map((t) => {
+                <option value={t.work_type_index}>{t.work_type_name}</option>
+              })} */}
             </select>
             <DatePicker
               className='enrolldatepick'

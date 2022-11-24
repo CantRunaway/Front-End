@@ -17,8 +17,9 @@ function ClassScheduleManage() {
       setTemporal(res.data[0]);
       setClassStartDate(Date.parse(temporal.edit_start));
       setClassEndDate(Date.parse(temporal.edit_end));
-    }
-    )
+      console.log(classStartDate);
+      console.log(classEndDate);
+    })
     .catch((err) => {
       console.error({error:err})
     })
@@ -32,16 +33,17 @@ function ClassScheduleManage() {
     alert("변경되었습니다.");
   }
 
+
   return (
     <div className='ClassScheduleManage'>
       <div className='periodcontents'>
         <div className='periodTitle'>수정 가능 기간</div>
         <div className='periodResult'>
-        {//classStartDate.getFullYear() + "년 " + (classStartDate.getMonth()+1) +"월 " + classStartDate.getDate() +"일 "
+        {/* {classStartDate.getFullYear() + "년 " + (classStartDate.getMonth()+1) +"월 " + classStartDate.getDate() +"일 "
         }
          ~ 
-        {//" "+classEndDate.getFullYear() + "년 " + (classEndDate.getMonth()+1) +"월 " + classEndDate.getDate() +"일"
-        }
+        {" "+classEndDate.getFullYear() + "년 " + (classEndDate.getMonth()+1) +"월 " + classEndDate.getDate() +"일"
+        } */}
         </div>
       </div>
       <div className='Modificationperiod'>
@@ -52,7 +54,6 @@ function ClassScheduleManage() {
             onChange={date => setClassStartDate(date)}
             locale="ko"
           />
-          {console.log(classStartDate)}
         </div>
         <div className='periodMark'>~</div>
         <div className='periodDate'>
@@ -62,7 +63,6 @@ function ClassScheduleManage() {
             onChange={date => setClassEndDate(date)}
             locale="ko"
           />
-            {console.log(classEndDate)}
         </div>
       </div>
       <div className='modificationBtn'>

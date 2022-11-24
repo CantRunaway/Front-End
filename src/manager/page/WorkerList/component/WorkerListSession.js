@@ -39,8 +39,17 @@ function WorkerListSession() {
     console.log(checkData);
   }
 
+  //삭제 (X)
   const RemoveClicked = async() => {
-    alert("삭제")
+    await axios.post("http://localhost:8080", checkData)
+    .then((res) => {
+      console.log(res);
+      alert("삭제")
+    })
+    .catch((err) => {
+      console.error({error: err});
+    })
+    
   }
 
   function workerlistTable(){
@@ -108,7 +117,7 @@ function WorkerListSession() {
           {workerlistTable()}
         </div>
         <div className='removeButton'>
-          <button className='remove_btn' onClick={() => RemoveClicked()}>삭제</button>
+          <button className='remove_btn' onClick={RemoveClicked}>삭제</button>
         </div>
       </div>
     </div>

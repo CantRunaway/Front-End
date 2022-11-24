@@ -1,6 +1,8 @@
 import '../css/ScheduleEnrollManagerSession.css'
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
+import WorkScheduleEnrollSession from './WorkScheduleEnrollSession';
+import EducationScheduleEnrollSession from './EducationScheduleEnrollSession';
 
 function ScheduleEnrollManagerSession() {
     const date = ['일', '월', '화', '수', '목', '금', '토']
@@ -21,11 +23,53 @@ function ScheduleEnrollManagerSession() {
     useEffect(() => {
         getUserList()
     }, [])
-
+    
     const ScheduleEidtClicked = () => {
         alert("수정되었습니다.");
       }
       //근로자 명단 + index
+
+      const [isClassSchedule, setisClassSchedule] = useState(true);
+      const [workerSchedule, setWorkerSchedule] = useState([
+        {
+          type:'class',
+          id:'11:00월',
+          day:'월',
+          time:'11:00',
+        },
+        {
+          type:'class',
+          id:'11:30월',
+          day:'월',
+          time:'11:30'
+        },
+        {
+          type:'class',
+          id:'12:00월',
+          day:'월',
+          time:'12:00'
+        },
+        {
+          type:'work',
+          id:'13:00목',
+          day:'목',
+          time:'13:00'
+        },
+        {
+          type:'work',
+          id:'13:30목',
+          day:'목',
+          time:'13:30'
+        }
+      ])
+
+      const toggleClass = () => {
+        setisClassSchedule(true)
+      }
+    
+      const toggleWork = () => {
+        setisClassSchedule(false)
+      }
     
     return (
         <div className='ScheduleEnrollManagerSession'>
@@ -38,19 +82,42 @@ function ScheduleEnrollManagerSession() {
                     </div>
                     <div className='scheduleAll'>
                         <div className='scheduleTab'>
-                            <button className='class-tab'>
-                                수업 시간표
-                            </button>
-                            <button className='work-tab'>
-                                근로 시간표
-                            </button>
+                            <div className='scheduleHeaderheader-modify-button-box'>
+                                <button 
+                                className='class-button' 
+                                style ={{background : `${isClassSchedule ? "#E0D1FF" : "none"}`}}
+                                onClick={toggleClass}
+                                >
+                                    수업 시간표 수정
+                                </button>
+
+                                <button 
+                                className='work-button' 
+                                style ={{background : `${isClassSchedule ? "none" : "#E0D1FF"}`}} 
+                                onClick={toggleWork}
+                                >
+                                근로 시간표 수정
+                                </button>
+                            </div>
                         </div>
-                        <div className='scheduleContents'>
-                            {date.map((col) => (
-                                <th className='date_header' key={col}>{col}</th>
-                            ))}
+                        <div className='user-info-page'>
+                            <div className='worker-schedule-enroll-main' >
+                            {
+                                isClassSchedule ? 
+                                <WorkScheduleEnrollSession 
+                                isClassSchedule={isClassSchedule}
+                                workerSchedule={workerSchedule}
+                                setWorkerSchedule={setWorkerSchedule}
+                                /> 
+                                : 
+                                <EducationScheduleEnrollSession
+                                isClassSchedule={isClassSchedule}
+                                workerSchedule={workerSchedule}
+                                setWorkerSchedule={setWorkerSchedule}
+                                />
+                            }
+                            </div>
                         </div>
-                        <button className='scheduleEdit-btn' onClick={() => ScheduleEidtClicked()}>수정</button>
                     </div>
                 </div>
             </div>

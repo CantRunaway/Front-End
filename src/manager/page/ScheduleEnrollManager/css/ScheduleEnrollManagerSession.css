@@ -42,38 +42,11 @@
     flex-direction: column;
     width: 1060px;
     height: 100%;
+    margin: 30px;
 }
 
 .scheduleTab{
-    margin-left: 200px;
-}
-
-.class-tab{
-    color: black;
-    width: 200px;
-    height: 40px;
-    border-radius: 20px;
-    border: none;
-    text-align: center;
-    line-height: 40px;
-    font-size: 20px;
-    margin: 30px;
-    margin-left: 70px;
-    background-color: #E0D1FF;
-}
-
-.work-tab{
-    color: black;
-    width: 200px;
-    height: 40px;
-    border-radius: 20px;
-    border: none;
-    text-align: center;
-    line-height: 40px;
-    font-size: 20px;
-    margin: 20px;
-    margin-left: 70px;
-    background-color: #828282;
+    margin-left: 400px;
 }
 
 .scheduleContents{
@@ -100,5 +73,6 @@
     line-height: 40px;
     font-size: 20px;
     background-color: #A87EFF;
-    margin-left: 450px;
+    margin: 30px;
+    margin-left: 200px;
 }
