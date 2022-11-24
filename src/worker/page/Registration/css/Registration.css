@@ -12,6 +12,26 @@ html, body{
     flex-direction: column;
 }
 
+.cancel-registration-button{
+    align-self:center;
+    width: 400px;
+}
+
+.cancel-registration-button button{
+    color: #A87EFF;
+    background: none;
+    border: none;
+    align-self:center;
+    cursor: pointer;
+} 
+
+.registration-userInfo-main-conmainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .registration-main-icon{
     width: 10rem;
 }

@@ -25,6 +25,8 @@ function SelectTempraryWorkSession(){
         let checkState = e.target.checked
         let index = e.target.value
 
+        
+
         if(checkState){
             console.log("check")
             setCheckData([...checkData, requistList[index]])

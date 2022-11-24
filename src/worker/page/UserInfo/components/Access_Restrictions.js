@@ -65,6 +65,9 @@ function AccessRestrictions({permission}) {
       comparePW();
     }
   }
+  const backSpace = () =>{
+    navigate('/:username/main')
+  }
 
     return (
       <>
@@ -74,11 +77,20 @@ function AccessRestrictions({permission}) {
               <div className='authority-main'>
 
                 <div className='modal-pw-input' >
-                  비밀번호 <input type='password' onChange={onChange} onKeyPress={onKeyPress} name = "password" value={loginInfo.password}/>
+                  <input 
+                    type='password' 
+                    name = "password" 
+                    placeholder='비밀번호'
+                    autoFocus
+                    value={loginInfo.password}
+                    onChange={onChange} 
+                    onKeyPress={onKeyPress} 
+                  />
                 </div>
 
                 <div>
                   <button className='submit-button'  onClick={() => comparePW()} >확인</button>
+                  <button className='cancel-button'  onClick={() => backSpace()} >취소</button>
                 </div>
 
               </div>

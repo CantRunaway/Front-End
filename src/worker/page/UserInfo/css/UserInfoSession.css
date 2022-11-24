@@ -15,6 +15,14 @@ html,body{
     flex-direction: column;
 }
 
+.userInfo-main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
 .main-icon{
     width: 10rem;
 }
@@ -62,9 +70,10 @@ input{
     padding-left: 1rem;
 }
 
-.sign-up-button{
+.userinfo-sign-up-button{
     margin-top: 1rem;
-    width: 13rem;
+    margin-right: 0.5rem;
+    width: 8rem;
     height: 2rem;
     background: #A87EFF;
     border-radius: 20px;
@@ -74,4 +83,14 @@ input{
     cursor: pointer;
 }
 
-
+.userinfo-cancel-button{
+    margin-top: 1rem;
+    width: 8rem;
+    height: 2rem;
+    background: #A87EFF;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    font-size: 1.3rem;
+    cursor: pointer;
+}

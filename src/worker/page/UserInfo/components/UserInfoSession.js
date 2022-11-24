@@ -90,6 +90,9 @@ function UserInfoSession() {
     });
   }, [selectBanks])
 
+  const backSpace = () =>{
+    navigate('/:username/main')
+  }
 
   return (
     <div className='userInfo'>
@@ -101,62 +104,87 @@ function UserInfoSession() {
         <span>도망못가</span>
         <span>-- 회원정보 --</span>
       </div>
-      <div className='userInfo-main'>
-        <span className='name'>
-          이름 <input className='name-input' onChange={onChangeUser} name = "name" placeholder = {defaultUser.name}/>
-        </span>
-        <span className='student-code'>
-          학번 <input className='student-code-input' onChange={onChangeUser} name = "user_id"/>
-        </span>
 
-        <span className='pw'>
-          비밀번호 <input type='password' className='pw-input' onChange={onChangeUser} name = "password" placeholder = {defaultUser.password}/>
-        </span>
+      <form className='userInfo-main-container'>
+        <div className='userInfo-main'>
+          <span className='name'>
+            이름 <input className='name-input' onChange={onChangeUser} name = "name" placeholder = {defaultUser.name} disabled/>
+          </span>
+          <span className='student-code'>
+            학번 <input className='student-code-input' onChange={onChangeUser} name = "user_id" disabled/>
+          </span>
 
-        <span className='select-grade'>
-          학년
-          <select className='grade-list' onChange={onChangeUser} name = "grade" placeholder = {defaultUser.grade}>
-            <option value='' >--선택--</option>
-            <option value='1'>1</option>
-            <option value='2'>2</option>
-            <option value='3'>3</option>
-            <option value='4'>4</option>
-            <option value='5'>5</option>
-          </select >
-        </span>
-        <span className='select-department'>
-          학과
-          <DepartmentList id = "department_index" name = "department_index"
-            selectDepartments={selectDepartments}
-            setSelectDepartments={setSelectDepartments}
-             />
-        </span>
-        <span className='phone'>
-          전화번호 <input className='phone' onChange={onChangeUser} name = "phone" placeholder = {defaultUser.phone}/>
-        </span>
-        <span className='birth'>
-          생년월일 <input className='birth-input' onChange={onChangeUser} name = "birth" placeholder = {defaultUser.birth}/>
-        </span>
-      
-        <span className='account'>
-          지급 계좌 
-          <BankList id = "bank_index" name = "bank_index"
-            selectBanks={selectBanks}
-            setSelectedBanks={setSelectedBanks}
-            
+          <span className='pw'>
+            비밀번호 
+            <input 
+              type='password' 
+              className='pw-input' 
+              name = "password"
+              minLength={5}
+              onChange={onChangeUser} 
+              placeholder = {defaultUser.password}
             />
-          <input className='account-input' name = "account" onChange={onChangeUser}/>
-        </span>
-        <span className='work-type'>
-          근무 종류
-          <WorkTypeList id = "work_type_index" name = "work_type_index"
-          selectedWorkTypes={selectedWorkTypes}
-          setSelectedWorkTypes={setSelectedWorkTypes}
-          />
-        </span>
-      </div>
-      
-      <button className='sign-up-button' type = "submit" onClick={() => update()}>수정</button>
+          </span>
+
+          <span className='select-grade'>
+            학년
+            <select className='grade-list' onChange={onChangeUser} name = "grade" placeholder = {defaultUser.grade}>
+              <option value='' >--선택--</option>
+              <option value='1'>1</option>
+              <option value='2'>2</option>
+              <option value='3'>3</option>
+              <option value='4'>4</option>
+              <option value='5'>5</option>
+            </select >
+          </span>
+          <span className='select-department'>
+            학과
+            <DepartmentList id = "department_index" name = "department_index"
+              selectDepartments={selectDepartments}
+              setSelectDepartments={setSelectDepartments}
+              />
+          </span>
+          <span className='phone'>
+            전화번호 
+            <input 
+              id = "phone"
+              type='tel' 
+              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" 
+              title='010-****-****, 054-***-****'
+              name = "phone" 
+              className='phone' 
+              onChange={onChangeUser} 
+              placeholder = {defaultUser.phone}
+              required 
+            />
+          </span>
+          <span className='birth'>
+            생년월일 <input className='birth-input' type='date' onChange={onChangeUser} name = "birth" placeholder = {defaultUser.birth} disabled/>
+          </span>
+        
+          <span className='account'>
+            지급 계좌 
+            <BankList id = "bank_index" name = "bank_index"
+              selectBanks={selectBanks}
+              setSelectedBanks={setSelectedBanks}
+              
+              />
+            <input className='account-input' name = "account" onChange={onChangeUser}/>
+          </span>
+          <span className='work-type'>
+            근무 종류
+            <WorkTypeList id = "work_type_index" name = "work_type_index"
+            selectedWorkTypes={selectedWorkTypes}
+            setSelectedWorkTypes={setSelectedWorkTypes}
+            />
+          </span>
+        </div>
+
+        <div>
+          <button className='userinfo-sign-up-button' type = "submit" onClick={() => update()}>수정</button>
+          <button className='userinfo-cancel-button'  onClick={() => backSpace()} >취소</button>
+        </div>
+      </form>
     </div>
   )
 }

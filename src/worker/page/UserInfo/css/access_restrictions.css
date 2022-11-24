@@ -30,4 +30,15 @@
     border-radius: 30px;
     margin-top: 2rem;
     cursor: pointer;
+    margin-right: 5px;
+}
+
+.cancel-button{
+    width: 100px;
+    background: #A87EFF;
+    border: none;
+    font-weight: bold;
+    border-radius: 30px;
+    margin-top: 2rem;
+    cursor: pointer;
 }
