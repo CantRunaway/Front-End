@@ -21,7 +21,7 @@ function WorkerListSession() {
 
   useEffect(() => {
     getWorker();
-  }, []);
+  }, [workListData]);
 
   //Ver.1
   const [checkData, setCheckData] = useState([]);
@@ -38,21 +38,20 @@ function WorkerListSession() {
     }
   }
 
-  const singleChecked = (e, index) => {
+  const singleChecked = (e, value) => {
     let checked = e.target.checked;
 
     if(checked){
-      setCheckData([...checkData, index])
+      setCheckData([...checkData, value])
       console.log("check")
     }
-    else if(!checked && checkData.includes(index)){
-      setCheckData(checkData.filter((el) => el !== index))
+    else if(!checked && checkData.includes(value)){
+      setCheckData(checkData.filter((el) => el !== value))
     }
     console.log(checkData);
   }
 
   const RemoveClicked = async() => {
-    
     alert("삭제")
   }
 
@@ -121,8 +120,9 @@ const onChangeEach = (e, id) => {
               <td>
                 <input 
                   className='chb' 
+                  value={list.user_id}
                   type="checkbox"
-                  onChange={(e) => singleChecked(e, index)}
+                  onChange={(e) => singleChecked(e, index, e.target.value)}
                   // key={list.work_index}
                   // onChange={(e) => onCheckedSingle(e.target.checked, list.work_index)}
                   // checked={checkedList.includes(list.work_index) ? true : false}
