@@ -9,6 +9,8 @@ function WorkerListSession() {
 
   const [workListData, setWorkerListData] = useState([])
 
+  const [checkData, setCheckData] = useState([]); // 보낼 데이터 담김, 선택한 학번
+
   const getWorker = async() => {
     await axios.get("http://localhost:8080/work")
     .then((res) => {
@@ -21,80 +23,25 @@ function WorkerListSession() {
 
   useEffect(() => {
     getWorker();
-  }, []);
+  }, [workListData]);
 
-  //Ver.1
-  const [checkData, setCheckData] = useState([]);
 
-  const allCheck = (check) => {
-    if(check){
-      console.log("모두 선택");
-      const allArr = [];
-      workListData.forEach((el) => allArr.push(el.id));
-      setCheckData(allArr);
-    }
-    else {
-      setCheckData([]);
-    }
-  }
-
-  const singleChecked = (e, index) => {
+  const singleChecked = (e, intdex, value) => {
     let checked = e.target.checked;
 
     if(checked){
-      setCheckData([...checkData, index])
+      setCheckData([...checkData, value])
       console.log("check")
     }
-    else if(!checked && checkData.includes(index)){
-      setCheckData(checkData.filter((el) => el !== index))
+    else if(!checked && checkData.includes(value)){
+      setCheckData(checkData.filter((el) => el !== value))
     }
     console.log(checkData);
   }
 
   const RemoveClicked = async() => {
-    
     alert("삭제")
   }
-
-  //Ver.2
-//   const [checkedList, setCheckedList] = useState([]);
-//   const onCheckedAll = ((checked) => {
-//     if(checked){
-//       const checkedArr = [];
-//       worklistData.forEach((list) => checkedList.push(list));
-//       setCheckedList(checkedList);
-//     } else {
-//       setCheckedList([]);
-//     }
-//   }, [worklistData]
-//   );
-
-//  const onCheckedSingle = ((checked, id) => {
-//   if(checked){
-//     setCheckedList([...checkedList, id]);
-//   } else {
-//     setCheckedList(checkedList.filter((el) => el !== id));
-//   }
-//  }, [checkedList]
-//  );
-
-const [chlist, setChlist] = useState([]);
-
-const onChangeAll = (e) => {
-  // 체크할 시 CheckList에 id 값 전체 넣기, 체크 해제할 시 CheckList에 빈 배열 넣기
-  setChlist(e.target.checked ? workListData : [])
-}
-
-//single
-const onChangeEach = (e, id) => {
-  // 체크할 시 CheckList에 id값 넣기
-  if (e.target.checked) {
-    setChlist([...chlist, id]);
-  // 체크 해제할 시 CheckList에서 해당 id값이 `아닌` 값만 배열에 넣기
-  } else {
-    setChlist(chlist.filter((checkedId) => checkedId !== id));
-  }
-}
 
   function workerlistTable(){
     return(
@@ -103,29 +50,21 @@ const onChangeEach = (e, id) => {
         <thead>
           <tr>
             <th>
-              {/* <input className='chb' type="checkbox"
-                onChange={(e) => allCheck(e.target.checked)}
-                checked={checkData.length === workListData.length ? true : false}
-                // onChange={(e) => onCheckedAll(e. target.checked)}
-                // checked={checkedList.length === 0 ? false : checkedList === worklistData.length ? true : false}
-              />  */}
             </th> 
             {colums.map((col, index) => (
               <th className='workerlistTable_header' key={index}>{col}</th>
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody id='test'>
           {workListData.map((list, index) => (
             <tr key={index} >
               <td>
                 <input 
-                  className='chb' 
+                  className='worker-chb' 
+                  value={list.user_id}
                   type="checkbox"
-                  onChange={(e) => singleChecked(e, index)}
-                  // key={list.work_index}
-                  // onChange={(e) => onCheckedSingle(e.target.checked, list.work_index)}
-                  // checked={checkedList.includes(list.work_index) ? true : false}
+                  onChange={(e) => singleChecked(e, index, e.target.value)}
                 />
               </td>
               <td className='workerlist_items'>{list.name}</td>
