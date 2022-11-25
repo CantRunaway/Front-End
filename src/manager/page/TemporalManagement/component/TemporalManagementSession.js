@@ -65,8 +65,8 @@ function TemporalManagementSession() {
     function TemporalList(){
         return(
             <div>
-            { temporalData.map((data) => (
-                <div className='recruit_list_element'>
+            { temporalData.map((data, id) => (
+                <div className='recruit_list_element' key={id}>
                     <input type='checkbox'></input>
                     <div className='recruit_elements'>{data.work_start}</div>
                     <div className='recruit_elements'>{data.work_end}</div>
@@ -76,6 +76,25 @@ function TemporalManagementSession() {
             ))}
             </div>
         )
+    }
+
+    const [dayData, setDayData] = useState();
+    const [startTimeData, setStartTimeData] = useState()
+    const [endTimeData, setEndTimeData] = useState()
+    const [startDate, setStartDate] = useState(new Date());
+
+    const [recruitData, setRecruitData] = useState({
+        recruit_date: "",
+        recruit_start: "",
+        recruit_end: "",
+        work_type_name: "",
+    });
+
+    const onChangeTemporal = (e) => {
+        setRecruitData({
+            ...recruitData,
+            [e.target.name]: e.target.value,
+        });
     }
 
   return (
@@ -92,6 +111,15 @@ function TemporalManagementSession() {
                 </div>
             </div>
             <div className='TemporalTimeSet'>
+                {/* <label className='temporary-date'>
+                    <input type='date' required  
+                        onChange={(e)=>{
+                            setDayData(e.target.value)
+                            console.log(e.target.value)
+                        }}
+                        // onChange={onChangeAbsence}
+                    />
+                </label> */}
                 <div className='temporal_date'>
                     <DatePicker
                     className='datepick'
@@ -107,6 +135,7 @@ function TemporalManagementSession() {
                         <option value='am'>오전</option>
                         <option value='pm'>오후</option>
                     </select>
+
                     <select className='temporal_select'>
                         {hour.map((h) => {
                             return(
@@ -119,13 +148,51 @@ function TemporalManagementSession() {
                         <option value={0}>00분</option>
                         <option value={30}>30분</option>
                     </select>
+
+                    {/* <input className='temporary-start-time-select' name='recruit_start' form='H:mm' type='time' step='1800' required
+                    onChange={onChangeTemporal}
+                    />
+
+                    <input className='temporary-end-time-select' name='recruit_end' form='H:mm' type='time' step='1800' required
+                    onChange={onChangeTemporal}
+                    /> */}
+                    
+                    
+                </div>
+                <div className='temporal_time'>
+                    <select className='temporal_select'
+                    onChange={plusTemporalData}>
+                        <option value='am'>오전</option>
+                        <option value='pm'>오후</option>
+                    </select>
+
+                    <select className='temporal_select'>
+                        {hour.map((h) => {
+                            return(
+                                <option value={h}>{h}시</option>
+                            )
+                        })}
+                    </select>
+                    <select className='temporal_select'
+                    onChange={plusTemporalData}>
+                        <option value={0}>00분</option>
+                        <option value={30}>30분</option>
+                    </select>
+
+                    {/* <input className='temporary-start-time-select' name='recruit_start' form='H:mm' type='time' step='1800' required
+                    onChange={onChangeTemporal}
+                    />
+
+                    <input className='temporary-end-time-select' name='recruit_end' form='H:mm' type='time' step='1800' required
+                    onChange={onChangeTemporal}
+                    /> */}
                     <select className='temporal_select'
                     onChange={plusTemporalData}>
                         <option value={'식사확인'}>식사확인</option>
                         <option value={'식기세척'}>식기세척</option>
                         <option value={'운반'}>운반</option>
                     </select>
-                    
+
                     <div className='temporal_enroll'>
                         <button className='temporal_enroll_btn'
                         onClick={() => TemporalEnrollClicked()}>임시근로 모집</button>
