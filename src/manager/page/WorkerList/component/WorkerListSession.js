@@ -85,25 +85,6 @@ function WorkerListSession() {
           ))}
         </tbody>
       </table>
-      // <table>
-      //   <thead>
-      //     <th>
-      //       <input type='checkbox' onChange={onChangeAll} checked={chlist.length === worklistData.length}/>
-      //     </th>
-      //       {colums.map((col) => (
-      //          <th className='workerlistTable_header' key={col}>{col}</th>
-      //        ))}
-      //   </thead>
-      //   <tbody>
-      //     {worklistData.map((list, id) => (
-      //       <tr key={id}>
-      //         <td>
-      //           <input onChange={(e) => onChangeEach(e, list.work_index)} checked={}/>
-      //         </td>
-      //       </tr>
-      //     ))}
-      //   </tbody>
-      // </table>
     )
   }
 
