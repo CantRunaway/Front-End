@@ -13,6 +13,7 @@ function ScheduleEnrollPage() {
   const [modifyAuthority, setModifyAuthority] = useState(
     startModifiTime <= currentTime && currentTime < endModifiTime.add(1,'day')
     ) 
+
   const [permission, setPermission] = useState(modifyAuthority);
 
   const getTimeData = async() => {
@@ -27,10 +28,13 @@ function ScheduleEnrollPage() {
 
   useEffect(() => {
     getTimeData()
-    console.log(timeData)
+    
+  }, [])
+
+  useEffect(() => {
     setStartModifiTime(dayjs(new Date(timeData.edit_start)))
     setEndtModifiTime(dayjs(new Date(timeData.edit_end)))
-  }, [])
+  }, [timeData])
 
   return (
     <div>

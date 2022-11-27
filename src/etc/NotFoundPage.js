@@ -37,7 +37,7 @@ function NotFoundPage() {
     window.location.replace(link_url);
   } 
 
-
+  
   return (
     <div className='NotFoundPage'>
 
