@@ -21,6 +21,8 @@ function WorkerListSession() {
     })
   }
 
+  // console.log(workListData);
+
   useEffect(() => {
     getWorker();
   }, [workListData]);
@@ -41,20 +43,20 @@ function WorkerListSession() {
 
   //삭제 (X)
   const RemoveClicked = async() => {
-    await axios.post("http://localhost:8080", checkData)
+    await axios.post("http://192.168.0.248:8080/work", checkData)
     .then((res) => {
       console.log(res);
       alert("삭제")
     })
     .catch((err) => {
       console.error({error: err});
+      alert("삭제 실패")
     })
     
   }
 
   function workerlistTable(){
     return(
-      // 기존
       <table>
         <thead>
           <tr>
@@ -107,13 +109,11 @@ function WorkerListSession() {
     )
   }
 
-  
-
   return (
     <div className='WorkerListSession'>
       <div className='WorkerListMain'>
         <div className='workerListTable'>
-          <span className='WorkerListMain-title'>근무자 리스트</span>
+          <div className='Main-title'>근무자 목록</div>
           {workerlistTable()}
         </div>
         <div className='removeButton'>

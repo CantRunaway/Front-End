@@ -100,6 +100,7 @@ function TemporalManagementSession() {
   return (
     <div className='TemporalManagementSession'>
         <div className='TemporalManagementMain'>
+        <div className='TemporalMngMain-title'>임시 근로 모집 목록</div>
             <div className='currentTime'>
                 {year}년 {month}월 {date}일 {day}요일
             </div>
@@ -111,7 +112,7 @@ function TemporalManagementSession() {
                 </div>
             </div>
             <div className='TemporalTimeSet'>
-                {/* <label className='temporary-date'>
+                <label className='temporary-date'>
                     <input type='date' required  
                         onChange={(e)=>{
                             setDayData(e.target.value)
@@ -119,8 +120,8 @@ function TemporalManagementSession() {
                         }}
                         // onChange={onChangeAbsence}
                     />
-                </label> */}
-                <div className='temporal_date'>
+                </label>
+                {/* <div className='temporal_date'>
                     <DatePicker
                     className='datepick'
                     selected={recruitDate}
@@ -128,9 +129,9 @@ function TemporalManagementSession() {
                     onChange={date => setRecruitDate(date)}
                     locale="ko"
                     />
-                </div>
+                </div> */}
                 <div className='temporal_time'>
-                    <select className='temporal_select'
+                    {/* <select className='temporal_select'
                     onChange={plusTemporalData}>
                         <option value='am'>오전</option>
                         <option value='pm'>오후</option>
@@ -147,20 +148,20 @@ function TemporalManagementSession() {
                     onChange={plusTemporalData}>
                         <option value={0}>00분</option>
                         <option value={30}>30분</option>
-                    </select>
+                    </select> */}
 
-                    {/* <input className='temporary-start-time-select' name='recruit_start' form='H:mm' type='time' step='1800' required
+                    <input className='temporary-start-time-select' name='recruit_start' form='H:mm' type='time' step='1800' required
                     onChange={onChangeTemporal}
                     />
 
                     <input className='temporary-end-time-select' name='recruit_end' form='H:mm' type='time' step='1800' required
                     onChange={onChangeTemporal}
-                    /> */}
+                    />
                     
                     
                 </div>
                 <div className='temporal_time'>
-                    <select className='temporal_select'
+                    {/* <select className='temporal_select'
                     onChange={plusTemporalData}>
                         <option value='am'>오전</option>
                         <option value='pm'>오후</option>
@@ -177,15 +178,15 @@ function TemporalManagementSession() {
                     onChange={plusTemporalData}>
                         <option value={0}>00분</option>
                         <option value={30}>30분</option>
-                    </select>
+                    </select> */}
 
-                    {/* <input className='temporary-start-time-select' name='recruit_start' form='H:mm' type='time' step='1800' required
+                    <input className='temporary-start-time-select' name='recruit_start' form='H:mm' type='time' step='1800' required
                     onChange={onChangeTemporal}
                     />
 
                     <input className='temporary-end-time-select' name='recruit_end' form='H:mm' type='time' step='1800' required
                     onChange={onChangeTemporal}
-                    /> */}
+                    />
                     <select className='temporal_select'
                     onChange={plusTemporalData}>
                         <option value={'식사확인'}>식사확인</option>

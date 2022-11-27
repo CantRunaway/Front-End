@@ -18,11 +18,27 @@
     margin-left: 40px;
     color: black;
     text-align: center;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.UserApprovalMain-title{
+    width: 100%;
+    font-size: 25px;
+    text-align: left;
+    color: #A87EFF;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .table_items{
     width: 900px;
     height: 50px;
+}
+
+.table_header{
+    width: 900px;
+    height: 50px;   
 }
 
 .grade_items{

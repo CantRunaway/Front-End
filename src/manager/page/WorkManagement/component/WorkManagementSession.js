@@ -75,7 +75,7 @@ function WorkManagementSession() {
   return (
     <div className='WorkManagementSession'>
       <div className='WorkManagementMain'>
-          <div className='workmngTitle'>근로 항목 및 시급 관리</div>
+          <div className='WorkMngMain-title'>근로 항목 및 시급 관리</div>
           <div className='workTypeList'>
             <div className='workTypeTable'>
               {workTypeTable()}

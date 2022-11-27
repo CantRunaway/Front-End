@@ -13,9 +13,18 @@
     background-color: white;
 }
 
+.TemporalMngMain-title{
+    width: 100%;
+    font-size: 25px;
+    text-align: left;
+    color: #A87EFF;
+    font-weight: bold;
+    margin: 30px;
+    margin-top: 50px;
+}
+
 .currentTime{
     margin-left: 40px;
-    margin-top: 20px;
     width: 500px;
     height: 100%;
     font-size: 25px;

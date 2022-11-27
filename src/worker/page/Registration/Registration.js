@@ -131,7 +131,7 @@ function Registration() {
             <input 
               id = "phone"
               type='tel' 
-              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" 
+              pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" 
               title='010-****-****, 054-***-****'
               name = "phone" 
               className='phone' 

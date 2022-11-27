@@ -13,11 +13,14 @@
     background-color: white;
 }
 
-.workmngTitle{
+.WorkMngMain-title{
+    width: 100%;
     font-size: 25px;
-    color: black;
-    margin: 60px;
-    margin-left: 100px;
+    text-align: left;
+    color: #A87EFF;
+    font-weight: bold;
+    margin: 30px;
+    margin-top: 50px;
 }
 
 .workTypeTable{

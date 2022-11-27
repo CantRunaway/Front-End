@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import WorkScheduleEnrollSession from './WorkScheduleEnrollSession';
 import EducationScheduleEnrollSession from './EducationScheduleEnrollSession';
+import '../css/ScheduleEnrollManagerSession.css'
 
 function ScheduleEnrollManagerSession() {
     const date = ['일', '월', '화', '수', '목', '금', '토']
@@ -74,6 +75,7 @@ function ScheduleEnrollManagerSession() {
     return (
         <div className='ScheduleEnrollManagerSession'>
             <div className='ScheduleEnrollManagerMain'>
+              <div className='ScehduleEnrollMain-title'>시간표 등록 / 수정</div>
                 <div className='main'>
                     <div className='scheduleSearch'>
                         <select className='selectWorker'>

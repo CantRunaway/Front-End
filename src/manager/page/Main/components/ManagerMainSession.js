@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 function ManagerMainSession() {
-  const [worker, setWorker] = useState([])
+  const [worker, setWorker] = useState([]);
 
   const getWorker = async() => {
     await axios.get("http://localhost:8080/work")
@@ -16,8 +16,21 @@ function ManagerMainSession() {
     })
   }
 
+  const [overtimeWorker, setOvertimeWorker] = useState([]);
+  const getOvertimeWorker = async() => {
+    await axios.get("http://localhost:8080/overtime")
+    .then((res) => {
+      setOvertimeWorker(res.data);
+      console.log(overtimeWorker);
+    })
+    .catch((err) => {
+      console.error({error:err})
+    })
+  }
+
   useEffect(() => {
     getWorker();
+    getOvertimeWorker();
   }, []);
 
   function currentList () {
@@ -34,7 +47,7 @@ function ManagerMainSession() {
 
   function requestList () {
     return(
-      worker.map((data, index) => 
+      overtimeWorker.map((data, index) => 
       <div key={index} className='main_worker_element'>
         <div className='main_elements'>{data.name}</div>
         <div className='main_elements'>{data.user_id}</div>
