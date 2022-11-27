@@ -6,9 +6,6 @@ import BankList from '../../Registration/component/BankList';
 import WorkTypeList from '../../Registration/component/WorkTypeList';
 import axios from 'axios';
 
-// 기존 값이 변경 값과 다른게 없으면 쿼리 보내지 않고 페이지 변경
-// 모달 모바일 버전 설정
-// 모달 출력시 뒷 배경 이벤트 제거
 function UserInfoSession() {
   const [selectDepartments, setSelectDepartments] = useState([]);
   const [selectBanks, setSelectedBanks] = useState([]);
@@ -35,7 +32,7 @@ function UserInfoSession() {
     await axios.get(`http://localhost:8080/users/${sessionStorage.getItem('user_id')}`)
     .then((res) => {
       setDefault(res.data);
-      
+      console.log(defaultUser)
     })
     .catch((err) => {
       console.error({error:err})
@@ -50,7 +47,6 @@ function UserInfoSession() {
   const update = async() => {
     await axios.post("http://localhost:8080/users/update", user)
     .then((res) => {
-      console.log(res);
       alert('정보 수정에 성공했습니다.')
       navigate(`/${sessionStorage.getItem('user_id')}/main`);
     })
@@ -66,7 +62,6 @@ function UserInfoSession() {
       ...user,
       [e.target.name] : e.target.value,
     });
-    console.log(user);
   };
 
   useEffect(() => {
@@ -108,7 +103,7 @@ function UserInfoSession() {
       <form className='userInfo-main-container'>
         <div className='userInfo-main'>
           <span className='name'>
-            이름 <input className='name-input' onChange={onChangeUser} name = "name" placeholder = {defaultUser.name} disabled/>
+            이름 <input className='name-input' onChange={onChangeUser} name = "name" value = {defaultUser.name} disabled/>
           </span>
           <span className='student-code'>
             학번 <input className='student-code-input' onChange={onChangeUser} name = "user_id" disabled/>
@@ -122,13 +117,13 @@ function UserInfoSession() {
               name = "password"
               minLength={5}
               onChange={onChangeUser} 
-              placeholder = {defaultUser.password}
+              value = {defaultUser.password}
             />
           </span>
 
           <span className='select-grade'>
             학년
-            <select className='grade-list' onChange={onChangeUser} name = "grade" placeholder = {defaultUser.grade}>
+            <select className='grade-list' onChange={onChangeUser} name = "grade" value = {defaultUser.grade}>
               <option value='' >--선택--</option>
               <option value='1'>1</option>
               <option value='2'>2</option>
@@ -149,17 +144,17 @@ function UserInfoSession() {
             <input 
               id = "phone"
               type='tel' 
-              pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" 
+              pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" 
               title='010-****-****, 054-***-****'
               name = "phone" 
               className='phone' 
               onChange={onChangeUser} 
-              placeholder = {defaultUser.phone}
+              value = {defaultUser.phone}
               required 
             />
           </span>
           <span className='birth'>
-            생년월일 <input className='birth-input' type='date' onChange={onChangeUser} name = "birth" placeholder = {defaultUser.birth} disabled/>
+            생년월일 <input className='birth-input' type='date' onChange={onChangeUser} name = "birth" value = {defaultUser.birth} disabled/>
           </span>
         
           <span className='account'>

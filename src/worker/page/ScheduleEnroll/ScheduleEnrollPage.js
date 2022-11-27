@@ -1,26 +1,43 @@
 import React, { useEffect, useState } from 'react'
 import '../ScheduleEnroll/css/ScheduleEnrollPage.css'
-import BottomMenu from '../../../etc/Worker_Components/BottomMenu'
-import WorkScheduleEnrollSession from './components/WorkScheduleEnrollSession'
-import ScheduleHeader from './components/ScheduleHeader'
-import EducationScheduleEnrollSession from './components/EducationScheduleEnrollSession'
 import AccessScheduleEnroll from './components/AccessScheduleEnroll'
 import ScheduleEnrollPageMain from './components/ScheduleEnrollPageMain'
 import dayjs from 'dayjs'
+import axios from 'axios'
 
 function ScheduleEnrollPage() {
-  const [startModifiTime, setStartModifiTime] = useState(dayjs(new Date('2022-11-22')));
-  const [endModifiTime, setEndtModifiTime] = useState(dayjs(new Date('2022-11-25')));
+  const [timeData, setTimeData] = useState({})
+  const [startModifiTime, setStartModifiTime] = useState(dayjs(new Date()));
+  const [endModifiTime, setEndtModifiTime] = useState(dayjs(new Date()));
   const [currentTime, setCurrentTime] = useState(dayjs());
   const [modifyAuthority, setModifyAuthority] = useState(
     startModifiTime <= currentTime && currentTime < endModifiTime.add(1,'day')
     ) 
+
   const [permission, setPermission] = useState(modifyAuthority);
+
+  const getTimeData = async() => {
+    await axios.get("http://localhost:8080/temporal/")
+    .then((res) => {
+      setTimeData((res.data[0]))
+    })
+    .catch((err) => {
+      console.error("error: " + {error: err} )
+    })
+  }
+
+  useEffect(() => {
+    getTimeData()
+    
+  }, [])
+
+  useEffect(() => {
+    setStartModifiTime(dayjs(new Date(timeData.edit_start)))
+    setEndtModifiTime(dayjs(new Date(timeData.edit_end)))
+  }, [timeData])
+
   return (
     <div>
-{
-  console.log(modifyAuthority)
-}
       {
         permission ? 
           <ScheduleEnrollPageMain

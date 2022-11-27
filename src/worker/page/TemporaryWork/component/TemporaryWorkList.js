@@ -10,14 +10,9 @@ const TemporaryWorkList = ({requestList}) => {
                 requestList.map((request, index) => (
                     <div key={index} className='temporary-work-list'>
                         <li>
-                            {/* <span>{request.day}</span>
-                            <span>{request.startTime}</span>
-                            <span>~</span>
-                            <span>{request.endTime}</span>
-                            <span>{request.workType}</span>
-                            <span>{request.requistType}</span> */}
                             <span>{request.absence_start}</span>
                             <span>{request.absence_end}</span>
+                            <span>{request.request_type}type</span>
                         </li>
                         <div>처리 중</div>
                     </div>

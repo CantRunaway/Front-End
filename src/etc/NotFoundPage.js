@@ -6,10 +6,12 @@ function NotFoundPage() {
   useEffect(()=>{
     if(sessionStorage.getItem("user_id") === null){
       goBack()
+      console.log("null")
     }
     else{
       if(sessionStorage.getItem("user_id") === 'admin'){
         goManagerrMain()
+        console.log("null")
       }
       else{
         goWorkerMain()
@@ -35,7 +37,7 @@ function NotFoundPage() {
     window.location.replace(link_url);
   } 
 
-
+  
   return (
     <div className='NotFoundPage'>
 
