@@ -17,7 +17,6 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
         
         await axios.get(`http://localhost:8080/enrollment/${sessionStorage.getItem('user_id')}`)
         .then((res) => {
-            console.log(res.data);
 
             setUseEnrollmentDay(res.data);
         })
@@ -38,7 +37,6 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
             target = document.getElementById(id);
             inputTarget = document.getElementById(id+"in");
             target.click();
-            console.log(target)
 
             if(isClassSchedule){
                 if(workerSchedule[j].type === "class"){
@@ -82,7 +80,6 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
         else{
             setCheckValue(checkValue.filter((arr)=> arr.id !== i ))
         }
-        console.log('check', checkValue)
     }
 
     const changeBoxColor = (id, check) => {

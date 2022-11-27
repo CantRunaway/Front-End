@@ -51,7 +51,9 @@ function ScheduleEnrollPageMain({startModifiTime, endModifiTime, currentTime, mo
 
   return (
     <div className='schedule-enroll-conteiner'>
-
+{
+  console.log(startModifiTime)
+}
       <div className='worker-schedule-enroll-header'>
         <ScheduleHeader
           isClassSchedule ={isClassSchedule}

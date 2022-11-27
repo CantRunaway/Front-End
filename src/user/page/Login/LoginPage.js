@@ -17,20 +17,23 @@ function LoginPage() {
     event.preventDefault();
     
 
-    if(loginInfo.user_id === 'admin'){
-      sessionStorage.setItem('user_id', 'admin');
-      navigate('/managermain');
-    }
-
     if (JSON.stringify(adminInfo) === JSON.stringify(loginInfo)) {
       navigate('/managermain');
       return;
     }
+
     await axios.post('http://localhost:8080/users/login', loginInfo)
     .then((res) => {
       console.log(res);
 
-      res.data ?  loginSuccess() : loginFail();
+      if(loginInfo.user_id === 'admin'){
+        isAdmin()
+        console.log("관리자 로그인")
+      }
+      else{
+        res.data ?  loginSuccess() : loginFail();
+      }
+
     })
     .catch((err) => {
       console.error({error: err});
@@ -52,6 +55,11 @@ function LoginPage() {
     
   }
   
+  const isAdmin = () => {
+    sessionStorage.setItem('user_id', 'admin');
+    navigate('/managermain');
+  }
+
   const loginSuccess = () => {
     sessionStorage.setItem('user_id', loginInfo.user_id);
     navigate(`/main`);

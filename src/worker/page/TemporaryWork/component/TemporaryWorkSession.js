@@ -36,24 +36,10 @@ function TemporaryWorkSession(){
     });
 
     const [plusAbsence, setPlusAbsence] = useState({
-        // absence_day: "",
         absence_start: "",
         absence_end: "",
     });
 
-    // const onChangeWork = (e) => {
-    //     setPlusWork({
-    //         ...plusWork,
-    //         [e.target.name] : e.target.value,
-    //     });
-    //     console.log(plusWork);
-    // }
-
-    // useEffect(() => {
-    //     setPlusWork({
-
-    //     })
-    // })
 
     const onChangeAbsence = (e) => {
         setPlusAbsence({
@@ -62,45 +48,27 @@ function TemporaryWorkSession(){
         });
     }
 
-    console.log(plusAbsence)
-
-    // useEffect(() => {
-    //     setPlusAbsence({
-    //         ...plusAbsence,
-    //         absence_start : startTimeData,
-    //     });
-    // }, [startTimeData])
-
-    // useEffect(() => {
-    //     setPlusAbsence({
-    //         ...plusAbsence,
-    //         absence_end : endTimeData,
-    //     });
-    // }, [endTimeData])
 
     //추가 근로 요청 버튼 이벤트
     const addTemporaryRequist = async() => {
         await axios.post("http://localhost:8080/overtime", plusWork)
         .then((res) => {
             console.log(res);
-            alert("추가 근로 요청")
         })
         .catch((err) => {
             console.log({error:err})
-            alert("추가 근로 실패")
             console.log(plusAbsence)
         })
     }
+
     //결근 요청 버튼 이벤트
     const subTemporaryRequist = async() => {
         await axios.post("http://localhost:8080/absence", plusAbsence)
         .then((res) => {
             console.log(res);
-            alert('결근 요청 완료')
         })
         .catch((err) => {
             console.log({error:err})
-            alert('결근 요청 실패')
             console.log(plusAbsence)
         })
     }
@@ -142,48 +110,42 @@ function TemporaryWorkSession(){
                 />
             </div>
             
-            <div className='worker-temporary-session'>
+            <form>
+                <div className='worker-temporary-session'>
 
-                <label className='temporary-date'>
-                    <input type='date' required  
-                        onChange={(e)=>{
-                            setDayData(e.target.value)
-                            console.log(e.target.value)
-                        }}
-                        // onChange={onChangeAbsence}
+                    <label className='temporary-date'>
+                        <input type='date' required  
+                            onChange={(e)=>{
+                                setDayData(e.target.value)
+                                console.log(e.target.value)
+                            }}
+                            // onChange={onChangeAbsence}
+                        />
+                    </label>
+
+                    <input className='temporary-start-time-select' name='absence_start' type='time' step='1800' required 
+                        onChange={onChangeAbsence}
                     />
-                </label>
+                    ~
+                    <input className='temporary-end-time-select' name='absence_end' type='time' step='1800' required
+                        onChange={onChangeAbsence}
+                    />
 
-                <input className='temporary-start-time-select' name='absence_start' form='H:mm' type='time' step='1800' required 
-                    // onChange={(e)=>{
-                    //     setStartTimeData(e)
-                    //     console.log(e.target.value)
-                    // }}
-                    onChange={onChangeAbsence}
-                />
-                ~
-                <input className='temporary-end-time-select' name='absence_end' type='time' step='1800' required
-                    // onChange={(e)=>{
-                    //     setEndTimeData(e.target.value)
-                    //     console.log(e.target.value)
-                    // }}
-                    onChange={onChangeAbsence}
-                />
-
-            </div>
-
-            <div className='worker-temporary-session-button-container'>
-                <div className='worker-temporary-session-requist-button'>
-                    <button className='worker-temporary-add-requist-button' onClick={addTemporaryRequist}>추가근로</button>
-                    <button className='worker-temporary-sub-requist-button' onClick={subTemporaryRequist}>결근</button>
                 </div>
 
-                <div className='worker-temporary-session-select-button'>
-                    <Link to='/SelectTempraryWork'>
-                        <button>모집 근로 조회</button>
-                    </Link>
+                <div className='worker-temporary-session-button-container'>
+                    <div className='worker-temporary-session-requist-button'>
+                        <button className='worker-temporary-add-requist-button' onClick={addTemporaryRequist}>추가근로 요청</button>
+                        <button className='worker-temporary-sub-requist-button' onClick={subTemporaryRequist}>결근 요청</button>
+                    </div>
+
+                    <div className='worker-temporary-session-select-button'>
+                        <Link to='/SelectTempraryWork'>
+                            <button>모집 근로 조회</button>
+                        </Link>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }
