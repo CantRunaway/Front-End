@@ -21,7 +21,6 @@ function ManagerMainSession() {
     await axios.get("http://localhost:8080/overtime")
     .then((res) => {
       setOvertimeWorker(res.data);
-      console.log(overtimeWorker);
     })
     .catch((err) => {
       console.error({error:err})
@@ -40,6 +39,7 @@ function ManagerMainSession() {
         <div className='main_elements'>{data.name}</div>
         <div className='main_elements'>{data.user_id}</div>
         <div className='main_elements'>{data.start_time}</div>
+        <div className='main_elements'>{data.end_time}</div>
         <div className='main_elements'>{data.work_type_name}</div>
       </div>
     ))
@@ -51,7 +51,8 @@ function ManagerMainSession() {
       <div key={index} className='main_worker_element'>
         <div className='main_elements'>{data.name}</div>
         <div className='main_elements'>{data.user_id}</div>
-        <div className='main_elements'>{data.start_time}</div>
+        <div className='main_elements'>{data.work_start}</div>
+        <div className='main_elements'>{data.work_end}</div>
         <div className='main_elements'>{data.work_type_name}</div>
       </div>
     ))

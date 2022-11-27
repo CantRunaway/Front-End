@@ -4,26 +4,11 @@ import axios from 'axios';
 import WorkScheduleEnrollSession from './WorkScheduleEnrollSession';
 import EducationScheduleEnrollSession from './EducationScheduleEnrollSession';
 import '../css/ScheduleEnrollManagerSession.css'
+import UserNameList from './UserNameList';
 
 function ScheduleEnrollManagerSession() {
     const date = ['일', '월', '화', '수', '목', '금', '토']
 
-    const [userList, setUserList] = useState([]);
-
-    const getUserList = async() => {
-        await axios.get("http://localhost:8080/work/worker")
-        .then((res) => {
-            setUserList(res.data);
-        })
-        .catch((err) => {
-            console.error({error:err})
-        })
-        console.log(userList);
-    }
-
-    useEffect(() => {
-        getUserList()
-    }, [])
     
     const ScheduleEidtClicked = () => {
         alert("수정되었습니다.");
@@ -71,6 +56,8 @@ function ScheduleEnrollManagerSession() {
       const toggleWork = () => {
         setisClassSchedule(false)
       }
+
+      
     
     return (
         <div className='ScheduleEnrollManagerSession'>
@@ -78,9 +65,7 @@ function ScheduleEnrollManagerSession() {
               <div className='ScehduleEnrollMain-title'>시간표 등록 / 수정</div>
                 <div className='main'>
                     <div className='scheduleSearch'>
-                        <select className='selectWorker'>
-                            <option>홍길동</option>
-                        </select>
+                        {<UserNameList/>}
                     </div>
                     <div className='scheduleAll'>
                         <div className='scheduleTab'>
