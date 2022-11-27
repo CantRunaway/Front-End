@@ -16,10 +16,6 @@ function LoginPage() {
   const login = async (event) => {
     event.preventDefault();
     
-    if(loginInfo.user_id === 'test'){
-      sessionStorage.setItem('user_id', 'test');
-      navigate('/main');
-    }
 
     if(loginInfo.user_id === 'admin'){
       sessionStorage.setItem('user_id', 'admin');
