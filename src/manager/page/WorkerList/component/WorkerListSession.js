@@ -5,30 +5,29 @@ import '../css/WorkerListSession.css'
 function WorkerListSession() {
 
   // 항목데이터
-  const colums = ["이름", "학번", "근무 시작 시간", "근무 종료 시간", "근무 종류"];
+  const colums = ["이름", "학번", "근무 종류"];
 
   const [workListData, setWorkerListData] = useState([])
 
-  const [checkData, setCheckData] = useState([]); // 보낼 데이터 담김, 선택한 학번
-
   const getWorker = async() => {
-    await axios.get("http://localhost:8080/work")
+    await axios.get("http://localhost:8080/users/workList")
     .then((res) => {
       setWorkerListData(res.data);
+      // console.log(workListData);
     })
     .catch((err) => {
       console.error({error: err});
     })
   }
 
-  // console.log(workListData);
-
   useEffect(() => {
     getWorker();
-  }, [workListData]);
+  }, []);
 
+// 보낼 데이터 담김, 선택한 학번
+  const [checkData, setCheckData] = useState([]); 
 
-  const singleChecked = (e, intdex, value) => {
+  const singleChecked = (e, index, value) => {
     let checked = e.target.checked;
 
     if(checked){
@@ -38,15 +37,16 @@ function WorkerListSession() {
     else if(!checked && checkData.includes(value)){
       setCheckData(checkData.filter((el) => el !== value))
     }
-    console.log(checkData);
+    // console.log(checkData);
   }
 
   //삭제 (X)
   const RemoveClicked = async() => {
-    await axios.post("http://192.168.0.248:8080/work", checkData)
+    await axios.post(`http://localhost:8080/users/deleteUser`, checkData)
     .then((res) => {
-      console.log(res);
+      console.log(checkData);
       alert("삭제")
+      getWorker();
     })
     .catch((err) => {
       console.error({error: err});
@@ -80,11 +80,11 @@ function WorkerListSession() {
               </td>
               <td className='workerlist_items'>{list.name}</td>
               <td className='workerlist_items'>{list.user_id}</td>
-              <td className='workerlist_items'>{list.start_time}</td>
-              <td className='workerlist_items'>{list.end_time}</td>
+              
               <td className='workerlist_items'>{list.work_type_name}</td>
             </tr>
           ))}
+          {console.log(checkData)}
         </tbody>
       </table>
     )

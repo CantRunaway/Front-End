@@ -10,12 +10,11 @@ function UserApprovalSession() {
    const [userData, setUserData] = useState([]);
 
    const getUserData = async () => {
-    await axios.get("http://localhost:8080/users/userList/wating")
+    await axios.get("http://localhost:8080/users/userLists/wating")
     .then((res) => {
       setUserData(res.data);
-
+      console.log(res.data);
     })
-
     .catch((err)=> {
       console.error({error:err});
     })
@@ -26,34 +25,40 @@ function UserApprovalSession() {
    }, []);
 
 
-  const approval = async (approvalStatus) => {
+  //승인
+  const approval = async () => {
     
-    await axios.post("http://localhost:8080/users/register/response", approvalStatus)
+    await axios.post("http://localhost:8080/users/register/response/admit", checkData)
     .then((res) => {
       alert("성공적으로 승인되었습니다.");
+      setCheckData([]);
+      getUserData();
     })
     .catch((err) => {
       alert("요청에 오류가 있습니다.");
       console.error({error:err})
     })
-  }//이 함수가 승인 함수
+  }
 
-  const refuse = async (refuseStatus) => {
-    await axios.post("http://localhost:8080/users/register/response", refuseStatus)
+  //거절
+  const refuse = async () => {
+    await axios.post("http://localhost:8080/users/register/response/refuse", checkData)
     .then((res) => {
       alert("성공적으로 거절했습니다.")
+      setCheckData([]);
+      getUserData();
     })
     .catch((err) => {
       alert("요청에 오류가 있습니다.")
       console.error({error:err})
     })
-  }//이 함수가 거절 함수
+  }
 
 
   //보낼 데이터 담김, 선택한 학번
   const [checkData, setCheckData] = useState([]);
 
-  const singleChecked = (e, intdex, value) => {
+  const singleChecked = (e, index, value) => {
     let checked = e.target.checked;
 
     if(checked){
@@ -63,7 +68,7 @@ function UserApprovalSession() {
     else if(!checked && checkData.includes(value)){
       setCheckData(checkData.filter((el) => el !== value))
     }
-    console.log(checkData);
+    // console.log(checkData);
   }
 
   //checkBox 전체 선택
@@ -109,6 +114,7 @@ function UserApprovalSession() {
             <td className='table_items'>{user.work_type_name}</td>
           </tr>
         ))}
+        {console.log(checkData)}
         </tbody>
       </table>
     );
@@ -123,7 +129,7 @@ function UserApprovalSession() {
         </div>
         <div className='approvalBtn'>
           <button className='approval_btn' onClick={approval}>등록</button>
-          <button className='approval_btn' onClick={() => refuse(checkData)}>거부</button>
+          <button className='approval_btn' onClick={refuse}>거부</button>
         </div>
         </div>
     </div>

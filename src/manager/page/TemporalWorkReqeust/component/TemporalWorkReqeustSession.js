@@ -3,16 +3,30 @@ import React, { useEffect, useState } from 'react'
 import '../css/TemporalWorkReqeustSession.css'
 
 function TemporalWorkReqeustSession() {
+  //임시근로 요청 목록
     const [temporalData, setTemporalData] = useState([]);
 
     const getTemporalData = async() => {
       await axios.get("http://localhost:8080/overtime")
       .then((res) => {
         setTemporalData(res.data);
-        console.log(temporalData);
       })
       .catch((err) => {
         console.error({error: err});
+      })
+    }
+
+    //결근 요청 목록
+    const [absenceData, setAbsenceData] = useState([]);
+
+    const getAbsenceData = async () => {
+      await axios.get("http://localhost:8080/absence")
+      .then((res) => {
+        setAbsenceData(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log({error:err})
       })
     }
 
@@ -20,49 +34,40 @@ function TemporalWorkReqeustSession() {
       getTemporalData();
       getAbsenceData();
     }, [])
-      const [absenceData, setAbsenceData] = useState([]);
 
-      const getAbsenceData = async () => {
-        await axios.get("http://localhost:8080/absence")
-        .then((res) => {
-          setAbsenceData(res.data);
-        })
-        .catch((err) => {
-          console.log({error:err})
-        })
+    //임시근로 목록 체크
+    const [overTimeCheck, setOverTimeCheck] = useState([]);
+
+    const overTimeChecked = (e, index, value) => {
+      let checked = e.target.checked;
+
+      if(checked){
+        setOverTimeCheck([...overTimeCheck, value])
+        console.log("check")
       }
-
-      // console.log(temporalData);
-      // console.log(absenceData);
-
-      function temporalList () {
-        return(
-          temporalData.map((data) => (
-            <div className="temporalworker_element">
-              <input type="checkbox"/>
-              <div className="element_item">{data.name}</div>
-              <div className="element_item">{data.over_start}</div>
-              <div className="element_item">{data.over_end}</div>
-              <div className="element_item">{data.work_type_name}</div>
-            </div>
-          ))
-        )
+      else if(!checked && overTimeCheck.includes(value)){
+        setOverTimeCheck(overTimeCheck.filter((el) => el !== value))
       }
+      console.log(overTimeCheck);
+    }
 
-      function absenceList () {
-        return(
-          absenceData.map((data) => (
-            <div className="temporalworker_element">
-              <input type="checkbox"/>
-              <div className="element_item">{data.name}</div>
-              <div className="element_item">{data.absence_start}</div>
-              <div className="element_item">{data.absence_end}</div>
-              <div className="element_item">{data.work_type_name}</div>
-            </div>
-          ))
-        )
+    //결근 목록 체크
+    const [absenceCheck, setAbsenceCheck] = useState([]);
+
+    const absenceChecked = (e, index, value) => {
+      let checked = e.target.checked;
+
+      if(checked){
+        setAbsenceCheck([...absenceCheck, value])
+        console.log("check")
       }
-
+      else if(!checked && absenceCheck.includes(value)){
+        setAbsenceCheck(absenceCheck.filter((el) => el !== value))
+      }
+      // console.log(absenceCheck);
+    }
+    
+      // 임시근로 승인
       const temApprovalClicked = async() => {
         await axios.post("http://localhost:8080/overtime",)
         .then((res) => {
@@ -74,6 +79,7 @@ function TemporalWorkReqeustSession() {
         })
       }
     
+      // 임시근로 거부
       const temRefuseClicked = async() => {
         await axios.post("http://localhost:8080/overtime",)
         .then((res) => {
@@ -84,28 +90,76 @@ function TemporalWorkReqeustSession() {
           console.log({error:err})
         })
       }
-    
+
+      //결근 승인
       const absApprovalClicked = async() => {
-        await axios.post("http://localhost:8080/absence/",)
+        await axios.post("http://localhost:8080/absence/admit", absenceCheck)
         .then((res) => {
-          setAbsenceData(res.data);
-          alert("승인되었습니다.");
+          alert("성공적으로 승인되었습니다.");
+          setAbsenceCheck([]);
+          getAbsenceData();
         })
         .catch((err) => {
+          alert("요청에 오류가 있습니다.")
           console.log({error:err})
         })
       }
   
+      //결근 거부
       const absRefuseClicked = async() => {
-        await axios.post("http://localhost:8080/overtime/",)
+        await axios.post("http://localhost:8080/absence//refuse", absenceCheck)
         .then((res) => {
-          setAbsenceData(res.data);
           alert("거부되었습니다.");
+          setAbsenceCheck([]);
+          getAbsenceData();
         })
         .catch((err) => {
+          alert("요청에 오류가 있습니다.")
           console.log({error:err})
         })
       }
+
+      function temporalList () {
+        return(
+          temporalData.map((data) => (
+            <div className="temporalworker_element" key={data.user_id}>
+              <input
+                type='checkbox'
+                // value={temporalData.user_index}
+              />
+              <div className="element_item">{data.name}</div>
+              <div className="element_item">{data.user_id}</div>
+              <div className="element_item">{data.work_start}</div>
+              <div className="element_item">{data.work_end}</div>
+              <div className="element_item">{data.work_type_name}</div>
+            </div>
+            
+          ) )
+        )
+      }
+
+      function absenceList () {
+        return(
+          <>
+            {absenceData.map((data, id) => (
+            <div className="temporalworker_element" key={id}>
+              <input
+                type="checkbox"
+                value={data.absence_index}
+                onChange={(e) => absenceChecked(e, id, e.target.value)}
+              />
+              <div className="element_item">{data.name}</div>
+              <div className="element_item">{data.user_id}</div>
+              <div className="element_item">{data.work_start}</div>
+              <div className="element_item">{data.work_end}</div>
+              <div className="element_item">{data.work_type_name}</div>
+            </div>
+          ))}
+          </>
+        );
+      }
+
+    
     
   return (
     <div className='TemporalWorkReqeustSession'>
@@ -130,9 +184,10 @@ function TemporalWorkReqeustSession() {
         <div className='temporalworker_contents'>
             {absenceList()}
           <div className='temporal_button'>
-            <button className='temporal_btn' onClick={() => absApprovalClicked()}>승인</button>
-            <button className='temporal_btn' onClick={() => absRefuseClicked()}>거부</button>
+            <button className='temporal_btn' onClick={absApprovalClicked}>승인</button>
+            <button className='temporal_btn' onClick={absRefuseClicked}>거부</button>
           </div>
+          {console.log(absenceCheck)}
         </div>
       </div>
       </div>
