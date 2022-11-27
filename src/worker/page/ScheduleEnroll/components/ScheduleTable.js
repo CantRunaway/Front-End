@@ -3,10 +3,9 @@ import axios from 'axios'
 import '../css/ScheduleTable.css'
 
 function ScheduleTable({isClassSchedule, setPostData}) {
+    const [checkValue, setCheckValue] = useState([])   
     const [classTableData, setClassTableData] = useState([])
     const [workTableData, setWorkTableData] = useState([])
-    const [workerSchedule, setWorkerSchedule] = useState([])
-    const [checkValue, setCheckValue] = useState([])   
     
       useEffect(()=>{
         getClassTableData()
@@ -114,10 +113,14 @@ function ScheduleTable({isClassSchedule, setPostData}) {
 
     }
 
+
+    // 시간 테이블 생성
+    const startTime = 9;
+    const endTime = 20;
     const setCheckBoxTable = () => {
         const timeTable = []
 
-        for(let i=9; i<=18; i+=0.5){
+        for(let i=startTime; i<=endTime; i+=0.5){
             let temp = []
             for(let j=0; j<date.length; j++){
                 let time = i;

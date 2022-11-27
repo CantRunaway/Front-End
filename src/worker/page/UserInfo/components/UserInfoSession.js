@@ -13,26 +13,40 @@ function UserInfoSession() {
   
   const navigate = useNavigate();
 
-  const [user, setUser] = useState({
-    user_id: "",
-    password: "",
-    name: "",
-    grade: "",
-    phone: "",
-    account: "",
-    birth: "",
-    work_type_index: "",
-    bank_index: "",
-    department_index: ""
+  const [user, setUser] = useState(
+    {
+      user_id: '',
+      password: null,
+      name: '',
+      grade: '',
+      phone: '',
+      account: '',
+      birth: '',
+      work_type_name: '',
+      bank_name: '',
+      major:''
   });
 
-  const [defaultUser, setDefault] = useState({})
 
   const getDefault = async () => {
-    await axios.get(`http://localhost:8080/users/${sessionStorage.getItem('user_id')}`)
+    await axios.get(`http://localhost:8080/users/userList/${sessionStorage.getItem('user_id')}`)
+    
     .then((res) => {
-      setDefault(res.data);
-      console.log(defaultUser)
+      setUser(
+        {
+          user_id: res.data[0].user_id,
+          password: null,
+          name: res.data[0].name,
+          grade: res.data[0].grade,
+          phone: res.data[0].phone,
+          account: res.data[0].account,
+          birth: res.data[0].birth,
+          work_type_name: res.data[0].work_type_name,
+          bank_name: res.data[0].bank_name,
+          major: res.data[0].major
+        }
+      );
+      console.log(res.data[0])
     })
     .catch((err) => {
       console.error({error:err})
@@ -42,7 +56,6 @@ function UserInfoSession() {
   useEffect(() => {
     getDefault()
   }, [])
-
 
   const update = async() => {
     await axios.post("http://localhost:8080/users/update", user)
@@ -62,28 +75,8 @@ function UserInfoSession() {
       ...user,
       [e.target.name] : e.target.value,
     });
+    console.log(user);
   };
-
-  useEffect(() => {
-    setUser({
-      ...user,
-      department_index: selectDepartments,
-    });
-  }, [selectDepartments])
-
-  useEffect(() => {
-    setUser({
-      ...user,
-      work_type_index: selectedWorkTypes,
-    });
-  }, [selectedWorkTypes])
-
-  useEffect(() => {
-    setUser({
-      ...user,
-      bank_index: selectBanks,
-    });
-  }, [selectBanks])
 
   const backSpace = () =>{
     navigate(-1)
@@ -103,10 +96,10 @@ function UserInfoSession() {
       <form className='userInfo-main-container'>
         <div className='userInfo-main'>
           <span className='name'>
-            이름 <input className='name-input' onChange={onChangeUser} name = "name" value = {defaultUser.name} disabled/>
+            이름 <input className='name-input' onChange={onChangeUser} name = "name"  placeholder= {user.name} disabled/>
           </span>
           <span className='student-code'>
-            학번 <input className='student-code-input' onChange={onChangeUser} name = "user_id" disabled/>
+            학번 <input className='student-code-input' onChange={onChangeUser} placeholder = {user.user_id} name = "user_id" disabled/>
           </span>
 
           <span className='pw'>
@@ -117,13 +110,12 @@ function UserInfoSession() {
               name = "password"
               minLength={5}
               onChange={onChangeUser} 
-              value = {defaultUser.password}
             />
           </span>
 
           <span className='select-grade'>
             학년
-            <select className='grade-list' onChange={onChangeUser} name = "grade" value = {defaultUser.grade}>
+            <select id='grade' className='grade-list' onChange={onChangeUser} name = "grade" value={user.grade}>
               <option value='' >--선택--</option>
               <option value='1'>1</option>
               <option value='2'>2</option>
@@ -134,7 +126,8 @@ function UserInfoSession() {
           </span>
           <span className='select-department'>
             학과
-            <DepartmentList id = "department_index" name = "department_index"
+            <DepartmentList id = "department_index" name = "major" 
+              userMajor={user.major}
               selectDepartments={selectDepartments}
               setSelectDepartments={setSelectDepartments}
               />
@@ -149,28 +142,29 @@ function UserInfoSession() {
               name = "phone" 
               className='phone' 
               onChange={onChangeUser} 
-              value = {defaultUser.phone}
+              placeholder = {user.phone}
               required 
             />
           </span>
           <span className='birth'>
-            생년월일 <input className='birth-input' type='date' onChange={onChangeUser} name = "birth" value = {defaultUser.birth} disabled/>
+            생년월일 <input className='birth-input' type='date' onChange={onChangeUser} name = "birth" value = {user.birth} disabled/>
           </span>
         
           <span className='account'>
             지급 계좌 
-            <BankList id = "bank_index" name = "bank_index"
+            <BankList id = "bank_index" name = "bank_name"
+              bank_name={user.bank_name}
               selectBanks={selectBanks}
               setSelectedBanks={setSelectedBanks}
-              
-              />
-            <input className='account-input' name = "account" onChange={onChangeUser}/>
+            />
+            <input className='account-input' name = "account" onChange={onChangeUser} placeholder={user.account}/>
           </span>
           <span className='work-type'>
             근무 종류
-            <WorkTypeList id = "work_type_index" name = "work_type_index"
-            selectedWorkTypes={selectedWorkTypes}
-            setSelectedWorkTypes={setSelectedWorkTypes}
+            <WorkTypeList id = "work_type_index" name = "work_type_name"
+              selectedWorkTypes={selectedWorkTypes}
+              setSelectedWorkTypes={setSelectedWorkTypes}
+              work_type_name={user.work_type_name}
             />
           </span>
         </div>

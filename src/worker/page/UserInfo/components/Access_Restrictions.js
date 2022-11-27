@@ -22,7 +22,6 @@ function AccessRestrictions({permission}) {
 
   const login = async () => {
     
-    console.log(loginInfo);
     await axios.post("http://localhost:8080/users/login", loginInfo)
     .then((res) => {
       res.data ? loginSuccess() : loginFail();

@@ -1,16 +1,63 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import '../css/WokerMainSession.css'
 import Calender from './Calender';
+import axios from 'axios';
 import dayjs from "dayjs";
 
 const WorkerMainPage = () => {
-  const [attend, setAttend] = useState(true);
+  const [attend, setAttend] = useState();
   const [day, setDay] = useState(dayjs);
-  const [totalTime, setTotalTime] = useState(0)
-  const [totalSalary, setTotalSalary] = useState(0);
   const [selectYear, setSelectYear] = useState(day.get("year"))
   const [selectMonth, setSelectMonth] = useState(day.get("month")+1)
-  
+  const [totalTime, setTotalTime] = useState(0)
+  const [totalSalary, setTotalSalary] = useState(0);
+  const [totalWorkData, serTotalWorkData] = useState(
+    {
+      totalTime:20,
+      totalSalary:30000.
+    }
+  )
+
+  useEffect(()=>{
+    isAttend()
+  },[])
+
+  // 각 일 별 시간 임금
+  const getTotalWorkData = async() => {
+      await axios.post("http://localhost:8080/users/update", day)
+      .then((res) => {
+          serTotalWorkData(res.data[0])
+      })
+      .catch((err) => {
+        console.error({error:err})
+      })
+  }
+
+  // 출 퇴근 여부
+  const isAttend = async() => {
+    await axios.get(`http://localhost:8080/users/commute/${sessionStorage.getItem('user_id')}`)
+    .then((res) => {
+      if(res.data[0].work_state === 1){
+        attendData()
+      }
+      setAttend(res.data[0].work_state)
+    })
+    .catch((err) => {
+      console.error({error:err})
+    })
+  }
+
+  const [attendTime, setAttendTime] = useState();
+  const attendData = async() => {
+    await axios.get(`http://localhost:8080/commute/${sessionStorage.getItem('user_id')}`)
+    .then((res) => {
+      setAttendTime(res.data[0].commute_time)
+    })
+    .catch((err) => {
+      console.error({error:err})
+    })
+  }
+
   const addDay = () => {
     if(selectMonth+1 > 12){
       setDay(day.set('y', selectYear+1))
@@ -26,7 +73,6 @@ const WorkerMainPage = () => {
   } 
 
   const subDay = () => {
-    console.log(selectMonth + " " + selectYear)
     if(selectMonth-1 < 1){
       setDay(day.set('y', selectYear-1))
       setSelectYear(selectYear-1)
@@ -39,12 +85,17 @@ const WorkerMainPage = () => {
       setSelectMonth(selectMonth-1)
     }
   } 
-
+  
   return (
     <div className='worker-session-container'>
 
       <div className='display-attend'>
-          {attend ? '붙잡힘' : '도망감...'}
+          {
+            attend===1 ?
+            "출근"
+             : 
+            "퇴근 중"
+          }
       </div>
 
       <div className='display-month-year'>
@@ -54,7 +105,10 @@ const WorkerMainPage = () => {
       </div>
 
       <div className='worker-session-schedule-table'>
-        <Calender day={day}/>
+        <Calender 
+          day={day}
+          selectMonth={selectMonth}
+        />
       </div>
 
       <div className='worker-session-statistics'>
@@ -62,14 +116,14 @@ const WorkerMainPage = () => {
         <span className='worker-session-statistics-time'>
           <span>월 근로시간 </span>
           <span>
-            {totalTime}시간
+            {totalWorkData.totalTime}시간
           </span>
         </span>
 
         <span className='worker-session-statistics-salary'>
           <span>월 근로장학 금액</span>
           <span>
-            {totalSalary}원
+            {totalWorkData.totalSalary}원
           </span> 
         </span>
 

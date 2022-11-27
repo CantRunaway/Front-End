@@ -4,36 +4,81 @@ import '../css/ScheduleTable.css'
 
 function ScheduleTable({isClassSchedule, workerSchedule}) {
 
+    const [classTableData, setClassTableData] = useState([])
+    const [workTableData, setWorkTableData] = useState([])
+    
     const date = ['일', '월', '화', '수', '목', '금', '토']
 
-    useEffect(()=>{
-        settingTable()
-    },[])
+      useEffect(()=>{
+        getClassTableData()
+        getWorkTableData()
+      }, [])
 
-    const settingTable = () => {
+      useEffect(()=>{
+        settingTable(classTableData)
+        settingTable(workTableData)
+      },[workTableData, classTableData])
+
+
+      const getClassTableData = async() => {
+        await axios.get(`http://localhost:8080/enrollment/${sessionStorage.user_id}`)
+        .then((res) => {
+            setClassTableData(res.data)
+        })
+        .catch((err) => {
+          console.error("error: " + {error: err} )
+        })
+      }
+    
+      const getWorkTableData = async() => {
+        await axios.get(`http://localhost:8080/work/${sessionStorage.user_id}`)
+        .then((res) => {
+            setWorkTableData(res.data)
+        })
+        .catch((err) => {
+          console.error("error: " + {error: err} )
+        })
+      }
+
+
+    const settingTable = (scheduleList) => {
         let target = '';
+        let inputTarget = '';
         let id = '';
         for(let j=0; ; j++){
-            if(workerSchedule[j] == null) break;
+            if(scheduleList[j] == null) break;
 
-            id = workerSchedule[j].time + workerSchedule[j].day;
+            id = scheduleList[j].time + scheduleList[j].day;
             target = document.getElementById(id);
+            inputTarget = document.getElementById(id+"in");
 
-            if(workerSchedule[j].type === "class"){
-                 target.style.background='#828282';
+            if(isClassSchedule){
+                if(scheduleList[j].type === "class"){
+                    target.style.background='#828282';
+                }
+                else{
+                    target.style.background='#E0D1FF';
+                }
             }
             else{
-                target.style.background='#E0D1FF';
+                if(scheduleList[j].type === "class"){
+                    target.style.background='#828282';
+                }
+                else{
+                    target.style.background='#E0D1FF';
+                }
             }
-
+            
         }
     }
 
-
+    // 시간 길이 
+    const startTime = 9;
+    const endTime = 20;
     const setCheckBoxTable = () => {
         const timeTable = []
 
-        for(let i=9; i<=18; i+=0.5){
+        for(let i=startTime; i<=endTime; i+=0.5){
             let temp = []
             for(let j=0; j<date.length; j++){
                 let time = i;

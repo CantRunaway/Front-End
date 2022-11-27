@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import '../css/TemporaryWorkSessionList.css'
 
 const TemporaryWorkSessionList = ({reqeustList, checkDataHandler}) => {
-    console.log(reqeustList);
     return(
         <ul className='temporary-work-session-list-container'>
             {

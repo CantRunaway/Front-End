@@ -38,7 +38,7 @@ function SelectTempraryWorkSession(){
         console.log(checkData)
     }
 
-    //추가 근로 모집 신청 (X)
+    //추가 근로 모집 신청 
     const reqRecruit = async() => {
         await axios.post("http://localhost:8080/recruit", checkData)
         .then((res) => {
