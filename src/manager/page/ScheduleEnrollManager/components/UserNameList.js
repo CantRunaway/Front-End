@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-function UserNameList() {
+function UserNameList(classSchedule, setClassSchedule) {
     const [userList, setUserList] = useState([]);
 
     const getUserName = async() => {
@@ -18,12 +18,26 @@ function UserNameList() {
         getUserName()
     }, [])
 
-    const userName = userList.map((user) => (
-        <option value={user.user_id} key = {user.name}>{user.name}</option>
-    ));
+    const onChangeUser = (e) => (
+        setClassSchedule()
+    )
+
+    console.log(userList);
+    console.log(classSchedule);
+
   return (
-    <select className='selectWorker'>
-        {userName}
+    <select
+        className='selectWorker'
+        onChange={onChangeUser}>
+        {userList.map((user) => (
+            <option
+                key={user.user_id}
+                name="user_id"
+                value={user.user_id}
+            >
+            {user.name}
+            </option>
+        ))}
     </select>
   )
 }

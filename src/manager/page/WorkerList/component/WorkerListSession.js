@@ -37,10 +37,10 @@ function WorkerListSession() {
     else if(!checked && checkData.includes(value)){
       setCheckData(checkData.filter((el) => el !== value))
     }
-    // console.log(checkData);
+    console.log(checkData);
   }
 
-  //삭제 (X)
+  //삭제
   const RemoveClicked = async() => {
     await axios.post(`http://localhost:8080/users/deleteUser`, checkData)
     .then((res) => {

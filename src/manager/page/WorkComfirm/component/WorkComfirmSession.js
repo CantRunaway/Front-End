@@ -1,8 +1,5 @@
 import React, {useState} from 'react'
 import '../css/WorkComfirmSession.css'
-import DatePicker ,{ registerLocale } from "react-datepicker";  // 한국어적용
-import ko from 'date-fns/locale/ko'; // 한국어적용
-import "react-datepicker/dist/react-datepicker.css";
 
 function WorkComfirmSession() {
     // 항목데이터
@@ -55,7 +52,6 @@ function WorkComfirmSession() {
 
   const [workStart, setWorkStart] = useState(new Date());
   const [workEnd, setWorkEnd] = useState(new Date());
-  registerLocale("ko", ko);
 
   function workerComfirmTable() {
     return (
@@ -106,30 +102,6 @@ function WorkComfirmSession() {
                     {workerComfirmTable()}
                 </div>
                 <button className='comfirmDelete_btn' onClick={() => workComfirmDelete}>삭제</button>
-            </div>
-            <div className='workerComfirmPlus'>
-                <select className='workerType'>
-                    <option value={1}>식사확인</option>
-                    <option value={2}>식기세척</option>
-                    <option value={3}>청소 및 운반</option>
-                </select>
-                <DatePicker
-                    className='workStartDatepick'
-                    selected={workStart}
-                    dateFormat="yyyy년 MM월 dd일"
-                    onChange={date => setWorkStart(date)}
-                    locale="ko"
-                    width="300px"
-                /> 
-                <DatePicker
-                    className='workEndDatepick'
-                    selected={workEnd}
-                    dateFormat="yyyy년 MM월 dd일"
-                    onChange={date => setWorkEnd(date)}
-                    locale="ko"
-                    width="300px"
-                />
-                <button className='workcomfirmplus_btn' onClick={() => workComfirmPlus()}>추가</button>
             </div>
             <div className='workerComfirmTotal'>
                 <div className='workerTotal'>총 근로 시간 {totalTime} 시간</div>

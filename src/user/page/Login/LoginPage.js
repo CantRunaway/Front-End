@@ -18,6 +18,7 @@ function LoginPage() {
     
 
     if (JSON.stringify(adminInfo) === JSON.stringify(loginInfo)) {
+      sessionStorage.setItem("user_id", "admin");
       navigate('/managermain');
       return;
     }

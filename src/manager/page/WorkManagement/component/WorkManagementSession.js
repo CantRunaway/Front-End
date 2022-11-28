@@ -1,39 +1,47 @@
 import React, { useEffect, useState } from "react";
-import DatePicker, { registerLocale } from "react-datepicker"; // 한국어적용
-import ko from "date-fns/locale/ko"; // 한국어적용
-import "react-datepicker/dist/react-datepicker.css";
 import "../css/WorkManagementSession.css";
 import axios from "axios";
-import { type } from "@testing-library/user-event/dist/type";
 
 function WorkManagementSession() {
-  const [editDate, setEditDate] = useState({});
+  const [editDate, setEditDate] = useState({}); //날짜 선정
   const [newData, setNewData] = useState({
+    //근무종류 및 시급 새로 추가
     work_type_name: "",
     change_date: "",
     wage: "",
   });
-  const [hourlyWage, setHourlyWage] = useState();
-  registerLocale("ko", ko);
-  // 항목데이터
-  const colums = ["근무종류", "변경일자", "시급"];
+  const colums = ["근무종류", "변경일자", "시급"]; // 항목데이터
+  const [typeData, setTypeData] = useState([]); //등록된 시급목록 받아오기
 
-  //등록된 시급목록 받아오기
-  const [typeData, setTypeData] = useState([]);
-
+  //현재 시급 목록 받아와서 뿌리기
   const getTypeData = async () => {
     await axios
       .get("http://localhost:8080/wage")
       .then((res) => {
         setTypeData(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
         console.error({ error: err });
       });
   };
 
-  //근로종류 받아오기
+  //삭제할 데이터
+  const [checkData, setCheckData] = useState([]);
+
+  //삭제할 데이터 담김
+  const singleChecked = (e, index, value) => {
+    let checked = e.target.checked;
+
+    if (checked) {
+      setCheckData([...checkData, value]);
+      console.log("check");
+    } else if (!checked && checkData.includes(value)) {
+      setCheckData(checkData.filter((el) => el !== value));
+    }
+  };
+
+  //근로종류 받아오기 (select)
   const [workType, setWorkType] = useState([]);
   const getWorkType = async () => {
     await axios
@@ -51,16 +59,38 @@ function WorkManagementSession() {
     getWorkType();
   }, []);
 
-  const Wage = (e) => {
-    setHourlyWage(e.target.value);
+  
+  //등록된 시급 데이터 삭제
+  const workTypeDelete = async () => {
+    await axios
+      .post("http://localhost:8080/wage/delete", checkData)
+      .then((res) => {
+        console.log(checkData);
+        alert("삭제");
+        getTypeData();
+      })
+      .catch((err) => {
+        console.error({ error: err });
+        alert("삭제 실패");
+      });
   };
 
+  console.log(checkData);
+
+  const plusWageTemporalData = (e) => {
+    setNewData({
+      ...newData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  //새 시급 데이터 넣기
   const plusClicked = async () => {
     await axios
-      .post("http://localhost:8080/wage", plusWage)
+      .post("http://localhost:8080/wage", newData)
       .then((res) => {
         alert("추가되었습니다.");
-        setPlusWage({
+        setNewData({
           work_type_name: "",
           change_date: "",
           wage: "",
@@ -72,69 +102,14 @@ function WorkManagementSession() {
       });
   };
 
-  //등록된 시급 데이터 삭제
-  const workTypeDelete = async () => {
-    // await axios.post(, checkData)
-    // .then((res) => {
-    //   console.log(checkData);
-    //   alert("삭제")
-    //   getTypeData();
-    // })
-    // .catch((err) => {
-    //   console.error({error: err});
-    //   alert("삭제 실패")
-    // })
-  };
-
-  // 보낼 데이터 담기
-  const [plusWage, setPlusWage] = useState({
-    work_type_name: "",
-    change_date: "",
-    wage: "",
-  });
-
-  const plusTemporalData = (e) => {
-    console.log(e.target.value);
-    setPlusWage({
-      ...plusWage,
-      [e.work_type_name]: e.target.value,
-    });
-    console.log(plusWage);
-  };
-
-  const plusWageClicked = async () => {
-    console.log("hello world");
-  };
-
-  const plusWageTemporalData = (e) => {
-    setNewData({
-      ...newData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   useEffect(() => {
     setNewData({
       ...newData,
       change_date: editDate,
-    })
-  }, [editDate])
+    });
+  }, [editDate]);
 
-  console.log(newData);
-  //삭제할 데이터 담김
-  const [checkData, setCheckData] = useState([]);
-
-  const singleChecked = (e, index, value) => {
-    let checked = e.target.checked;
-
-    if (checked) {
-      setCheckData([...checkData, value]);
-      console.log("check");
-    } else if (!checked && checkData.includes(value)) {
-      setCheckData(checkData.filter((el) => el !== value));
-    }
-    console.log(checkData);
-  };
+  // console.log(newData);
 
   function workTypeTable() {
     return (
@@ -155,7 +130,7 @@ function WorkManagementSession() {
               <td>
                 <input
                   className="types-list"
-                  value={types.work_type_name}
+                  value={types.wage_index}
                   type="checkbox"
                   onChange={(e) => singleChecked(e, id, e.target.value)}
                 />
@@ -183,37 +158,7 @@ function WorkManagementSession() {
             삭제
           </button>
         </div>
-        <div className="workTypePlus">
-          <select className="temporal_select" onChange={plusTemporalData}>
-            {workType.map((type) => (
-              <option key={type.work_type_index} value={type.work_type_name}>
-                {type.work_type_name}
-              </option>
-            ))}
-          </select>
-          <input
-            className="temporary-date"
-            type="date"
-            required
-            onChange={(e)=>{
-                setEditDate(e.target.value)
-                console.log(e.target.value)
-                console.log(editDate)
-            }}
-          />
-          <input
-            className="amount"
-            type="text"
-            placeholder="0"
-            value={hourlyWage}
-            onChange={Wage}
-          ></input>
-          <div className="amuont_won">원</div>
-          <button className="workplus_btn" onClick={() => plusWageClicked()}>
-            시급 추가
-          </button>
-        </div>
-
+        {/* 근로 종류 및 시급 새로 추가 */}
         <div className="workTypePlus">
           <input
             className="amount_won"
@@ -227,20 +172,18 @@ function WorkManagementSession() {
             name="change_date"
             type="date"
             required
-            onChange={(e)=>{
-                setEditDate(e.target.value)
-                console.log(e.target.value)
-            }}
+            onChange={plusWageTemporalData}
           />
           <input
             className="amount"
             type="text"
             placeholder="0"
-            value={hourlyWage}
+            value={newData.wage || ""}
             name="wage"
             onChange={plusWageTemporalData}
             required
-          ></input>
+          />
+          {console.log(newData)}
           <div className="amuont_won">원</div>
           <button className="workplus_btn" onClick={() => plusClicked()}>
             근로 추가

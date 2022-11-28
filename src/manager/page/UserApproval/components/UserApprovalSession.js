@@ -70,19 +70,6 @@ function UserApprovalSession() {
     }
     // console.log(checkData);
   }
-
-  //checkBox 전체 선택
-  // const allChecked = (check, id) => {
-  //   if(check){
-  //     const allArr = [];
-  //     data.forEach((el) => allArr.push(el.id));
-  //     setChecked(allArr);
-  //   }
-  //   else{
-  //     setChecked([]);
-  //   }
-  // }
-  
   function approvalTable() {
     return (
       <table>

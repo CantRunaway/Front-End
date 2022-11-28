@@ -1,10 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../css/ScheduleManagementSession.css';
 import ClassScheduleManage from './ClassScheduleManage';
 import WorkScheduleManage from './WorkScheduleManage';
+import axios from 'axios';
 
 function ScheduleManagementSession() {
   const [isClassTab, setIsClassTab] = useState(true);
+
+  // const [temporal, setTemporal] = useState({}); //저장되있는 수정기간 값
+  // const getTemporal = async () => {
+  //   await axios
+  //     .get("http://localhost:8080/temporal")
+  //     .then((res) => {
+  //       setTemporal(res.data[0]);
+  //     })
+  //     .catch((err) => {
+  //       console.error({ error: err });
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   getTemporal();
+  // }, []);
 
     const toggleClass = () => {
         setIsClassTab(true)

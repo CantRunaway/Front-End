@@ -16,7 +16,9 @@ function ScheduleEnrollManagerSession() {
       //근로자 명단 + index
 
       const [isClassSchedule, setisClassSchedule] = useState(true);
+      const [classSchedule, setClassSchedule] = useState([]);
       const [workerSchedule, setWorkerSchedule] = useState([
+        
         {
           type:'class',
           id:'11:00월',
@@ -49,6 +51,20 @@ function ScheduleEnrollManagerSession() {
         }
       ])
 
+      //시간표 받아오기
+      const getWorkerSchedule = async () => {
+        await axios
+          .get("http://localhost:8080/workType")
+          .then((res) => {
+            setWorkerSchedule(res.data);
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.error({ error: err });
+          });
+      };
+
+
       const toggleClass = () => {
         setisClassSchedule(true)
       }
@@ -65,7 +81,10 @@ function ScheduleEnrollManagerSession() {
               <div className='ScehduleEnrollMain-title'>시간표 등록 / 수정</div>
                 <div className='main'>
                     <div className='scheduleSearch'>
-                        {<UserNameList/>}
+                        {<UserNameList
+                          classSchedule={classSchedule}
+                          setClassSchedule={setClassSchedule}
+                        />}
                     </div>
                     <div className='scheduleAll'>
                         <div className='scheduleTab'>

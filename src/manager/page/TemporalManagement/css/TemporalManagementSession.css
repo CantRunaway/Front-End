@@ -86,27 +86,12 @@
     margin-left: 300px;
 }
 
-/* .temporal_date {
-    width: 100%;
-    height: 100%;
-    margin-left: 50px;
-    margin-top: 30px;
-}
-
-.datepick{
-    width: 250px;
-    height: 30px;
-    margin-left: 200px;
-    font-size: 20px;
-    text-align: center;
-    color: black;
-    background-color: white;
-    border: #A87EFF solid 2px;
-} */
-
 .temporary-date{
     width: 200px;
     height: 30px;
+    background-color: white;
+    border-radius: 20px;
+    border: solid 2px #A87EFF;
 }
 
 .temporal_time{
@@ -116,16 +101,6 @@
     margin: 0 auto;
     margin-top: 10px;
     margin-right: 10px;
-}
-
-.temporary-start-time-select{
-    width: 100px;
-    height: 30px;
-}
-
-.temporary-end-time-select{
-    width: 100px;
-    height: 30px;
 }
 
 .temporal_fonts{
@@ -139,6 +114,7 @@
     height: 30px;
     margin-right: 20px;
     border-radius: 20px;
+    background-color: white;
     border: solid 2px #A87EFF;
     font-size: 20px;
     text-align: center;

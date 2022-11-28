@@ -7,20 +7,12 @@ import axios from 'axios';
 
 function WorkScheduleManage() {
   registerLocale("ko", ko);
-
-  const [workStartDate, setWorkStartDate] = useState(new Date())
-  const [workEndDate, setWorkEndDate] = useState(new Date())
-
   const [temporal, setTemporal] = useState({})
   
   const getTemporal = async () => {
     await axios.get("http://localhost:8080/temporal")
     .then((res) => {
-      setTemporal(res.data[0]);
-      setWorkStartDate(Date.parse(temporal.edit_start));
-      setWorkEndDate(Date.parse(temporal.edit_end));
-      console.log(workStartDate);
-      console.log(workEndDate);
+      setTemporal(res.data[1]);
     }
     )
     .catch((err) => {
@@ -32,8 +24,17 @@ function WorkScheduleManage() {
     getTemporal()
   }, [])
 
-  const ModificationClicked = () => {
-    alert("변경되었습니다.");
+  const ModificationClicked = async() => {
+    await axios
+      .post("http://localhost:8080/temporal/work", temporal)
+      .then((res) => {
+        console.log(res);
+        alert("수정되었습니다.");
+      })
+      .catch((err) => {
+        alert("데이터 전송에 실패했습니다.");
+        console.log(err);
+      });
   }
 
   return (
@@ -41,32 +42,41 @@ function WorkScheduleManage() {
       <div className='periodcontents'>
         <div className='periodTitle'>수정 가능 기간</div>
         <div className='periodResult'>
-        {//workStartDate.getFullYear() + "년 " + (workStartDate.getMonth()+1) +"월 " + workStartDate.getDate() +"일 "
-        }
-         ~ 
-        {//" "+workEndDate.getFullYear() + "년 " + (workEndDate.getMonth()+1) +"월 " + workEndDate.getDate() +"일"
-        }
+        {temporal.edit_start} ~ {temporal.edit_end}
         </div>
       </div>
       <div className='Modificationperiod'>
         <div className='periodDate'>
-          <DatePicker 
-            selected={workStartDate}
-            dateFormat="yyyy년 MM월 dd일"
-            onChange={date => setWorkStartDate(date)}
-            locale="ko"
+        <input
+            className="temporary-date"
+            type="date"
+            data-date-format="YYYY-MM-DD"
+            value={temporal.edit_start || ""}
+            required
+            onChange={(e) => {
+              setTemporal({
+                ...temporal,
+                edit_start: e.target.value,
+              });
+            }}
           />
-          {console.log(workStartDate)}
         </div>
         <div className='periodMark'>~</div>
         <div className='periodDate'>
-          <DatePicker 
-            selected={workEndDate}
-            dateFormat="yyyy년 MM월 dd일"
-            onChange={date => setWorkEndDate(date)}
-            locale="ko"
+        <input
+            className="temporary-date"
+            type="date"
+            data-date-format="YYYY-MM-DD"
+            value={temporal.edit_end || ""}
+            required
+            onChange={(e) => {
+              setTemporal({
+                ...temporal,
+                edit_end: e.target.value,
+              });
+            }}
           />
-            {console.log(workEndDate)}
+          {console.log(temporal)}
         </div>
       </div>
       <div className='modificationBtn'>
