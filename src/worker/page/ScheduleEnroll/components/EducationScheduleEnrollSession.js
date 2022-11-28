@@ -3,12 +3,13 @@ import axios from 'axios'
 import '../css/EducationScheduleEnrollSession.css'
 import ScheduleTable from './ScheduleTable'
 
-function EducationScheduleEnrollSession({isClassSchedule, workerSchedule, setWorkerSchedule}) {
+function EducationScheduleEnrollSession({isClassSchedule}) {
   const [postData, setPostData] = useState([])
   
   const postScheduleData = async() => {
-    await axios.get(`http://localhost:8080/work/${sessionStorage.user_id}`)
+    await axios.post(`http://localhost:8080/enrollment/postEnroll/${sessionStorage.user_id}`, postData)
     .then((res) => {
+      console.log(postData);
         alert("수정")
     })
     .catch((err) => {

@@ -8,9 +8,11 @@ function WorkScheduleEnrollSession({isClassSchedule}) {
   const [postData, setPostData] = useState([])
   
   const postScheduleData = async() => {
-    await axios.get(`http://localhost:8080/work/${sessionStorage.user_id}`)
+    await axios.post(`http://localhost:8080/work/postWork/${sessionStorage.user_id}`, postData )
     .then((res) => {
-        alert("수정")
+      console.log(postData);
+        alert("수정");
+        console.log(res.data);
     })
     .catch((err) => {
       console.error("error: " + {error: err} )
@@ -21,11 +23,10 @@ function WorkScheduleEnrollSession({isClassSchedule}) {
     <div className='schedule-table-box'>
 
       <div className='schedule-table'>
-        {<ScheduleTable 
+        <ScheduleTable 
           isClassSchedule={isClassSchedule}
           setPostData={setPostData}
-        />}
-        
+        />
       </div>
 
       <button className='schedule-table-sendButton' onClick={postScheduleData}>

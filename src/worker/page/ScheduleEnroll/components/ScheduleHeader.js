@@ -16,11 +16,17 @@ const ScheduleHeader = ({toggleClass, toggleWork, isClassSchedule, startModifiTi
         <button className='scheduleHeaderheader-logout-button' onClick={location_replace}>로그아웃</button>
         
         <div className='scheduleHeaderheader-modifiable-box'>
-          <div className='modifiable-title'>시간표 수정 기간</div>
+          {
+            isClassSchedule?
+            <div className='modifiable-title'>수업 시간표 수정 기간</div>
+            :
+            <div className='modifiable-title'>근로 시간표 수정 기간</div>
+          }
           <div className='modifiable-time'>
-            {startModifiTime}
+            { startModifiTime }
             ~
-            {endModifiTime}
+            { endModifiTime }
+
           </div>
         </div>
         <div className='scheduleHeaderheader-modify-button-box'>
