@@ -40,10 +40,9 @@ function SelectTempraryWorkSession(){
 
     //추가 근로 모집 신청 
     const reqRecruit = async() => {
-        await axios.post("http://localhost:8080/recruit", checkData)
+        await axios.post(`http://localhost:8080/overtime/request/${sessionStorage.getItem("user_id")}`, checkData)
         .then((res) => {
-            console.log(res);
-            alert("추가 근로 신청 완료")
+            getRecruitdata()
         })
         .catch((err) => {
             console.log({error:err})

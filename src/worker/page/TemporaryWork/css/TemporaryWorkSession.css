@@ -29,10 +29,12 @@
 }
 
 .temporary-start-time-select{
+    width: 7rem;
     margin-right: 1rem;
 }
 
 .temporary-end-time-select{
+    width: 7rem;
     margin-left: 1rem;
 }
 
@@ -71,8 +73,4 @@
     display: flex;
     justify-content: center;
     margin-top: 1rem;
-}
-
-.test-select{
-
 }

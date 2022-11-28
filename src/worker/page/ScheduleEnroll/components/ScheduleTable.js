@@ -4,21 +4,36 @@ import '../css/ScheduleTable.css'
 
 function ScheduleTable({isClassSchedule, setPostData}) {
     const [checkValue, setCheckValue] = useState([])   
-    const [classTableData, setClassTableData] = useState([])
-    const [workTableData, setWorkTableData] = useState([])
+    const [classTableData, setClassTableData] = useState([])   
+    const [workTableData, setWorkTableData] = useState([])   
     
-      useEffect(()=>{
+    useEffect(()=>{
         getClassTableData()
         getWorkTableData()
-      }, [])
+    }, [])
 
-      useEffect(()=>{
+    useEffect(()=>{
+        setTable()
+    }, [classTableData,workTableData])
+    
+    const setTable = () => {
+        isClassSchedule ?
+            settingClassTable()
+        :
+            settingWorkTable()
+    }
+
+    const settingClassTable = () => {
+        settingTable(workTableData)
+        settingTable(classTableData)
+    }
+
+    const settingWorkTable = () => {
         settingTable(classTableData)
         settingTable(workTableData)
-      },[workTableData, classTableData])
-
-
-      const getClassTableData = async() => {
+    }
+        
+    const getClassTableData = async() => {
         await axios.get(`http://localhost:8080/enrollment/${sessionStorage.user_id}`)
         .then((res) => {
             setClassTableData(res.data)
@@ -26,9 +41,9 @@ function ScheduleTable({isClassSchedule, setPostData}) {
         .catch((err) => {
           console.error("error: " + {error: err} )
         })
-      }
+    }
     
-      const getWorkTableData = async() => {
+    const getWorkTableData = async() => {
         await axios.get(`http://localhost:8080/work/${sessionStorage.user_id}`)
         .then((res) => {
             setWorkTableData(res.data)
@@ -36,7 +51,7 @@ function ScheduleTable({isClassSchedule, setPostData}) {
         .catch((err) => {
           console.error("error: " + {error: err} )
         })
-      }
+    }
 
     const date = ['일', '월', '화', '수', '목', '금', '토']
 
@@ -76,14 +91,17 @@ function ScheduleTable({isClassSchedule, setPostData}) {
         setCheckValue(newArr)
     }
 
-    const onClickHandler = (e, i, t, d) =>{
+
+    const onClickHandler = (e, value, t, d) =>{
         let checked = e.target.checked
         let type = isClassSchedule ? "class" : "work"
-        const newValue = { tpye:type, id:i, day:d, time:t };
-        if(i === undefined) return
+        const newValue = { type:type, id:value, day:d, time:t };
+        console.log(newValue)
+        console.log(checkValue)
+        if(value === undefined) return
 
-        if(i){
-            changeBoxColor(i, checked)
+        if(value){
+            changeBoxColor(value, checked)
         }
 
         if(checked){
@@ -91,14 +109,15 @@ function ScheduleTable({isClassSchedule, setPostData}) {
             setCheckValue(newArr);
         }
         else{
-            setCheckValue(checkValue.filter((arr)=> arr.id !== i ))
+            setCheckValue(checkValue.filter((arr)=> arr.id !== value ))
         }
         setPostData(checkValue)
     }
 
-    const changeBoxColor = (id, check) => {
+
+    const changeBoxColor = (value, check) => {
         if(check){
-            let targetTag = document.getElementById(id)
+            let targetTag = document.getElementById(value)
             if(isClassSchedule){
                 targetTag.style.background='#828282';
             }
@@ -107,7 +126,7 @@ function ScheduleTable({isClassSchedule, setPostData}) {
             }
         }
         else{
-            let targetTag = document.getElementById(id)
+            let targetTag = document.getElementById(value)
             targetTag.style.background='';
         }
 
@@ -119,7 +138,6 @@ function ScheduleTable({isClassSchedule, setPostData}) {
     const endTime = 20;
     const setCheckBoxTable = () => {
         const timeTable = []
-
         for(let i=startTime; i<=endTime; i+=0.5){
             let temp = []
             for(let j=0; j<date.length; j++){
@@ -194,7 +212,6 @@ function ScheduleTable({isClassSchedule, setPostData}) {
                     {temp}
                 </div>
             )
-
         }
         
         return(
