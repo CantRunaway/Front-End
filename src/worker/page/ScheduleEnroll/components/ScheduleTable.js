@@ -12,6 +12,10 @@ function ScheduleTable({isClassSchedule, setPostData}) {
         getWorkTableData()
     }, [])
 
+    useEffect(() => {
+        setPostData(checkValue);
+    }, [checkValue])
+
     useEffect(()=>{
         setTable()
     }, [classTableData,workTableData])

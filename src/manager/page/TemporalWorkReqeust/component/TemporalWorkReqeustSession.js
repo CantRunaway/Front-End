@@ -10,6 +10,7 @@ function TemporalWorkReqeustSession() {
       await axios.get("http://localhost:8080/overtime")
       .then((res) => {
         setTemporalData(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.error({error: err});
@@ -69,19 +70,21 @@ function TemporalWorkReqeustSession() {
     
       // 임시근로 승인
       const temApprovalClicked = async() => {
-        await axios.post("http://localhost:8080/overtime",)
+        await axios.post("http://localhost:8080/overtime",overTimeCheck)
         .then((res) => {
           setTemporalData(res.data);
+          console.log(overTimeCheck);
           alert("승인되었습니다.");
         })
         .catch((err) => {
+          console.log(overTimeCheck);
           console.log({error:err})
         })
       }
     
       // 임시근로 거부
       const temRefuseClicked = async() => {
-        await axios.post("http://localhost:8080/overtime",)
+        await axios.post("http://localhost:8080/overtime",overTimeCheck)
         .then((res) => {
           setTemporalData(res.data);
           alert("거부되었습니다.");
@@ -121,11 +124,12 @@ function TemporalWorkReqeustSession() {
 
       function temporalList () {
         return(
-          temporalData.map((data) => (
-            <div className="temporalworker_element" key={data.user_id}>
+          temporalData.map((data, id) => (
+            <div className="temporalworker_element" key={id}>
               <input
                 type='checkbox'
-                // value={temporalData.user_index}
+                value={data.overtime_index}
+                onChange = {(e) => overTimeChecked(e, id, e.target.value)}
               />
               <div className="element_item">{data.name}</div>
               <div className="element_item">{data.user_id}</div>
