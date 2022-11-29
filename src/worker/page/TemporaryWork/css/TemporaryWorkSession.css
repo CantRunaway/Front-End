@@ -1,49 +1,4 @@
 
-.worker-temporary-session-reaquist-list-title{
-    color: #0047FF;
-    font-family: 'Inter';
-    font-style: normal;
-    line-height: 24px;
-}
-
-.worker-temporary-session-reaquist-list{
-    border: 1px solid black;
-    height: 300px;
-    overflow: scroll;
-}
-
-.worker-temporary-session{
-    display: flex;
-    justify-content: center;
-    margin-top: 1.3rem;
-}
-
-.worker-temporary-session input{
-    background-color: #E0D1FF;
-    cursor: pointer;
-    padding-right: 0.3rem;
-}
-
-.temporary-date{
-    margin-right: 1rem;
-}
-
-.temporary-start-time-select{
-    width: 7rem;
-    margin-right: 1rem;
-}
-
-.temporary-end-time-select{
-    width: 7rem;
-    margin-left: 1rem;
-}
-
-.worker-temporary-session-button-container{
-    display: flex;
-    flex-direction: column;
-
-}
-
 .worker-temporary-session-requist-button{
     display: flex;
     justify-content: center;

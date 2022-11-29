@@ -9,8 +9,7 @@ function EducationScheduleEnrollSession({isClassSchedule}) {
   const postScheduleData = async() => {
     await axios.post(`http://localhost:8080/enrollment/postEnroll/${sessionStorage.user_id}`, postData)
     .then((res) => {
-      console.log(postData);
-        alert("수정")
+      alert("수정 완료");
     })
     .catch((err) => {
       console.error("error: " + {error: err} )

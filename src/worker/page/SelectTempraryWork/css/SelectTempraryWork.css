@@ -1,3 +1,6 @@
+body{
+    font-size: 0.5vmin;
+}
 .worker-select-temporary-main-container{
     display: flex;
     flex-direction: column;
@@ -9,10 +12,8 @@
 }
 
 .worker-select-temporary-main-session{
-    padding: 20px;
     margin: 0 auto;
     width: 50%;
-
 }
 
 .worker-select-temporary-main-bottomMenu{
@@ -20,15 +21,37 @@
     margin: 0 auto;
 }
 
-@media screen and (max-width: 650px){
+
+
+@media screen and (max-width: 800px){
     .worker-select-temporary-main-header{
         width: 100%;
         margin: 0 auto;
     }
     
     .worker-select-temporary-main-session{
-        padding: 20px;
         margin: 0 auto;
+        padding-bottom: 6px;
+        padding-top: 5px;
+        width: 100%;
+    }
+    
+    .worker-select-temporary-main-bottomMenu{
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .worker-select-temporary-main-header{
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    .worker-select-temporary-main-session{
+        margin: 0 auto;
+        padding-bottom: 6px;
+        padding-top: 5px;
         width: 100%;
     }
     

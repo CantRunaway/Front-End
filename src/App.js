@@ -129,7 +129,6 @@ function App() {
   const preventPage = () => {
 
     if(sessionStorage.getItem('user_id') === null){
-      console.log("없음")
       return(
         preventRoute.map(route => {
           return(
@@ -143,7 +142,6 @@ function App() {
       )
     }
     else{
-      console.log("있음")
       return(
         publicRoute.map(route => {
           return(
