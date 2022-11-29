@@ -23,7 +23,6 @@ function UserNameList(classSchedule, setClassSchedule) {
     )
 
     console.log(userList);
-    console.log(classSchedule);
 
   return (
     <select
