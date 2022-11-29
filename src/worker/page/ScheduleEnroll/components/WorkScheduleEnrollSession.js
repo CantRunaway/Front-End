@@ -19,6 +19,10 @@ function WorkScheduleEnrollSession({isClassSchedule}) {
     })
   }
 
+  const testPost = () => {
+    console.log(postData)
+  }
+
   return (
     <div className='schedule-table-box'>
 

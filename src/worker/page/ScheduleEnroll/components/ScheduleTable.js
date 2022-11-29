@@ -96,8 +96,6 @@ function ScheduleTable({isClassSchedule, setPostData}) {
         let checked = e.target.checked
         let type = isClassSchedule ? "class" : "work"
         const newValue = { type:type, id:value, day:d, time:t };
-        console.log(newValue)
-        console.log(checkValue)
         if(value === undefined) return
 
         if(value){
@@ -105,7 +103,7 @@ function ScheduleTable({isClassSchedule, setPostData}) {
         }
 
         if(checked){
-            const newArr = [...checkValue, newValue];
+            let newArr = [...checkValue, newValue];
             setCheckValue(newArr);
         }
         else{

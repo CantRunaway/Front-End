@@ -78,14 +78,14 @@ function ScheduleEnrollPageMain() {
         {
           isClassSchedule ? 
             classPermission ? 
-              <WorkScheduleEnrollSession 
+              <EducationScheduleEnrollSession 
                 isClassSchedule={isClassSchedule}
               /> 
               :
               <AccessSchedulePage/>
           :
             workPermission ? 
-              <EducationScheduleEnrollSession
+              <WorkScheduleEnrollSession
                 isClassSchedule={isClassSchedule}
               />
               :
