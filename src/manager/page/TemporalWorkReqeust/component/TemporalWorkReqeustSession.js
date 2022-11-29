@@ -70,21 +70,21 @@ function TemporalWorkReqeustSession() {
     
       // 임시근로 승인
       const temApprovalClicked = async() => {
-        await axios.post("http://localhost:8080/overtime",overTimeCheck)
+        await axios.post("http://localhost:8080/overtime/admit",overTimeCheck)
         .then((res) => {
           setTemporalData(res.data);
-          console.log(overTimeCheck);
+          
           alert("승인되었습니다.");
         })
         .catch((err) => {
-          console.log(overTimeCheck);
+          
           console.log({error:err})
         })
       }
     
       // 임시근로 거부
       const temRefuseClicked = async() => {
-        await axios.post("http://localhost:8080/overtime",overTimeCheck)
+        await axios.post("http://localhost:8080/overtime/refuse",overTimeCheck)
         .then((res) => {
           setTemporalData(res.data);
           alert("거부되었습니다.");
@@ -110,7 +110,7 @@ function TemporalWorkReqeustSession() {
   
       //결근 거부
       const absRefuseClicked = async() => {
-        await axios.post("http://localhost:8080/absence//refuse", absenceCheck)
+        await axios.post("http://localhost:8080/absence/refuse", absenceCheck)
         .then((res) => {
           alert("거부되었습니다.");
           setAbsenceCheck([]);
@@ -124,6 +124,7 @@ function TemporalWorkReqeustSession() {
 
       function temporalList () {
         return(
+          
           temporalData.map((data, id) => (
             <div className="temporalworker_element" key={id}>
               <input
@@ -145,7 +146,8 @@ function TemporalWorkReqeustSession() {
       function absenceList () {
         return(
           <>
-            {absenceData.map((data, id) => (
+            {
+            absenceData.map((data, id) => (
             <div className="temporalworker_element" key={id}>
               <input
                 type="checkbox"
@@ -158,7 +160,8 @@ function TemporalWorkReqeustSession() {
               <div className="element_item">{data.work_end}</div>
               <div className="element_item">{data.work_type_name}</div>
             </div>
-          ))}
+          ))
+        }
           </>
         );
       }
