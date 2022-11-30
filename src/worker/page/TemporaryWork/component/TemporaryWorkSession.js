@@ -2,28 +2,50 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '../css/TemporaryWorkSession.css'
+import WorkList from './WorkList'
 
 function TemporaryWorkSession(){
+    const [selectDate, setSelectDate] = useState()
+    const [checkData, setCheckData] = useState([])
+
+
     
-    // useEffect(() => {
-    //     getRequeAbsencetData()
-    // }, [])
+    const selectDateHandler = (e) => {
+        setSelectDate(e.target.value)
+    }
 
-    // //  결근 요청 데이터 받아오기
-    // const getRequeAbsencetData = async() => {
-    //     await axios.get(`http://localhost:8080/absence/${sessionStorage.getItem('user_id')}`)
-    //     .then((res) => {
-    //         (res.data);
-    //     })
-    //     .catch((err) => {
-    //         console.error({error: err});
-    //     })
-    // }
-
+    const requistAsenseHandler = () => {
+        if(!selectDate){
+            alert('날짜를 선택하세요')
+        }
+        else{
+            console.log(checkData)
+        }
+    }
+    
     return(
         <div className='worker-temporary-session-container'>
+
+            <div className='worker-temporary-session-select-date'>
+                <input type='date' onChange={selectDateHandler}></input>
+                {
+                    selectDate ? 
+                        '' 
+                    :
+                    <span>결근 신청 날짜 선택</span>
+                }
+            </div>
+
+            <div className='worker-temporary-session-select-list'>
+                <WorkList
+                    selectDate={selectDate}
+                    setCheckData={setCheckData}
+                    checkData={checkData}
+                />
+            </div>
+
             <div className='worker-temporary-session-requist-button'>
-                <button className='worker-temporary-sub-requist-button' >결근 요청</button>
+                <button className='worker-temporary-sub-requist-button' onClick={requistAsenseHandler}>결근 요청</button>
             </div>
 
             <div className='worker-temporary-session-select-button'>

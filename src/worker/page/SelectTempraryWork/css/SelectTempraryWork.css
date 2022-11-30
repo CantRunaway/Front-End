@@ -1,6 +1,4 @@
-body{
-    font-size: 0.5vmin;
-}
+
 .worker-select-temporary-main-container{
     display: flex;
     flex-direction: column;
