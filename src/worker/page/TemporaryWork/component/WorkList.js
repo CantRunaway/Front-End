@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import dayjs from 'dayjs'
+import 'dayjs/locale/ko'
 import '../css/WorkList.css'
 
 const WorkList = ({selectDate, setCheckData, checkData}) => {
@@ -9,9 +11,9 @@ const WorkList = ({selectDate, setCheckData, checkData}) => {
         getWorkTableData()
     }, [])
 
-    // 근로 데이터
+    // 근로 데이터 받아오기
     const getWorkTableData = async() => {
-        await axios.get(`http://localhost:8080/work/${sessionStorage.user_id}`)
+        await axios.get(`http://localhost:8080/work/List/${sessionStorage.user_id}`)
         .then((res) => {
             setWorkData(res.data)
         })
@@ -34,24 +36,37 @@ const WorkList = ({selectDate, setCheckData, checkData}) => {
         }
     }
 
+    const checkDay = (day) => {
+        dayjs.locale('ko')
+        let selectDay = dayjs(selectDate).format('dddd')[0];
+        let isDay =  selectDay === day
+        return isDay;
+    }
+
     return(
         <ul>
             {
                 selectDate ?
-                workData.map((value, index) => (
-                    <ul  key={index}>
-                        <label className='worker-temporary-session-work-list'>
-                            <input type='checkbox' value={index} onClick={checkDataHandler}></input>
-                            <li>
-                                <span>{selectDate}</span>
-                                <span>{value.day}</span>
-                                <span>{value.time}</span>
-                            </li>
-                        </label>
-                    </ul>
-                ))
+                    workData.map((value, index) => (
+                        checkDay(value.day) ?
+                            <ul  key={index}>
+                                <label className='worker-temporary-session-work-list'>
+                                    <input type='checkbox' value={index} onClick={checkDataHandler}></input>
+                                    <li>
+                                        <span>{selectDate}</span>
+                                        <span>{value.day}요일</span>
+                                        <span>{value.start_time}</span>
+                                        <span>~</span>
+                                        <span>{value.end_time}</span>
+                                        <span>{value.work_type_name}</span>
+                                    </li>
+                                </label>
+                            </ul>
+                        :
+                            ''
+                    ))
                 :
-                ''
+                    ''
             }
         </ul>
     )
