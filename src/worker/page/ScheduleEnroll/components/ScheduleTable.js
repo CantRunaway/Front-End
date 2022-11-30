@@ -6,7 +6,7 @@ function ScheduleTable({isClassSchedule, setPostData}) {
     const [checkValue, setCheckValue] = useState([])   
     const [classTableData, setClassTableData] = useState([])   
     const [workTableData, setWorkTableData] = useState([])   
-    
+
     useEffect(()=>{
         getClassTableData()
         getWorkTableData()
@@ -67,10 +67,14 @@ function ScheduleTable({isClassSchedule, setPostData}) {
             if(scheduleList[j] == null) break;
 
             id = scheduleList[j].time + scheduleList[j].day;
+
             target = document.getElementById(id);
             inputTarget = document.getElementById(id+"in");
+            console.log("setting  " + id)
+
             target.click();
 
+            console.log("안터짐")
             if(isClassSchedule){
                 if(scheduleList[j].type === "class"){
                     target.style.background='#828282';
@@ -97,6 +101,7 @@ function ScheduleTable({isClassSchedule, setPostData}) {
 
 
     const onClickHandler = (e, value, t, d) =>{
+
         let checked = e.target.checked
         let type = isClassSchedule ? "class" : "work"
         const newValue = { type:type, id:value, day:d, time:t };
@@ -147,7 +152,14 @@ function ScheduleTable({isClassSchedule, setPostData}) {
                 let day = date[j];
 
                 if(i%1 !== 0){
-                    time = i-0.5+':30'
+                    if(i<10){
+                        let timeSet = i-0.5
+                        time = "0"+timeSet+':30'
+                    }
+                    else{
+                        time = i-0.5+':30'
+                    }
+                    console.log(time)
                     if(j===0){
                         temp.push(
                             <span key={i+date[j]+3} className={`schedule-timeTable-contant`} ></span>
@@ -176,7 +188,14 @@ function ScheduleTable({isClassSchedule, setPostData}) {
                     )
                 }
                 else{
-                    time = i+':00'
+                    if(i<10){
+                        time = "0"+i+':00'
+                    }
+                    else{
+                        time = i+':00'
+                    }
+
+                    console.log(time)
                     if(j===0){
                         temp.push(
                             <span key={i+':00'+date[j]+3}  className={`schedule-timeTable-contant`} >{i}</span>
