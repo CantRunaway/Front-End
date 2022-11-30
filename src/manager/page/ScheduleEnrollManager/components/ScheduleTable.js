@@ -1,46 +1,79 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import '../css/ScheduleTable.css'
 
-function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
-    let [checkValue, setCheckValue] = useState([])   
+function ScheduleTable({isClassSchedule, userData, setPostData}) {
+    const [checkValue, setCheckValue] = useState([])   
+    const [classTableData, setClassTableData] = useState([])   
+    const [workTableData, setWorkTableData] = useState([])   
+
+    useEffect(()=>{
+        getClassTableData()
+        getWorkTableData()
+    }, [userData])
+
+    useEffect(() => {
+        setPostData(checkValue);
+    }, [checkValue])
+
+    useEffect(()=>{
+        setTable()
+    }, [classTableData,workTableData])
+    
+    const setTable = () => {
+        isClassSchedule ?
+            settingClassTable()
+        :
+            settingWorkTable()
+    }
+
+    const settingClassTable = () => {
+        settingTable(workTableData)
+        settingTable(classTableData)
+    }
+
+    const settingWorkTable = () => {
+        settingTable(classTableData)
+        settingTable(workTableData)
+    }
+        
+    const getClassTableData = async() => {
+        await axios.get(`http://localhost:8080/enrollment/${userData}`)
+        .then((res) => {
+            setClassTableData(res.data)
+        })
+        .catch((err) => {
+          console.error("error: " + {error: err} )
+        })
+    }
+    
+    const getWorkTableData = async() => {
+        await axios.get(`http://localhost:8080/work/${userData}`)
+        .then((res) => {
+            setWorkTableData(res.data)
+        })
+        .catch((err) => {
+          console.error("error: " + {error: err} )
+        })
+    }
 
     const date = ['일', '월', '화', '수', '목', '금', '토']
 
-    useEffect(()=>{
-        settingTable()
-    },[])
-
-    const [enrollmentDay, setUseEnrollmentDay] = useState({})
-
-    // const getEnrollment = async () => {
-        
-    //     await axios.get(`http://localhost:8080/enrollment/${sessionStorage.getItem('user_id')}`)
-    //     .then((res) => {
-    //         console.log(res.data);
-
-    //         setUseEnrollmentDay(res.data);
-    //     })
-    //     .catch((err) => {
-    //         console.error({error:err});
-    //     })
-    // }
-
-    const settingTable = () => {
-        let arr = [];
+    const settingTable = (scheduleList) => {
         let target = '';
         let inputTarget = '';
         let id = '';
         for(let j=0; ; j++){
-            if(workerSchedule[j] == null) break;
+            if(scheduleList[j] == null) break;
 
-            id = workerSchedule[j].time + workerSchedule[j].day;
+            id = scheduleList[j].time + scheduleList[j].day;
             target = document.getElementById(id);
             inputTarget = document.getElementById(id+"in");
             target.click();
             console.log(target)
 
             if(isClassSchedule){
-                if(workerSchedule[j].type === "class"){
+                if(scheduleList[j].type === "class"){
                     target.style.background='#828282';
                 }
                 else{
@@ -49,7 +82,7 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
                 }
             }
             else{
-                if(workerSchedule[j].type === "class"){
+                if(scheduleList[j].type === "class"){
                     target.style.background='#828282';
                     inputTarget.disabled = true;
                 }
@@ -59,34 +92,35 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
             }
             
         }
-        const newArr = [...workerSchedule];
+        const newArr = [...scheduleList];
         setCheckValue(newArr)
-        return (arr)
     }
 
-    const onClickHandler = (e, i, t, d) =>{
+
+    const onClickHandler = (e, value, t, d) =>{
         let checked = e.target.checked
         let type = isClassSchedule ? "class" : "work"
-        const newValue = { tpye:type, id:i, day:d, time:t };
-        if(i === undefined) return
+        const newValue = { type:type, id:value, day:d, time:t };
+        if(value === undefined) return
 
-        if(i){
-            changeBoxColor(i, checked)
+        if(value){
+            changeBoxColor(value, checked)
         }
 
         if(checked){
-            const newArr = [...checkValue, newValue];
+            let newArr = [...checkValue, newValue];
             setCheckValue(newArr);
         }
         else{
-            setCheckValue(checkValue.filter((arr)=> arr.id !== i ))
+            setCheckValue(checkValue.filter((arr)=> arr.id !== value ))
         }
-        console.log('check', checkValue)
+        setPostData(checkValue)
     }
 
-    const changeBoxColor = (id, check) => {
+
+    const changeBoxColor = (value, check) => {
         if(check){
-            let targetTag = document.getElementById(id)
+            let targetTag = document.getElementById(value)
             if(isClassSchedule){
                 targetTag.style.background='#828282';
             }
@@ -95,16 +129,19 @@ function ScheduleTable({isClassSchedule, workerSchedule, setWorkerSchedule}) {
             }
         }
         else{
-            let targetTag = document.getElementById(id)
+            let targetTag = document.getElementById(value)
             targetTag.style.background='';
         }
 
     }
 
+
+    // 시간 테이블 생성
+    const startTime = 9;
+    const endTime = 20;
     const setCheckBoxTable = () => {
         const timeTable = []
-
-        for(let i=9; i<=18; i+=0.5){
+        for(let i=startTime; i<=endTime; i+=0.5){
             let temp = []
             for(let j=0; j<date.length; j++){
                 let time = i;

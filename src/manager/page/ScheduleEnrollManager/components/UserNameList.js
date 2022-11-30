@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-function UserNameList(classSchedule, setClassSchedule) {
+function UserNameList() {
     const [userList, setUserList] = useState([]);
+    const [classSchedule, setClassSchedule] = useState([]);
 
+    //근로자 이름 목록 가져오기
     const getUserName = async() => {
         await axios.get("http://localhost:8080/users/workList")
         .then((res) => {
@@ -18,11 +20,20 @@ function UserNameList(classSchedule, setClassSchedule) {
         getUserName()
     }, [])
 
-    const onChangeUser = (e) => (
-        setClassSchedule()
-    )
+    //근로자별 수업 시간표 가져오기
+    const onChangeUser = async(value) => {
+        await axios
+        .get(`http://localhost:8080/work/${value}`)
+        .then((res) => {
+            setClassSchedule(res.data);
+            console.log(res.data);
+        })
+        .catch((err) => {
+            console.error({error : err});
+        });
+    }
 
-    console.log(userList);
+    console.log(classSchedule);
 
   return (
     <select
@@ -31,8 +42,11 @@ function UserNameList(classSchedule, setClassSchedule) {
         {userList.map((user) => (
             <option
                 key={user.user_id}
-                name="user_id"
                 value={user.user_id}
+                // onChange={(e) => {
+                //     onChangeUser(e.target.value)
+                // console.log(e.target.value)}}
+                onChange={(e) => onChangeUser(e.target.value)}
             >
             {user.name}
             </option>

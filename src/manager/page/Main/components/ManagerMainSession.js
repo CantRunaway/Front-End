@@ -6,6 +6,7 @@ import axios from 'axios';
 function ManagerMainSession() {
   const [worker, setWorker] = useState([]);
 
+  //현재 근로자
   const getWorker = async() => {
     await axios.get("http://localhost:8080/work")
     .then((res) => {
@@ -16,6 +17,7 @@ function ManagerMainSession() {
     })
   }
 
+  //임시근로 요청 목록
   const [overtimeWorker, setOvertimeWorker] = useState([]);
   const getOvertimeWorker = async() => {
     await axios.get("http://localhost:8080/overtime")

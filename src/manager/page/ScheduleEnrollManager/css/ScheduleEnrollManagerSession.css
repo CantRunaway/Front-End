@@ -50,9 +50,8 @@
 .scheduleAll{
     display: flex;
     flex-direction: column;
-    width: 1060px;
+    width: 1000px;
     height: 100%;
-    margin: 30px;
 }
 
 .scheduleTab{
