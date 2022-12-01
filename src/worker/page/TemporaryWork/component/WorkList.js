@@ -22,7 +22,6 @@ const WorkList = ({selectDate, setCheckData, checkData}) => {
         })
     }
 
-
     // 모집 신청 데이터 핸들러
     const checkDataHandler = (e) => {
         let checkState = e.target.checked
