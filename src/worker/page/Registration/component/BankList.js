@@ -2,13 +2,9 @@ import { useEffect, useState } from 'react';
 import '../css/Registration.css'
 import axios from "axios"
 
-const BankList = ({selectBanks, setSelectedBanks, bank_name}) => {
-    const [banks, setBanks] = useState([]);
-    const [value, setValue] = useState()
-
-    const handleSelected = (e) => {
-      setSelectedBanks(e.target.value);
-    }
+const BankList = ({onChangeUser, bank_name}) => {
+  const [banks, setBanks] = useState([]);
+  const [value, setValue] = useState()
 
   useEffect(() => {
     if (banks === []) return;
@@ -43,7 +39,7 @@ const BankList = ({selectBanks, setSelectedBanks, bank_name}) => {
     </option>))
 
     return (
-    <select className='registration-bank-list' required onChange={handleSelected} value={value}>
+    <select className='registration-bank-list' required name='bank_name' onChange={onChangeUser} value={value}>
             <option value='' >--선택--</option>
             {bankList}
     </select>

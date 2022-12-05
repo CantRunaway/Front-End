@@ -2,12 +2,13 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import dayjs from "dayjs";
 import '../css/Calender.css'
-
-const Calender = ({day, selectMonth}) => {
+// const [selectYear, setSelectYear] = useState(day.get("year"))
+// const [selectMonth, setSelectMonth] = useState(day.get("month")+1)
+const Calender = ({selectYear, selectMonth}) => {
     
     const date = ['일', '월', '화', '수', '목', '금', '토']
 
-    const startDate = dayjs(`${String(day.get('y'))}-${String(day.get('month')+1)}-1`, "YYYY-MM-DD");
+    const startDate = dayjs(`${selectYear}-${selectMonth}-1`, "YYYY-MM-DD");
     const startDay = startDate.get('day');
     const endDay = startDate.daysInMonth();
 
@@ -15,29 +16,20 @@ const Calender = ({day, selectMonth}) => {
     const dayCell = [];
     const weekCell = [];
 
-    const [calenderData, setCalenderData] = useState([
-        {
-            d:'2022-11-01', 
-            charge:27480,
-            time:3
-        }, 
-        {
-            d:'2022-11-06',
-            charge:27480,
-            time:3
-        }
-    ]);
+    const [calenderData, setCalenderData] = useState([{}]);
 
     useEffect(()=>{
-    },[selectMonth])
+        postCalendaData()
+    },[selectYear, selectMonth])
 
+    // 각 일별 데이터
     const postCalendaData = async() => {
-        await axios.post("http://localhost:8080/users/update", day)
+        await axios.post(`http://localhost:8080/stats/${sessionStorage.getItem('user_id')}`, {year:selectYear, month:selectMonth})
         .then((res) => {
-            setCalenderData(res.data[0])
+            setCalenderData(res.data)
         })
         .catch((err) => {
-          console.error({error:err})
+            console.error({error:err})
         })
     }
 
@@ -50,7 +42,7 @@ const Calender = ({day, selectMonth}) => {
 
     // 해당 날짜의 일급과 시간 매핑
     function setDaycell(){
-        let checkDate = dayjs(`${String(day.get('y'))}-${String(day.get('month')+1)}`, "YYYY-MM")
+        let checkDate = dayjs(`${selectYear}-${selectMonth}`, "YYYY-MM")
 
         setCellArr();
 
@@ -61,28 +53,30 @@ const Calender = ({day, selectMonth}) => {
         for(let i=0; i<6; i++){ // 주 
             for(let j=0; j<7; j++){ // 일
                 // 42개의 달력 칸중에서 일자가 없는 칸
-                if((count < startDay-1)||(endDay+startDay-2 < count)){
+                if((count < startDay)||(endDay + startDay-1 < count)){
                     dayCell.push(
                         <span className={`cell-day-none`} key={count}></span>
                     )
                 }
                 else{
-                    // 일한 날인 경우
-                    let dataDate = dayjs(`${calenderData[workCount].d}`, "YYYY-MM")
-
-                    if(checkDate === dataDate){
-                        if((workCount < len)&&(dataDate.get('d') === cellSize)){
-                            dayCell.push(
-                                <span className={`cell-day-work`} key={count}>
-                                    {dayNum[cellSize]}
-                                    <span className='day-work-time'>{calenderData[workCount].time}시간</span>
-                                    <span className='day-work-charge'>{calenderData[workCount].charge}원</span>
-                                </span>
-                            )
-                            workCount++;
-                        }
+                    // 일 한 날
+                    let day
+                    if(workCount < len){
+                        let dataDate = dayjs(`${calenderData[workCount].date}`, "YYYY-MM-DD")
+                        day = dataDate.get('D')
                     }
-                    // 일한 날이 아닌 경우
+                    
+                    if(cellSize === day){
+                        dayCell.push(
+                            <span className={`cell-day-work`} key={count}>
+                                {dayNum[cellSize]}
+                                <span className='day-work-time'>{calenderData[workCount].hour}시간</span>
+                                <span className='day-work-charge'>{calenderData[workCount].wage}원</span>
+                            </span>
+                        )
+                        workCount++;
+                    }
+                    // 일 안한 날
                     else{
                         dayCell.push(
                             <span className={`cell-day`} key={count}>

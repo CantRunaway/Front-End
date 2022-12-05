@@ -7,10 +7,6 @@ import WorkTypeList from '../../Registration/component/WorkTypeList';
 import axios from 'axios';
 
 function UserInfoSession() {
-  const [selectDepartments, setSelectDepartments] = useState([]);
-  const [selectBanks, setSelectedBanks] = useState([]);
-  const [selectedWorkTypes, setSelectedWorkTypes] = useState([]);
-  
   const navigate = useNavigate();
 
   const [user, setUser] = useState(
@@ -30,7 +26,6 @@ function UserInfoSession() {
 
   const getDefault = async () => {
     await axios.get(`http://localhost:8080/users/userList/${sessionStorage.getItem('user_id')}`)
-    
     .then((res) => {
       setUser(
         {
@@ -58,17 +53,21 @@ function UserInfoSession() {
   }, [])
 
   const update = async() => {
-    await axios.post("http://localhost:8080/users/update", user)
+    await axios.post(`http://localhost:8080/users/update/${sessionStorage.getItem('user_id')}`, user)
     .then((res) => {
       alert('정보 수정에 성공했습니다.')
       navigate(`/${sessionStorage.getItem('user_id')}/main`);
     })
     .catch((err) => {
-    
       console.error({error:err})
       alert('정보 수정에 실패했습니다.')
     })
   }
+
+  const upateHandler = () => {
+    console.log(user)
+    update()
+  };
 
   const onChangeUser = (e) => {
     setUser({
@@ -128,9 +127,8 @@ function UserInfoSession() {
             학과
             <DepartmentList id = "department_index" name = "major" 
               userMajor={user.major}
-              selectDepartments={selectDepartments}
-              setSelectDepartments={setSelectDepartments}
-              />
+              onChangeUser={onChangeUser}
+            />
           </span>
           <span className='phone'>
             전화번호 
@@ -154,23 +152,21 @@ function UserInfoSession() {
             지급 계좌 
             <BankList id = "bank_index" name = "bank_name"
               bank_name={user.bank_name}
-              selectBanks={selectBanks}
-              setSelectedBanks={setSelectedBanks}
+              onChangeUser={onChangeUser}
             />
             <input className='account-input' name = "account" onChange={onChangeUser} placeholder={user.account}/>
           </span>
           <span className='work-type'>
             근무 종류
             <WorkTypeList id = "work_type_index" name = "work_type_name"
-              selectedWorkTypes={selectedWorkTypes}
-              setSelectedWorkTypes={setSelectedWorkTypes}
               work_type_name={user.work_type_name}
+              onChangeUser={onChangeUser}
             />
           </span>
         </div>
 
         <div>
-          <button className='userinfo-sign-up-button' type = "submit" onClick={() => update()}>수정</button>
+          <button className='userinfo-sign-up-button' type = "submit" onClick={() => upateHandler()}>수정</button>
           <button className='userinfo-cancel-button'  onClick={() => backSpace()} >취소</button>
         </div>
       </form>

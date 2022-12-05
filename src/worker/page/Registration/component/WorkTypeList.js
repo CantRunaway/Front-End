@@ -2,15 +2,10 @@ import '../css/Registration.css'
 import React, { useState , useEffect} from 'react'
 import axios from "axios"
 
-const WorkTypeList = ({selectedWorkTypes, setSelectedWorkTypes, work_type_name}) => {
+const WorkTypeList = ({work_type_name, onChangeUser}) => {
 
-    const [workTypes, setWorkTypes] = useState([]);
-    const [workTypevalue, setWorkTypevalue] = useState()
-
-    const handleSelected = (e) => {
-      setSelectedWorkTypes(e.target.value);
-      console.log(e.target.value);
-    }
+  const [workTypes, setWorkTypes] = useState([]);
+  const [workTypevalue, setWorkTypevalue] = useState(work_type_name)
 
   useEffect(() => {
     if (workTypes === []) return;
@@ -44,7 +39,7 @@ const WorkTypeList = ({selectedWorkTypes, setSelectedWorkTypes, work_type_name})
     }
 
     return (
-        <select className='registration-work-type-list' required onChange={handleSelected} value={workTypevalue}>
+        <select className='registration-work-type-list' required name='work_type_name' onChange={onChangeUser} value={workTypevalue}>
             <option value='' >--선택--</option>
             {workTypeList}
           </select>

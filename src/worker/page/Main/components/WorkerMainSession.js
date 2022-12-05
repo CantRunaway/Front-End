@@ -9,37 +9,21 @@ const WorkerMainPage = () => {
   const [day, setDay] = useState(dayjs);
   const [selectYear, setSelectYear] = useState(day.get("year"))
   const [selectMonth, setSelectMonth] = useState(day.get("month")+1)
-  const [totalTime, setTotalTime] = useState(0)
-  const [totalSalary, setTotalSalary] = useState(0);
-  const [totalWorkData, serTotalWorkData] = useState(
-    {
-      totalTime:20,
-      totalSalary:30000.
-    }
-  )
+  const [totalWorkData, serTotalWorkData] = useState([{}])
 
   useEffect(()=>{
     isAttend()
+    getTotalData()
   },[])
 
-  // 각 일 별 시간 임금
-  const getTotalWorkData = async() => {
-      await axios.post("http://localhost:8080/users/update", day)
-      .then((res) => {
-          serTotalWorkData(res.data[0])
-      })
-      .catch((err) => {
-        console.error({error:err})
-      })
-  }
+  useEffect(()=>{
+    getTotalData()
+  },[selectMonth])
 
   // 출 퇴근 여부
   const isAttend = async() => {
     await axios.get(`http://localhost:8080/users/commute/${sessionStorage.getItem('user_id')}`)
     .then((res) => {
-      if(res.data[0].work_state === 1){
-        attendData()
-      }
       setAttend(res.data[0].work_state)
     })
     .catch((err) => {
@@ -47,16 +31,18 @@ const WorkerMainPage = () => {
     })
   }
 
-  const [attendTime, setAttendTime] = useState();
-  const attendData = async() => {
-    await axios.get(`http://localhost:8080/commute/${sessionStorage.getItem('user_id')}`)
+  // 월 총 시간, 금액
+  const getTotalData = async() => {
+    await axios.get(`http://localhost:8080/stats/${selectYear}/${selectMonth}/${sessionStorage.getItem('user_id')}`)
     .then((res) => {
-      setAttendTime(res.data[0].commute_time)
+      serTotalWorkData(res.data[0])
+      console.log(res.data[0])
     })
     .catch((err) => {
       console.error({error:err})
     })
   }
+
 
   const addDay = () => {
     if(selectMonth+1 > 12){
@@ -107,6 +93,7 @@ const WorkerMainPage = () => {
       <div className='worker-session-schedule-table'>
         <Calender 
           day={day}
+          selectYear={selectYear}
           selectMonth={selectMonth}
         />
       </div>
@@ -116,14 +103,20 @@ const WorkerMainPage = () => {
         <span className='worker-session-statistics-time'>
           <span>월 근로시간 </span>
           <span>
-            {totalWorkData.totalTime}시간
+            {
+              totalWorkData.hour ? totalWorkData.hour : '0'
+            }
+            시간
           </span>
         </span>
 
         <span className='worker-session-statistics-salary'>
           <span>월 근로장학 금액</span>
           <span>
-            {totalWorkData.totalSalary}원
+            {
+              totalWorkData.wage ? totalWorkData.wage : '0'
+            }
+            원
           </span> 
         </span>
 

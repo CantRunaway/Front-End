@@ -2,13 +2,9 @@ import { useEffect, useState } from 'react';
 import '../css/Registration.css'
 import axios from "axios"
 
-const DepartmentList = ({selectDepartments, setSelectDepartments, userMajor}) => {
-    const [departments, setDepartments] = useState([]);
-    const [value, setValue] = useState()
-
-    const handleSelected = (e) => {
-      setSelectDepartments(e.target.value);
-    }
+const DepartmentList = ({onChangeUser, userMajor}) => {
+  const [departments, setDepartments] = useState([]);
+  const [value, setValue] = useState(userMajor)
 
   useEffect(() => {
     if (departments === []) return;
@@ -49,7 +45,7 @@ const DepartmentList = ({selectDepartments, setSelectDepartments, userMajor}) =>
     ))
 
     return (
-        <select className='registration-work-type-list' required onChange={handleSelected} value={value}>
+        <select className='registration-work-type-list' name='major' required onChange={onChangeUser} value={value}>
           <option value='' >--선택--</option>
             {departmentLists}
           </select>
