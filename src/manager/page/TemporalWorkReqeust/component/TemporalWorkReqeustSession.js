@@ -138,11 +138,9 @@ function TemporalWorkReqeustSession() {
               <div className="element_item">{data.work_end}</div>
               <div className="element_item">{data.work_type_name}</div>
             </div>
-            
           ) )
         )
       }
-
       function absenceList () {
         return(
           <>

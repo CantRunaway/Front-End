@@ -11,6 +11,8 @@
     margin-top: 50px;
     border-top: 3px solid #A87EFF;
     background-color: white;
+    align-items: center;
+    justify-content: center;
 }
 
 .temporalworker_contents{
@@ -24,6 +26,7 @@
     color: black;
     background-color: white;
     border: solid 2px #A87EFF;
+    text-align: center;
 }
 
 .temporalworker_element_title{
