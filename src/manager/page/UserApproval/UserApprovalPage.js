@@ -18,10 +18,10 @@ function UserApprovalPage() {
         <div className='SideMenu'>
           <SideMenu/>
         </div>
-        <div className='UserApprovalPageSession'>
+        <div className='UserApprovalSession'>
           {/* 상단 */}
           <Header/>
-          {/* 회원 등록 영역 */}
+          {/* 관리자 메인 영역 */}
           <UserApprovalPageSession/>
         </div>
       </div>

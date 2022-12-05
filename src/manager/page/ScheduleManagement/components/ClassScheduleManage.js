@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/ClassScheduleManage.css";
-import DatePicker, { registerLocale } from "react-datepicker"; // 한국어적용
-import ko from "date-fns/locale/ko"; // 한국어적용
-import "react-datepicker/dist/react-datepicker.css";
 
 function ClassScheduleManage() {
-  registerLocale("ko", ko);
-  // const [classStartDate, setClassStartDate] = useState(new Date()); //선택한 날짜값
-  const [classEndDate, setClassEndDate] = useState(new Date());
   const [temporal, setTemporal] = useState({}); //저장되있는 수정기간 값
 
   const getTemporal = async () => {

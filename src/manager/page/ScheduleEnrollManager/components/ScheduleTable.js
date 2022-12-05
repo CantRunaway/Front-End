@@ -67,10 +67,13 @@ function ScheduleTable({isClassSchedule, userData, setPostData}) {
             if(scheduleList[j] == null) break;
 
             id = scheduleList[j].time + scheduleList[j].day;
+
             target = document.getElementById(id);
             inputTarget = document.getElementById(id+"in");
+
             target.click();
-            console.log(target)
+
+            console.log("안터짐")
 
             if(isClassSchedule){
                 if(scheduleList[j].type === "class"){
@@ -148,7 +151,13 @@ function ScheduleTable({isClassSchedule, userData, setPostData}) {
                 let day = date[j];
 
                 if(i%1 !== 0){
-                    time = i-0.5+':30'
+                    if(i<10){
+                        let timeSet = i-0.5
+                        time = "0"+timeSet+':30'
+                    }
+                    else{
+                        time = i-0.5+':30'
+                    }
                     if(j===0){
                         temp.push(
                             <span key={i+date[j]+3} className={`schedule-timeTable-contant`} ></span>
@@ -177,7 +186,12 @@ function ScheduleTable({isClassSchedule, userData, setPostData}) {
                     )
                 }
                 else{
-                    time = i+':00'
+                    if(i<10){
+                        time = "0"+i+':00'
+                    }
+                    else{
+                        time = i+':00'
+                    }
                     if(j===0){
                         temp.push(
                             <span key={i+':00'+date[j]+3}  className={`schedule-timeTable-contant`} >{i}</span>

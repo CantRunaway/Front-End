@@ -8,52 +8,82 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    margin-top: 50px;
     border-top: 3px solid #A87EFF;
     background-color: white;
 }
 
-.ScheduleMain-title{
+.Main-title{
     width: 100%;
-    font-size: 25px;
+    font-size: 30px;
     text-align: left;
     color: #A87EFF;
     font-weight: bold;
     margin: 30px;
-    margin-top: 50px;
-}
-
-.ScheduleTab{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 800px;
-    margin-left: 400px;
-}
-
-.tabs{
-    width: 700px;
-    height: 100%;
-    float: left;
-    list-style: none;
-}
-
-.tab_title {
-    float: left;
-    color: black;
-    width: 200px;
-    height: 40px;
-    border-radius: 20px;
-    border: none;
-    text-align: center;
-    line-height: 40px;
-    font-size: 20px;
-    margin: 20px;
-    margin-left: 70px;
-    background-color: #E0D1FF;
 }
 
 .tab_title:active{
     background-color: #A87EFF;
+}
+
+@media only screen and (min-width: 1200px) {
+    .ScheduleTab{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .tabs{
+        width: 50%;
+        list-style: none;
+        text-align: center;
+        margin: 20px;
+    }
+    
+    .tab_title {
+        color: black;
+        width: 35%;
+        height: 40px;
+        border-radius: 20px;
+        border: none;
+        text-align: center;
+        line-height: 40px;
+        font-size: 25px;
+        margin: 20px;
+        align-items: center;
+        background-color: #E0D1FF;
+    }
+}
+
+@media only screen and (min-width: 625px) and (max-width: 1199px){
+    .ScheduleTab{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    
+    .tabs{
+        width: 80%;
+        list-style: none;
+        text-align: center;
+        margin: 20px;
+    }
+    
+    .tab_title {
+        color: black;
+        width: 35%;
+        height: 40px;
+        border-radius: 20px;
+        border: none;
+        text-align: center;
+        line-height: 40px;
+        font-size: 20px;
+        margin: 20px;
+        align-items: center;
+        background-color: #E0D1FF;
+    }
+
 }

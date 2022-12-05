@@ -21,6 +21,7 @@ import WorkerSchedule from './worker/page/WorkSchedule/WorkerSchedule';
 import ScheduleEnrollManagerPage from './manager/page/ScheduleEnrollManager/ScheduleEnrollManagerPage';
 import TemporaryWork from './worker/page/TemporaryWork/TemporaryWork';
 import SelectTempraryWork from './worker/page/SelectTempraryWork/SelectTempraryWork';
+import ManualWorkPage from './manager/page/ManualWork/ManualWorkPage';
 
 
 function App() {
@@ -115,6 +116,10 @@ function App() {
           path:'/workmng',
           element: <WorkManagementPage />
       },
+      {
+        path:'/manualwork',
+        element: <ManualWorkPage />
+    },
       {
           path:'/workcomfirm',
           element: <WorkComfirmPage />

@@ -7,7 +7,7 @@ function WorkScheduleEnrollSession({ isClassSchedule, userData }) {
 
   const postWorkScheduleData = async () => {
     await axios
-      .post(`http://localhost:8080/work/postEnroll/${userData}`, postData)
+      .post(`http://localhost:8080/work/postWork/${userData}`, postData)
       .then((res) => {
         console.log(res.data);
         alert("수정 완료");

@@ -139,88 +139,94 @@ function TemporalManagementSession() {
   return (
     <div className="TemporalManagementSession">
       <div className="TemporalManagementMain">
-        <div className="TemporalMngMain-title">임시 근로 모집 목록</div>
-        <div className="currentTime">
-          {year}년 {month}월 {date}일 {day}요일
+        <div className="temporal-top">
+          <div className="Main-title">
+            임시 근로 모집 목록
+          </div>
+          <div className="currentTime">
+            {year}년 {month}월 { date}일 {day}요일
+          </div>
         </div>
+
         <div className="TemporalListMain">
-          <div className="TemporalList">{TemporalList()}</div>
+          <div className="TemporalList">
+            {TemporalList()}
+          </div>
           <div className="temporalDelete">
             <button className="delete_btn" onClick={DeleteClicked}>
               삭제
             </button>
           </div>
-        </div>
-        <div className="TemporalTimeSet">
-          <input
-            className="temporary-date"
-            name="work_start"
-            type="date"
-            required
-            onChange={(e) => {
-              setRecDate(e.target.value);
-              console.log(e.target.value);
-            }}
-          />
-          <div className="temporal_time">
-            <div className="start_time">
-              <input
-                className="temporal_select"
-                name="work_start"
-                form="H:mm"
-                type="time"
-                step="1800"
-                required
-                onChange={(e) => {
-                  setStart(e.target.value);
-                  console.log(e.target.value);
-                }}
-              />
-              <input
-                className="temporal_select"
-                name="work_end"
-                form="H:mm"
-                type="time"
-                step="1800"
-                required
-                onChange={(e) => {
-                  setEnd(e.target.value);
-                  {
+          <div className="TemporalTimeSet">
+            <input
+              className="temporary-date"
+              name="work_start"
+              type="date"
+              required
+              onChange={(e) => {
+                setRecDate(e.target.value);
+                console.log(e.target.value);
+              }}
+            />
+            <div className="temporal_time">
+              <div className="start_time">
+                <input
+                  className="temporal_select"
+                  name="work_start"
+                  form="H:mm"
+                  type="time"
+                  step="1800"
+                  required
+                  onChange={(e) => {
+                    setStart(e.target.value);
                     console.log(e.target.value);
-                  }
-                }}
-              />
-            </div>
-            <select
-              className="temporal_select"
-              onChange={onChangeRecruit}
-              name="work_type_index"
-            >
-              {workType.map((type) => (
-                <option key={type.work_type_index} value={type.work_type_index}>
-                  {type.work_type_name}
-                </option>
-              ))}
-            </select>
-            <select
-              className="temporal_select"
-              onChange={onChangeRecruit}
-              name="recruit_worker"
-            >
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-            </select>
-            <div className="temporal_enroll">
-              <button
-                className="temporal_enroll_btn"
-                onClick={TemporalEnrollClicked}
+                  }}
+                />
+                <input
+                  className="temporal_select"
+                  name="work_end"
+                  form="H:mm"
+                  type="time"
+                  step="1800"
+                  required
+                  onChange={(e) => {
+                    setEnd(e.target.value);
+                    {
+                      console.log(e.target.value);
+                    }
+                  }}
+                />
+              </div>
+              <select
+                className="temporal_select"
+                onChange={onChangeRecruit}
+                name="work_type_index"
               >
-                모집 추가
-                {/* {console.log(recruitData)}/ */}
-              </button>
+                {workType.map((type) => (
+                  <option key={type.work_type_index} value={type.work_type_index}>
+                    {type.work_type_name}
+                  </option>
+                ))}
+              </select>
+              <select
+                className="temporal_select"
+                onChange={onChangeRecruit}
+                name="recruit_worker"
+              >
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+              </select>
+              <div className="temporal_enroll">
+                <button
+                  className="temporal_enroll_btn"
+                  onClick={TemporalEnrollClicked}
+                >
+                  모집 추가
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -1,18 +1,11 @@
-import React, {useState} from 'react'
+import axios from 'axios';
+import { setYear } from 'date-fns';
+import React, {useEffect, useState} from 'react'
 import '../css/TotalSession.css'
 
-function TotalSession() {
-  const month = [1, 2, 3, 4, 5, 6, 7 ,8 ,9 , 10, 11, 12];
-  const today = new Date();
-  const todayYear = today.getFullYear();
-  const [yearArr, setYearArr] = useState([]);
+const xlsx = require('xlsx');
 
-  //수정해야해
-    for(let i = todayYear; i >= todayYear-10; i--){
-      for(let j = 0; j < 10; j++){
-        yearArr[j] = i;
-      }
-    }
+function TotalSession() {
 
   const colums = ['이름', '학번', '근무종류', '기간', '시급', '총 장학금액'];
   const worklistData = [
@@ -74,55 +67,90 @@ function TotalSession() {
     }
   ];
 
+  
+
   const TotalCheck = () => {
     console.log("조회")
   }
 
   function totalWorker() {
     return(
-      <table className='totalTable'>
-        <thead>
-          <tr>
-            {colums.map((col) => (
-              <th className='workerlistTable_header' key={col}>{col}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-              {worklistData.map(({name, num, workType, workPeriod, workWage, totalAmount}) => (
-                <tr key={num}>
-                  <td className='totallist_items'>{name}</td>
-                  <td className='totallist_items'>{num}</td>
-                  <td className='totallist_items'>{workType}</td>
-                  <td className='totallist_items'>{workPeriod}</td>
-                  <td className='totallist_items'>{workWage}</td>
-                  <td className='totallist_items'>{totalAmount}</td>
-                </tr>
-              ))}
-        </tbody>
-      </table>
+      // <table className='totalTable'>
+      //   <thead>
+      //     <tr>
+      //       {colums.map((col) => (
+      //         <th className='workerlistTable_header' key={col}>{col}</th>
+      //       ))}
+      //     </tr>
+      //   </thead>
+      //   <tbody>
+      //         {worklistData.map(({name, num, workType, workPeriod, workWage, totalAmount}) => (
+      //           <tr key={num}>
+      //             <td className='totallist_items'>{name}</td>
+      //             <td className='totallist_items'>{num}</td>
+      //             <td className='totallist_items'>{workType}</td>
+      //             <td className='totallist_items'>{workPeriod}</td>
+      //             <td className='totallist_items'>{workWage}</td>
+      //             <td className='totallist_items'>{totalAmount}</td>
+      //           </tr>
+      //         ))}
+      //   </tbody>
+      // </table>
+      <button onClick={excel}>조회</button>
     )
   }
+  const excel = async() => {
+    await axios.get("http://localhost:8080/stats/excel")
+    .then((res) => {
+      console.log(res.data);
+      makeExcelByMonth(res.data[0], res.data[1]);
+    })
+    .catch((err) => {
+      console.error({error:err});
+    })
+  }
+  const [statusDate, setStatusDate] = useState([
+    {
+      year: "",
+      month: "",
+    }
+  ]);
 
+  // console.log(statusDate);
+
+  const makeExcelByMonth = (data, data2) => {
+    
+    const filePath = '달별 개인별.xlsx';
+    // if (fs.existsSync(filePath)) {
+    //     fs.unlinkSync(filePath);
+    // }
+
+    const EXCEL = xlsx.utils.book_new();
+
+    const EXCEL_CONTENT1 = xlsx.utils.json_to_sheet(data[0]);
+    const EXCEL_CONTENT2 = xlsx.utils.json_to_sheet(data2[0]);
+
+    xlsx.utils.book_append_sheet(EXCEL, EXCEL_CONTENT1, `달별`);
+    xlsx.utils.book_append_sheet(EXCEL, EXCEL_CONTENT2, `개인별`);
+
+    xlsx.writeFile(EXCEL, filePath);
+    console.log("엑셀 변환 완료");
+}
   return (
     <div className='TotalSession'>
       <div className='TotalMain'>
         <div className='TotalSearchBar'>
-          <select className='totalSelect'>
-            {/* <option>2022</option> */}
-            {yearArr.map((year) => {
-              return(
-                <option>{year}</option>
-              )
-            })}
-          </select>
-          <select className='totalSelect'>
-            {month.map((mon) => {
-              return(
-                <option>{mon}</option>
-              )
-            })}
-          </select>
+          <input
+            type="month"
+            format="YYYY-MM"
+            required
+            onChange={(e) => {
+              setStatusDate({
+                year: (e.target.value).slice(0, 4),
+                month: (e.target.value).slice(5, 7),
+              })
+            }}
+          />
           <button className='totalSearch_btn' onClick={() => TotalCheck()}>조회</button>
         </div>
         <div className='TotalWorkerList'>

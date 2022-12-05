@@ -68,12 +68,11 @@ function UserApprovalSession() {
     else if(!checked && checkData.includes(value)){
       setCheckData(checkData.filter((el) => el !== value))
     }
-    // console.log(checkData);
   }
   function approvalTable() {
     return (
-      <table>
-        <thead>
+      <table className='userapproval-table'>
+        <thead className='userApprovalTable-header'>
           <tr>
           <th></th>
           {colums.map((col, idx) => (
@@ -81,12 +80,11 @@ function UserApprovalSession() {
              ))}
           </tr>
         </thead>
-        <tbody id='test'>
+        <tbody id='test' className='userApprovalTable-body'>
         {userData.map((user, id) => (
           <tr key={id}>
-            <td>
+            <td className='user-chb'>
               <input
-              className='user-list'
               value={user.user_id}
               type='checkbox'
                 onChange={(e) => singleChecked(e, id, e.target.value)}
@@ -96,8 +94,8 @@ function UserApprovalSession() {
             <td className='table_items'>{user.user_id}</td>
             <td className='grade_items'>{user.grade}</td>
             <td className='major_items'>{user.major}</td>
-            <td className='table_items'>{user.phone}</td>
-            <td className='table_items'>{user.birth}</td>
+            <td className='phone_items'>{user.phone}</td>
+            <td className='birth_items'>{user.birth}</td>
             <td className='table_items'>{user.work_type_name}</td>
           </tr>
         ))}
@@ -110,15 +108,15 @@ function UserApprovalSession() {
   return (
     <div className='UserApprovalSession'>
       <div className='UserApprovalMain'>
+        <div div className='Main-title'>회원가입 승인</div>
         <div className='userApprovalTable'>
-        <div className='UserApprovalMain-title'>회원가입 승인</div>
           {approvalTable()}
         </div>
-        <div className='approvalBtn'>
+        <div className='UserApprovalButtons'>
           <button className='approval_btn' onClick={approval}>등록</button>
-          <button className='approval_btn' onClick={refuse}>거부</button>
+          <button className='refuse_btn' onClick={refuse}>거부</button>
         </div>
-        </div>
+      </div>
     </div>
   )
 }

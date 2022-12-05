@@ -17,7 +17,7 @@ function ScheduleManagementSession() {
   function ScheduleTab () {
     return(
       <div className='ScheduleMain'>
-      <div className='ScheduleMain-title'>시간표 관리 - 수정 가능 기간 설정</div>
+      <div className='Main-title'>시간표 관리 - 수정 가능 기간 설정</div>
         <div className='ScheduleTab'>
           <div className='tabs'>
             <button className='tab_title'

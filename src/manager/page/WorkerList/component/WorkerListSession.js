@@ -57,22 +57,21 @@ function WorkerListSession() {
 
   function workerlistTable(){
     return(
-      <table>
-        <thead>
+      <table className='workerlist-table'>
+        <thead className='workListTable-header'>
           <tr>
             <th>
             </th> 
             {colums.map((col, index) => (
-              <th className='workerlistTable_header' key={index}>{col}</th>
+              <th key={index}>{col}</th>
             ))}
           </tr>
         </thead>
-        <tbody id='test'>
+        <tbody id='test' className='workListTable-body'>
           {workListData.map((list, index) => (
             <tr key={index} >
-              <td>
+              <td className='worker-chb'>
                 <input 
-                  className='worker-chb' 
                   value={list.user_id}
                   type="checkbox"
                   onChange={(e) => singleChecked(e, index, e.target.value)}
@@ -93,11 +92,11 @@ function WorkerListSession() {
   return (
     <div className='WorkerListSession'>
       <div className='WorkerListMain'>
+        <div className='Main-title'>근무자 목록</div>
         <div className='workerListTable'>
-          <div className='Main-title'>근무자 목록</div>
           {workerlistTable()}
         </div>
-        <div className='removeButton'>
+        <div className='workerRemoveButton'>
           <button className='remove_btn' onClick={RemoveClicked}>삭제</button>
         </div>
       </div>

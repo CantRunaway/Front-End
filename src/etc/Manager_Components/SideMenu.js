@@ -70,6 +70,9 @@ function SideMenu() {
               <li className='menu_contents'>
                 <NavLink to="/workcomfirm">🏃‍♂️근무자별 근무 확인</NavLink>
               </li>
+              <li className='menu_contents'>
+                <NavLink to="/manualwork">🏃‍♂️근무자 출/퇴근</NavLink>
+              </li>
             </>
             }
           </ul>
@@ -77,7 +80,6 @@ function SideMenu() {
             <NavLink to="/total">🏃‍♂️근무자 전체 통계</NavLink>
           </ul>
           <ul className='menu_title'>🏃‍♂️히스토리 확인 </ul>
-        {/* </ul> */}
       </div>
     </div>
 

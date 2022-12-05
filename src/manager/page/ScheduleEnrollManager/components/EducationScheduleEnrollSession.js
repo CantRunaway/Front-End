@@ -15,6 +15,8 @@ function EducationScheduleEnrollSession({isClassSchedule, userData}) {
       console.error("error: " + {error: err})
     })
   }
+
+  console.log(postData);
   
   return (
     <div className='schedule-table-box'>

@@ -1,12 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import '../css/ClassScheduleManage.css'
-import DatePicker ,{ registerLocale } from "react-datepicker";  // 한국어적용
-import ko from 'date-fns/locale/ko'; // 한국어적용
-import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 
 function WorkScheduleManage() {
-  registerLocale("ko", ko);
   const [temporal, setTemporal] = useState({})
   
   const getTemporal = async () => {

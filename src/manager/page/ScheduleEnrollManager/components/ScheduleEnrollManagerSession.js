@@ -1,5 +1,5 @@
 import "../css/ScheduleEnrollManagerSession.css";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import axios from "axios";
 import ScheduleHeader from "./ScheduleHeader";
 import WorkScheduleEnrollSession from "./WorkScheduleEnrollSession";
@@ -11,6 +11,7 @@ function ScheduleEnrollManagerSession() {
   const [userList, setUserList] = useState([]); //근로자 이름 목록 받아오기
   const [userData, setUserData] = useState(); //선택된 근로자의 아이디값 받기
 
+  //수업시간표 / 근로 시간표 토글
   const toggleClass = () => {
     setisClassSchedule(true);
   };
@@ -54,6 +55,7 @@ function ScheduleEnrollManagerSession() {
                 </option>
               ))}
             </select>
+            {/* <button onClick={onClickRefresh}>선택</button> */}
           </div>
           <div className="scheduleAll">
             <div className="worker-schedule-enroll-header">

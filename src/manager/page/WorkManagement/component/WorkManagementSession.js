@@ -59,7 +59,6 @@ function WorkManagementSession() {
     getWorkType();
   }, []);
 
-  
   //등록된 시급 데이터 삭제
   const workTypeDelete = async () => {
     await axios
@@ -113,28 +112,26 @@ function WorkManagementSession() {
 
   function workTypeTable() {
     return (
-      <table>
-        <thead>
+      <table className="worktype-table">
+        <thead className="workTypeTable-header">
           <tr>
-            <th className="workTypetbody"></th>
+            <th></th>
             {colums.map((col, idx) => (
-              <th className="table_header" key={idx}>
-                {col}
-              </th>
+              <th key={idx}>{col}</th>
             ))}
           </tr>
         </thead>
-        <tbody id="test" className="workTypetbody">
+        <tbody id="test" className="workTypeTable-body">
           {typeData.map((types, id) => (
             <tr key={id}>
-              <td>
+              <td className="type-chb">
                 <input
-                  className="types-list"
                   value={types.wage_index}
                   type="checkbox"
                   onChange={(e) => singleChecked(e, id, e.target.value)}
                 />
               </td>
+              {console.log(types)}
               <td className="worktype_items">{types.work_type_name}</td>
               <td className="worktype_items">{types.change_date}</td>
               <td className="worktype_items">{types.hour_wage}</td>
@@ -148,7 +145,7 @@ function WorkManagementSession() {
   return (
     <div className="WorkManagementSession">
       <div className="WorkManagementMain">
-        <div className="WorkMngMain-title">근로 항목 및 시급 관리</div>
+        <div className="Main-title">근로 항목 및 시급 관리</div>
         <div className="workTypeList">
           <div className="workTypeTable">{workTypeTable()}</div>
           <button
@@ -157,37 +154,37 @@ function WorkManagementSession() {
           >
             삭제
           </button>
-        </div>
-        {/* 근로 종류 및 시급 새로 추가 */}
-        <div className="workTypePlus">
-          <input
-            className="amount_won"
-            type="text"
-            name="work_type_name"
-            onChange={plusWageTemporalData}
-            required
-          ></input>
-          <input
-            className="temporary-date"
-            name="change_date"
-            type="date"
-            required
-            onChange={plusWageTemporalData}
-          />
-          <input
-            className="amount"
-            type="text"
-            placeholder="0"
-            value={newData.wage || ""}
-            name="wage"
-            onChange={plusWageTemporalData}
-            required
-          />
-          {console.log(newData)}
-          <div className="amuont_won">원</div>
-          <button className="workplus_btn" onClick={() => plusClicked()}>
-            근로 추가
-          </button>
+          {/* 근로 종류 및 시급 새로 추가 */}
+          <div className="workTypePlus">
+            <input
+              className="amount_won"
+              type="text"
+              name="work_type_name"
+              onChange={plusWageTemporalData}
+              required
+            ></input>
+            <input
+              className="worktype-date"
+              name="change_date"
+              type="date"
+              required
+              onChange={plusWageTemporalData}
+            />
+            <input
+              className="amount"
+              type="text"
+              placeholder="0"
+              value={newData.wage || ""}
+              name="wage"
+              onChange={plusWageTemporalData}
+              required
+            />
+            {console.log(newData)}
+            <div className="amuont_won">원</div>
+            <button className="workplus_btn" onClick={() => plusClicked()}>
+              근로 추가
+            </button>
+          </div>
         </div>
       </div>
     </div>
