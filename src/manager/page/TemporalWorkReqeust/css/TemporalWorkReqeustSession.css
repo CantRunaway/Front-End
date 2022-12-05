@@ -76,8 +76,7 @@
     flex: row;
     width: 100%;
     height: 20%;
-    border: solid 2px red;
-
+    justify-content: center;
 }
 
 .temporal_btn{
