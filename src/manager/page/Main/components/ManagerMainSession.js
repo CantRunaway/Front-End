@@ -63,17 +63,15 @@ function ManagerMainSession() {
   return (
     <div className="ManagerMainSession">
       <div className="ManagerMain">
-        <div className="main">
-          <div className="main_element">
-            <div className="main_element_title">현재 근로자</div>
-            {currentList()}
+        <div className="Main">
+          <div className="MainBox">
+            <div className="list-name">현재 근로자</div>
+            <div className="mainList">{currentList()}</div>
           </div>
-          <NavLink to="/temporalworkrequest">
-            <div className="main_element">
-              <div className="main_element_title">임시 근로 요청</div>
-              {requestList()}
-            </div>
-          </NavLink>
+            <NavLink to="/temporalworkrequest" className="MainBox">
+              <div className="list-name">임시 근로 요청</div>
+              <div className="mainList">{requestList()}</div>
+            </NavLink>
         </div>
       </div>
     </div>
