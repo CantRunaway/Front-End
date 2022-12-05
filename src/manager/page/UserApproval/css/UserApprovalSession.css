@@ -37,18 +37,43 @@
     width: 10px;
 }
 
+.approval_btn{
+    width: 200px;
+    height: 100%;
+    border-radius: 20px;
+    border-style: none;
+    color: white;
+    background-color: #A87EFF;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 20px;
+    font-family: 'twayfly';
+}
+
+.refuse_btn{
+    width: 200px;
+    height: 100%;
+    border-radius: 20px;
+    border-style: none;
+    color: white;
+    background-color: #5a5a5a;
+    font-size: 20px;
+    cursor: pointer;
+    font-family: 'twayfly';
+}
+
 @media only screen and (min-width: 1200px){
 
     .userApprovalTable-header{
         background-color: #E0D1FF;
         text-align: center;
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .userApprovalTable-body{
         background-color: #EEEEEE;
         text-align: center;
-        font-size: 18px;
+        font-size: 20px;
     }
     
     .table_items{
@@ -114,7 +139,7 @@
     }
 }
 
-@media only screen and (min-width: 625px) and (max-width: 1199px){
+@media only screen and (max-width: 1199px){
 
     .userApprovalTable-header{
         background-color: #E0D1FF;

@@ -1,403 +1,407 @@
-.TemporalManagementSession{
-    width: 100%;
-    height: auto;
+.TemporalManagementSession {
+  width: 100%;
+  height: auto;
 }
 
-.TemporalManagementMain{
+.TemporalManagementMain {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  border-top: 3px solid #a87eff;
+  background-color: white;
+}
+
+.Main-title {
+  width: 100%;
+  font-size: 30px;
+  text-align: left;
+  color: #a87eff;
+  font-weight: bold;
+  margin: 30px;
+}
+
+.currentTime {
+  width: 500px;
+  font-size: 25px;
+  color: black;
+  margin-left: 90px;
+}
+
+.TemporalListMain {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.TemporalList {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  height: 400px;
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.recruit_list_element {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 40px;
+  margin-top: 10px;
+  border-radius: 20px;
+  background-color: #e0d1ff;
+}
+
+.recruit_elements {
+  color: black;
+  width: 200px;
+  font-size: 20px;
+  text-align: center;
+  margin: 5px;
+}
+
+.temporalDelete {
+  margin: 0 80px;
+}
+
+.delete_btn {
+  margin: 10px;
+  width: 200px;
+  height: 40px;
+  border-radius: 20px;
+  border-style: none;
+  color: white;
+  background-color: #5a5a5a;
+  font-size: 20px;
+  font-family: "twayfly";
+}
+
+.TemporalTimeSet {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  height: 100%;
+  margin-top: 30px;
+  align-items: center;
+}
+
+.temporary-date {
+  width: 200px;
+  height: 30px;
+  background-color: white;
+  border-radius: 20px;
+  border: solid 2px #a87eff;
+  font-family: "twayfly";
+  text-align: center;
+}
+
+.temporal_time {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-right: 10px;
+  font-family: "twayfly";
+  justify-content: center;
+}
+
+.temporal_fonts {
+  font-size: 20px;
+  color: #a87eff;
+  height: 30px;
+}
+
+.temporal_select {
+  width: 130px;
+  height: 30px;
+  margin-right: 20px;
+  border-radius: 20px;
+  background-color: white;
+  border: solid 2px #a87eff;
+  font-size: 20px;
+  text-align: center;
+  color: black;
+  font-family: "twayfly";
+}
+
+.temporal_enroll_btn {
+  width: 250px;
+  height: 30px;
+  border-radius: 20px;
+  border-style: none;
+  color: white;
+  background-color: #a87eff;
+  font-size: 20px;
+  font-family: "twayfly";
+}
+
+@media only screen and (min-width: 1200px) {
+  .TemporalList {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
-    border-top: 3px solid #A87EFF;
-    background-color: white;
-}
-
-.Main-title{
-    width: 100%;
-    font-size: 30px;
-    text-align: left;
-    color: #A87EFF;
-    font-weight: bold;
-    margin: 30px;
-}
-
-.currentTime{
-    width: 500px;
-    font-size: 25px;
-    color: black;
-    margin-left: 90px;
-}
-
-.TemporalListMain{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-}
-
-.TemporalList{
-    display: flex;
-    flex-direction: column;
-    width: 1000px;
+    width: 900px;
     height: 400px;
-    text-align: center;
     overflow-x: hidden;
     overflow-y: scroll;
-}
+  }
 
-.recruit_list_element{
+  .recruit_list_element {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 40px;
+    height: 38px;
     margin-top: 10px;
     border-radius: 20px;
-    background-color: #E0D1FF;
-}
+    background-color: #e0d1ff;
+  }
 
-.recruit_elements{
-    color: black;
-    width: 200px;
-    font-size: 20px;
-    text-align: center;
-    margin: 5px;
-}
-
-.temporalDelete{
-    margin: 0 80px;
-}
-
-.delete_btn{
+  .delete_btn {
     margin: 10px;
     width: 200px;
     height: 40px;
     border-radius: 20px;
     border-style: none;
-    color: black;
-    background-color: #D2D2D2;
+    color: white;
+    background-color: #5a5a5a;
     font-size: 20px;
-}
+  }
 
-.TemporalTimeSet{
+  .TemporalTimeSet {
     display: flex;
     flex-direction: column;
     width: 80%;
     height: 100%;
-}
+  }
 
-.temporary-date{
+  .temporary-date {
     width: 200px;
     height: 30px;
     background-color: white;
     border-radius: 20px;
-    border: solid 2px #A87EFF;
-}
+    border: solid 2px #a87eff;
+  }
 
-.temporal_time{
+  .temporal_time {
     display: flex;
     flex-direction: row;
     width: 100%;
     margin: 0 auto;
     margin-top: 10px;
     margin-right: 10px;
-}
+  }
 
-.temporal_fonts{
+  .temporal_fonts {
     font-size: 20px;
-    color: #A87EFF;
+    color: #a87eff;
     height: 30px;
-}
+  }
 
-.temporal_select{
+  .temporal_select {
     width: 130px;
     height: 30px;
     margin-right: 20px;
     border-radius: 20px;
     background-color: white;
-    border: solid 2px #A87EFF;
+    border: solid 2px #a87eff;
     font-size: 20px;
     text-align: center;
-    color: black;   
-}
+    color: black;
+  }
 
-.temporal_enroll_btn{
+  .temporal_enroll_btn {
     width: 250px;
     height: 30px;
     border-radius: 20px;
     border-style: none;
+    color: white;
+    background-color: #a87eff;
+    font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1199px) {
+  .TemporalList {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .recruit_list_element {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 20px;
+    background-color: #e0d1ff;
+  }
+
+  .recruit_elements {
     color: black;
-    background-color: #D2D2D2;
-    font-size: 20px
+    width: 100%;
+    font-size: 15px;
+    text-align: center;
+    margin: 5px;
+  }
+
+  .delete_btn {
+    margin: 10px;
+    width: 150px;
+    height: 30px;
+    border-radius: 20px;
+    border-style: none;
+    color: white;
+    background-color: #5a5a5a;
+    font-size: 18px;
+  }
+
+  .TemporalTimeSet {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+  }
+
+  .temporary-date {
+    width: 200px;
+    height: 30px;
+    background-color: white;
+    border-radius: 18px;
+    border: solid 2px #a87eff;
+  }
+
+  .temporal_time {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+
+  .temporal_fonts {
+    font-size: 18px;
+    color: #a87eff;
+    height: 30px;
+  }
+
+  .temporal_select {
+    width: 130px;
+    height: 30px;
+    margin-right: 20px;
+    border-radius: 20px;
+    background-color: white;
+    border: solid 2px #a87eff;
+    font-size: 18px;
+    text-align: center;
+    color: black;
+  }
+
+  .temporal_enroll_btn {
+    width: 150px;
+    height: 30px;
+    border-radius: 20px;
+    border-style: none;
+    color: white;
+    background-color: #a87eff;
+    font-size: 18px;
+  }
 }
 
-@media only screen and (min-width: 1200px){
-    
-    .TemporalList{
-        display: flex;
-        flex-direction: column;
-        width: 900px;
-        height: 400px;
-        overflow-x: hidden;
-        overflow-y: scroll;
-    }
+@media only screen and (max-width: 899px) {
+  .TemporalList {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
 
-    .recruit_list_element{
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        height: 38px;
-        margin-top: 10px;
-        border-radius: 20px;
-        background-color: #E0D1FF;
-    }
+  .recruit_list_element {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    border-radius: 20px;
+    background-color: #e0d1ff;
+  }
 
-    .delete_btn{
-        margin: 10px;
-        width: 200px;
-        height: 40px;
-        border-radius: 20px;
-        border-style: none;
-        color: black;
-        background-color: #D2D2D2;
-        font-size: 20px;
-    }
+  .recruit_elements {
+    color: black;
+    width: 100%;
+    font-size: 10px;
+    text-align: center;
+    margin: 5px;
+  }
 
-    .TemporalTimeSet{
-        display: flex;
-        flex-direction: column;
-        width: 80%;
-        height: 100%;
-    }
-    
-    .temporary-date{
-        width: 200px;
-        height: 30px;
-        background-color: white;
-        border-radius: 20px;
-        border: solid 2px #A87EFF;
-    }
-    
-    .temporal_time{
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        margin: 0 auto;
-        margin-top: 10px;
-        margin-right: 10px;
-    }
-    
-    .temporal_fonts{
-        font-size: 20px;
-        color: #A87EFF;
-        height: 30px;
-    }
-    
-    .temporal_select{
-        width: 130px;
-        height: 30px;
-        margin-right: 20px;
-        border-radius: 20px;
-        background-color: white;
-        border: solid 2px #A87EFF;
-        font-size: 20px;
-        text-align: center;
-        color: black;   
-    }
-    
-    .temporal_enroll_btn{
-        width: 250px;
-        height: 30px;
-        border-radius: 20px;
-        border-style: none;
-        color: black;
-        background-color: #D2D2D2;
-        font-size: 20px
-    }
-}
+  .delete_btn {
+    margin: 10px;
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+    border-style: none;
+    color: white;
+    background-color: #5a5a5a;
+    font-size: 15px;
+  }
 
-@media only screen and (min-width: 900px) and (max-width: 1199px){
+  .TemporalTimeSet {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+  }
 
-    .TemporalList{
-        display: flex;
-        flex-direction: column;
-        width: 700px;
-        height: 400px;
-        overflow-x: hidden;
-        overflow-y: scroll;
-    } 
+  .temporary-date {
+    width: 200px;
+    height: 30px;
+    background-color: white;
+    border-radius: 18px;
+    border: solid 2px #a87eff;
+  }
 
-    .recruit_list_element{
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        height: 30px;
-        margin-top: 10px;
-        border-radius: 20px;
-        background-color: #E0D1FF;
-    }
+  .temporal_time {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
 
-    .recruit_elements{
-        color: black;
-        width: 100%;
-        font-size: 15px;
-        text-align: center;
-        margin: 5px;
-    }
+  .temporal_fonts {
+    font-size: 15px;
+    color: #a87eff;
+    height: 30px;
+  }
 
-    .delete_btn{
-        margin: 10px;
-        width: 150px;
-        height: 30px;
-        border-radius: 20px;
-        border-style: none;
-        color: black;
-        background-color: #D2D2D2;
-        font-size: 18px;
-    }
+  .temporal_select {
+    width: 100px;
+    height: 20px;
+    margin-right: 20px;
+    border-radius: 20px;
+    background-color: white;
+    border: solid 2px #a87eff;
+    font-size: 15px;
+    text-align: center;
+    color: black;
+  }
 
-    .TemporalTimeSet{
-        display: flex;
-        flex-direction: column;
-        width: 80%;
-        height: 100%;
-    }
-    
-    .temporary-date{
-        width: 200px;
-        height: 30px;
-        background-color: white;
-        border-radius: 18px;
-        border: solid 2px #A87EFF;
-    }
-    
-    .temporal_time{
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        margin: 0 auto;
-        margin-top: 10px;
-        margin-right: 10px;
-    }
-    
-    .temporal_fonts{
-        font-size: 18px;
-        color: #A87EFF;
-        height: 30px;
-    }
-    
-    .temporal_select{
-        width: 130px;
-        height: 30px;
-        margin-right: 20px;
-        border-radius: 20px;
-        background-color: white;
-        border: solid 2px #A87EFF;
-        font-size: 18px;
-        text-align: center;
-        color: black;   
-    }
-    
-    .temporal_enroll_btn{
-        width: 150px;
-        height: 30px;
-        border-radius: 20px;
-        border-style: none;
-        color: black;
-        background-color: #D2D2D2;
-        font-size: 18px
-    }
-}
-
-@media only screen and (min-width: 625px) and (max-width: 899px){
-
-    .TemporalList{
-        display: flex;
-        flex-direction: column;
-        width: 500px;
-        height: 400px;
-        overflow-x: hidden;
-        overflow-y: scroll;
-    } 
-
-    .recruit_list_element{
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        height: 30px;
-        margin-top: 10px;
-        border-radius: 20px;
-        background-color: #E0D1FF;
-    }
-
-    .recruit_elements{
-        color: black;
-        width: 100%;
-        font-size: 10px;
-        text-align: center;
-        margin: 5px;
-    }
-
-    .delete_btn{
-        margin: 10px;
-        width: 100px;
-        height: 30px;
-        border-radius: 20px;
-        border-style: none;
-        color: black;
-        background-color: #D2D2D2;
-        font-size: 15px;
-    }
-
-    .TemporalTimeSet{
-        display: flex;
-        flex-direction: column;
-        width: 80%;
-        height: 100%;
-    }
-    
-    .temporary-date{
-        width: 200px;
-        height: 30px;
-        background-color: white;
-        border-radius: 18px;
-        border: solid 2px #A87EFF;
-    }
-    
-    .temporal_time{
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        margin: 0 auto;
-        margin-top: 10px;
-        margin-right: 10px;
-    }
-    
-    .temporal_fonts{
-        font-size: 15px;
-        color: #A87EFF;
-        height: 30px;
-    }
-    
-    .temporal_select{
-        width: 100px;
-        height: 20px;
-        margin-right: 20px;
-        border-radius: 20px;
-        background-color: white;
-        border: solid 2px #A87EFF;
-        font-size: 15px;
-        text-align: center;
-        color: black;   
-    }
-    
-    .temporal_enroll_btn{
-        width: 100px;
-        height: 20px;
-        border-radius: 20px;
-        border-style: none;
-        color: black;
-        background-color: #D2D2D2;
-        font-size: 15px
-    }
+  .temporal_enroll_btn {
+    width: 100px;
+    height: 20px;
+    border-radius: 20px;
+    border-style: none;
+    font-size: 15px;
+  }
 }

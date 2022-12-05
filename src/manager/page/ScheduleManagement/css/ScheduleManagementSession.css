@@ -25,6 +25,11 @@
     background-color: #A87EFF;
 }
 
+.mofification_btn{
+    width: 150px;
+    font-family: 'twayfly';
+}
+
 @media only screen and (min-width: 1200px) {
     .ScheduleTab{
         display: flex;
@@ -53,10 +58,11 @@
         margin: 20px;
         align-items: center;
         background-color: #E0D1FF;
+        font-family: 'twayfly';
     }
 }
 
-@media only screen and (min-width: 625px) and (max-width: 1199px){
+@media only screen and (max-width: 1199px){
     .ScheduleTab{
         display: flex;
         flex-direction: column;
@@ -84,6 +90,7 @@
         margin: 20px;
         align-items: center;
         background-color: #E0D1FF;
+        font-family: 'twayfly';
     }
 
 }

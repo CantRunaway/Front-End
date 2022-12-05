@@ -59,6 +59,7 @@
   text-align: center;
   margin: 30px 0;
   cursor: pointer;
+  font-family: 'twayfly'
 }
 
 .select-manual-worktype {
@@ -99,6 +100,7 @@
   background-color: #e0d1ff;
   font-size: 20px;
   cursor: pointer;
+  font-family: 'twayfly'
 }
 
 .manualBtn {
@@ -116,6 +118,7 @@
   font-size: 25px;
   justify-content: end;
   cursor: pointer;
+  font-family: 'twayfly'
 }
 
 @media only screen and (min-width: 900px) and (max-width: 1199px){

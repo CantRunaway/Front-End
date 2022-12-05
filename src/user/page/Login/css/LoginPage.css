@@ -102,13 +102,16 @@ html, body{
     color: white;
     border: none;
     cursor: pointer;
+    font-family: 'twayfly';
+    margin-bottom: 10px;
 }
 
 
 .login-sign-up{
-    margin-top: 1rem;
+    margin-top: 10px;
     color: #854BFF;
     background-color: white;
     border: none;
     cursor: pointer;
+    font-size: 15px;
 }

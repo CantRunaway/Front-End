@@ -72,6 +72,7 @@
         background-color: #A87EFF;
         font-size: 20px;
         cursor: pointer;
+        font-family: 'twayfly'
     }
 }
 
@@ -131,6 +132,7 @@
         font-size: 20px;
         float: right;
         cursor: pointer;
+        font-family: 'twayfly'
     }
 
 }
