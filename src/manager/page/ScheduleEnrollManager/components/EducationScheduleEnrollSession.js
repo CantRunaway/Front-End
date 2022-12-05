@@ -28,9 +28,12 @@ function EducationScheduleEnrollSession({isClassSchedule, userData}) {
           setPostData={setPostData}
         />
       </div>
-      <button className='scheduleEdit-btn' onClick={postClassScheduleData}>
+      <div className='enrollEditBtn'>
+        <button className='scheduleEdit-btn' onClick={postClassScheduleData}>
         수정
       </button>
+      </div>
+      
   </div>
   )
 }

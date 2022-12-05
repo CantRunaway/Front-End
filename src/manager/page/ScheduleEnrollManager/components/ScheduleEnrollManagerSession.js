@@ -44,8 +44,8 @@ function ScheduleEnrollManagerSession() {
   return (
     <div className="ScheduleEnrollManagerSession">
       <div className="ScheduleEnrollManagerMain">
-        <div className="ScehduleEnrollMain-title">시간표 등록 / 수정</div>
-        <div className="main">
+        <div className="Main-title">시간표 등록 / 수정</div>
+        <div className="ScheduleEnrollMain">
           <div className="scheduleSearch">
             <select className="selectWorker"
               onChange={setUserDataHandler}>

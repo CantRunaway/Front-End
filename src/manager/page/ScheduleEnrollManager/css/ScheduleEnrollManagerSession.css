@@ -4,23 +4,25 @@
 }
 
 .ScheduleEnrollManagerMain{
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
-    margin-top: 50px;
-    border-top: 3px solid #A87EFF;
+    border-top: 3px solid #a87eff;
     background-color: white;
 }
 
-.main{
-    width: 1570px;
-    height: 100%;
+.ScheduleEnrollMain{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
 }
 
-.ScehduleEnrollMain-title{
+.Main-title{
     width: 500px;
-    font-size: 25px;
+    font-size: 30px;
     text-align: left;
     color: #A87EFF;
     font-weight: bold;
@@ -29,8 +31,8 @@
 }
 
 .scheduleSearch{
-    width: 500px;
-    height: 100%;
+    width: 100%;
+    text-align: center;
 }
 
 .selectWorker{
@@ -40,29 +42,31 @@
     border-radius: 20px;
     border: none;
     text-align: center;
-    line-height: 40px;
     font-size: 20px;
-    margin: 30px;
-    margin-left: 300px;
+    margin: 20px;
     background-color: #D9D9D9;
 }
 
 .scheduleAll{
     display: flex;
     flex-direction: column;
-    width: 1000px;
+    width: 100%;
     height: 100%;
 }
 
-.scheduleTab{
-    margin-left: 400px;
+.schedule-header-container{
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    margin: 10px;
 }
 
-.scheduleContents{
-    width: 700px;
-    height: 500px;
-    margin: 0 auto;
-    border-top: dotted 5px #A87EFF;
+.enroll-button{
+    height: 35px;
+    border-radius: 20px;
+    border: none;
+    font-size: 20px;
+    margin-right: 10px;
 }
 
 .date_header{
@@ -72,16 +76,108 @@
     font-size: 20px;
 }
 
+.enrollEditBtn{
+    width: 100%;
+    text-align: center;
+}
+
 .scheduleEdit-btn{
     color: black;
     width: 200px;
     height: 40px;
     border-radius: 20px;
     border: none;
-    text-align: center;
-    line-height: 40px;
     font-size: 20px;
     background-color: #A87EFF;
     margin: 30px;
-    margin-left: 200px;
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1000px) {
+    .selectWorker{
+        color: black;
+        width: 150px;
+        height: 40px;
+        border-radius: 20px;
+        border: none;
+        text-align: center;
+        font-size: 18px;
+        margin: 20px;
+        background-color: #D9D9D9;
+    }
+    
+    .enroll-button{
+        height: 35px;
+        border-radius: 20px;
+        border: none;
+        font-size: 13px;
+        margin-right: 10px;
+    }
+    
+    .date_header{
+        width: 700px;
+        justify-content: space-around;
+        background: #EEEEEE;
+        font-size: 20px;
+    }
+    
+    .enrollEditBtn{
+        width: 100%;
+        text-align: center;
+    }
+    
+    .scheduleEdit-btn{
+        color: black;
+        width: 150px;
+        height: 40px;
+        border-radius: 20px;
+        border: none;
+        font-size: 20px;
+        background-color: #A87EFF;
+        margin: 30px;
+    }
+}
+
+@media only screen and (min-width: 625px) and (max-width: 799px) {
+    .selectWorker{
+        color: black;
+        width: 150px;
+        height: 40px;
+        border-radius: 20px;
+        border: none;
+        text-align: center;
+        font-size: 18px;
+        margin: 20px;
+        background-color: #D9D9D9;
+    }
+    
+    .enroll-button{
+        height: 35px;
+        border-radius: 20px;
+        border: none;
+        font-size: 13px;
+        margin-right: 10px;
+    }
+    
+    .date_header{
+        width: 700px;
+        justify-content: space-around;
+        background: #EEEEEE;
+        font-size: 20px;
+    }
+    
+    .enrollEditBtn{
+        width: 100%;
+        text-align: center;
+    }
+    
+    .scheduleEdit-btn{
+        color: black;
+        width: 100px;
+        height: 40px;
+        border-radius: 20px;
+        border: none;
+        font-size: 20px;
+        background-color: #A87EFF;
+        margin: 30px;
+    }
 }

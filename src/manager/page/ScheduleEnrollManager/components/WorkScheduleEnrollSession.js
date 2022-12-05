@@ -28,10 +28,12 @@ function WorkScheduleEnrollSession({ isClassSchedule, userData }) {
           />
         }
       </div>
-
-      <button className="scheduleEdit-btn" onClick={postWorkScheduleData}>
+      <div className='enrollEditBtn'>
+        <button className="scheduleEdit-btn" onClick={postWorkScheduleData}>
         수정
       </button>
+      </div>
+      
     </div>
   );
 }
