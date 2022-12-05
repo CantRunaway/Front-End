@@ -79,7 +79,6 @@ function SideMenu() {
           <ul className='menu_main_title'>
             <NavLink to="/total">🏃‍♂️근무자 전체 통계</NavLink>
           </ul>
-          <ul className='menu_title'>🏃‍♂️히스토리 확인 </ul>
       </div>
     </div>
 

@@ -75,8 +75,9 @@ function TotalSession() {
   return (
     <div className="TotalSession">
       <div className="TotalMain">
+        <div className="Main-title">근로 통계 Excel 다운로드</div>
         <div className="Worker-Status">
-          <div className="worker-status-title">근무자별 통계 Excel</div>
+          <div className="status-title">근무자별 통계 Excel</div>
           <select
             className="worker-status-select"
             onChange={setUserDataHandler}
@@ -88,7 +89,7 @@ function TotalSession() {
             ))}
           </select>
           <input
-            className="worker-month-status-select"
+            className="month-status-select"
             type="month"
             format="YYYY-MM"
             required
@@ -105,7 +106,7 @@ function TotalSession() {
         </div>
 
         <div className="Month-Status">
-          <div className="month-status-title">월별 통계 Excel</div>
+          <div className="status-title">월별 통계 Excel</div>
           <input
             className="month-status-select"
             type="month"
