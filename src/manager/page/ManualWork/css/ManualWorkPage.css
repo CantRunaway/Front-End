@@ -1,10 +1,12 @@
 .ManagerMainPage{
+    display: flex;
     width: 100%;
     height: 100%;
 }
 
 .manualwork_session{
-    display: flex;
     width: 100%;
     height: 100%;
 }
+
+
