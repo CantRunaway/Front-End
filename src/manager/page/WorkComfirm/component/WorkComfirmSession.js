@@ -3,8 +3,7 @@ import "../css/WorkComfirmSession.css";
 import axios from "axios";
 
 function WorkComfirmSession() {
-  // 항목데이터
-  const colums = ["이름", "학번", "근무종류", "기간"];
+  const colums = ["근무 일자", "근무 시간", "근로 장학 금액"]; // 항목데이터
   const [userList, setUserList] = useState([]); //근로자 이름 목록 받아오기
   const [userData, setUserData] = useState(); //선택된 근로자의 아이디값 받기
   const [statusInfo, setStatusInfo] = useState([]); //선택된 년도와 월
@@ -30,21 +29,6 @@ function WorkComfirmSession() {
   //선택한 근로자의 아이디값 가져오기
   const setUserDataHandler = (e) => {
     setUserData(e.target.value);
-  };
-
-  // 보낼 데이터 담김, 선택한 학번
-  const [checkData, setCheckData] = useState([]);
-
-  const singleChecked = (e, index, value) => {
-    let checked = e.target.checked;
-
-    if (checked) {
-      setCheckData([...checkData, value]);
-      console.log("check");
-    } else if (!checked && checkData.includes(value)) {
-      setCheckData(checkData.filter((el) => el !== value));
-    }
-    console.log(checkData);
   };
 
   //유저선택해서 가져온 통계 데이터
@@ -86,59 +70,27 @@ function WorkComfirmSession() {
   console.log(statusList);
 
   function workerComfirmTable() {
-    // return (
-    //   <table className="comfirmList-table">
-    //     <thead className="comfirmListTable-header">
-    //       <tr>
-    //         <th></th>
-    //         {colums.map((col) => (
-    //           <th key={col}>{col}</th>
-    //         ))}
-    //       </tr>
-    //     </thead>
-    //     <tbody id="confirm" className="comfirmListTable-body">
-    //       {statusList.map((data, id) => {
-    //         <tr key={id}>
-    //           {/* <td className="comfirm-chb">
-    //             <input
-    //               value={list.} 해당 유저의 근무 인덱스
-    //               type="checkbox"
-    //               onChange={(e) => singleChecked(e, id, e.target.value)}
-    //             />
-    //           </td> */}
-    //           <td className="table_workerList">{data.date}</td>
-    //           <td className="table_workerList">{data.hour}</td>
-    //           <td className="table_workerList">{data.wage}</td>
-    //         </tr>
-    //         console.log(data.hour);
-    //       })}
-    //     </tbody>
-    //   </table>
-    // );
     return(
       <table className="comfirmList-table">
         <thead className="comfirmListTable-header">
           <tr>
-            <th></th>
-            {colums.map()}
+            {colums.map((col, idx) => (
+              <th key={idx}>{col}</th>
+            ))}
           </tr>
         </thead>
+        <tbody id="test" className="workComfirmTable-body">
+          {statusList.map((status, id) => (
+            <tr key={id}>
+              <td className="status_items">{status.date}</td>
+              <td className="status_items">{status.hour}</td>
+              <td className="status_items">{status.wage}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     )
   }
-
-  const workComfirmDelete = async () => {
-    await axios
-      .post(checkData)
-      .then((res) => {
-        console.log(checkData);
-        alert("삭제");
-      })
-      .catch((err) => {
-        console.error({ error: err });
-        alert("삭제 실패");
-      });
-  };
 
   return (
     <div className="WorkComfirmSession">
@@ -169,21 +121,20 @@ function WorkComfirmSession() {
             조회
           </button>
         </div>
-          <div className="SearchMain">
           <div className="workerComfirmList">
-            <div className="comfirmListTable">{workerComfirmTable()}</div>
+            <div className="comfirmListTable">
+              {workerComfirmTable()}
+            </div>
           </div>
-          {/* <button className="comfirmDelete_btn" onClick={workComfirmDelete}>
-            삭제
-          </button> */}
-          {workerStatusList.map((status) => (
-          <div className="workerComfirmTotal">
-            <div className="workerTotal">총 근로 시간 {status.hour} 시간</div>
-            <div className="workerTotal">총 근로장학금액 {status.wage} 원</div>
+          <div className="statusWorkerTotal">
+            {workerStatusList.map((status) => (
+            <div className="workerComfirmTotal">
+              <div className="workerTotal">총 근로 시간 {status.hour} 시간</div>
+              <div className="workerTotal">총 근로장학금액 {status.wage} 원</div>
+            </div>
+            ))}
           </div>
-          ))}
         </div>
-      </div>
     </div>
   );
 }

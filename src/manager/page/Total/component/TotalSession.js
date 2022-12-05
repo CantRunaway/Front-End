@@ -1,164 +1,131 @@
-import axios from 'axios';
-import { setYear } from 'date-fns';
-import React, {useEffect, useState} from 'react'
-import '../css/TotalSession.css'
-
-const xlsx = require('xlsx');
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import "../css/TotalSession.css";
+const xlsx = require("xlsx");
 
 function TotalSession() {
+  const [userList, setUserList] = useState([]); //근로자 이름 목록 받아오기
+  const [userData, setUserData] = useState(); //선택된 근로자의 아이디값 받기
 
-  const colums = ['이름', '학번', '근무종류', '기간', '시급', '총 장학금액'];
-  const worklistData = [
-    {
-      name : '이마크',
-      num : 20180802,
-      workPeriod: '2022. 02. 26 - 2022. 06. 24',
-      workWage : 11450,
-      workType : '운반',
-      totalAmount : 274880
-    },
-    {
-      name : '종천러',
-      num : 20201122,
-      workPeriod: '2022. 02. 26 - 2022. 06. 24',
-      workWage : 9160,
-      workType : '식기세척',
-      totalAmount : 274880
-    },
-    {
-      name : '박지성',
-      num : 20210205,
-      workPeriod: '2022. 02. 26 - 2022. 06. 24',
-      workWage : 9160,
-      workType : '식기세척',
-      totalAmount : 274880
-    },
-    {
-      name : '황인준',
-      num : 20190323,
-      workPeriod: '2022. 02. 26 - 2022. 06. 24',
-      workWage : 9160,
-      workType : '식기세척',
-      totalAmount : 274880
-    },
-    {
-      name : '이제노',
-      num : 20190423,
-      workPeriod: '2022. 02. 26 - 2022. 06. 24',
-      workWage : 9160,
-      workType : '식기세척',
-      totalAmount : 274880
-    },
-    {
-      name : '이해찬',
-      num : 20190606,
-      workPeriod: '2022. 02. 26 - 2022. 06. 24',
-      workWage : 9160,
-      workType : '식기세척',
-      totalAmount : 274880
-    },
-    {
-      name : '나재민',
-      num : 20190813,
-      workPeriod: '2022. 02. 26 - 2022. 06. 24',
-      workWage : 9160,
-      workType : '식기세척',
-      totalAmount : 274880
-    }
-  ];
+  //근로자 이름 목록 받아오기
+  const getUserName = async () => {
+    await axios
+      .get("http://localhost:8080/users/workList")
+      .then((res) => {
+        setUserList(res.data);
+      })
+      .catch((err) => {
+        console.error({ error: err });
+      });
+  };
 
-  
+  useEffect(() => {
+    getUserName();
+  }, []);
 
-  const TotalCheck = () => {
-    console.log("조회")
-  }
+  console.log(userData);
 
-  function totalWorker() {
-    return(
-      // <table className='totalTable'>
-      //   <thead>
-      //     <tr>
-      //       {colums.map((col) => (
-      //         <th className='workerlistTable_header' key={col}>{col}</th>
-      //       ))}
-      //     </tr>
-      //   </thead>
-      //   <tbody>
-      //         {worklistData.map(({name, num, workType, workPeriod, workWage, totalAmount}) => (
-      //           <tr key={num}>
-      //             <td className='totallist_items'>{name}</td>
-      //             <td className='totallist_items'>{num}</td>
-      //             <td className='totallist_items'>{workType}</td>
-      //             <td className='totallist_items'>{workPeriod}</td>
-      //             <td className='totallist_items'>{workWage}</td>
-      //             <td className='totallist_items'>{totalAmount}</td>
-      //           </tr>
-      //         ))}
-      //   </tbody>
-      // </table>
-      <button onClick={excel}>조회</button>
-    )
-  }
-  const excel = async() => {
-    await axios.get("http://localhost:8080/stats/excel")
-    .then((res) => {
-      console.log(res.data);
-      makeExcelByMonth(res.data[0], res.data[1]);
-    })
-    .catch((err) => {
-      console.error({error:err});
-    })
-  }
-  const [statusDate, setStatusDate] = useState([
-    {
-      year: "",
-      month: "",
-    }
-  ]);
+  //선택한 근로자의 아이디값 가져오기
+  const setUserDataHandler = (e) => {
+    setUserData(e.target.value);
+  };
 
-  // console.log(statusDate);
+  const [workerStatusDate, setWorkerStatusDate] = useState([]); //근로자 선택시 월별정보
+  const [monthStatusDate, setMonthStatusDate] = useState([]); //월별 선택시 정보
 
-  const makeExcelByMonth = (data, data2) => {
-    
-    const filePath = '달별 개인별.xlsx';
-    // if (fs.existsSync(filePath)) {
-    //     fs.unlinkSync(filePath);
-    // }
+  console.log(workerStatusDate);
+  console.log(monthStatusDate);
 
+  const makeExcelByMonth = (data, dataname) => {
+    const filePath = `${dataname}.xlsx`;
     const EXCEL = xlsx.utils.book_new();
-
-    const EXCEL_CONTENT1 = xlsx.utils.json_to_sheet(data[0]);
-    const EXCEL_CONTENT2 = xlsx.utils.json_to_sheet(data2[0]);
-
-    xlsx.utils.book_append_sheet(EXCEL, EXCEL_CONTENT1, `달별`);
-    xlsx.utils.book_append_sheet(EXCEL, EXCEL_CONTENT2, `개인별`);
+    const EXCEL_CONTENT1 = xlsx.utils.json_to_sheet(data);
+    xlsx.utils.book_append_sheet(EXCEL, EXCEL_CONTENT1, `${dataname}`);
 
     xlsx.writeFile(EXCEL, filePath);
     console.log("엑셀 변환 완료");
-}
+  };
+
+  const downWorkerStatus = async() => {
+    await axios
+    .get(`http://localhost:8080/stats/excel/${userData}/${workerStatusDate.year}/${workerStatusDate.month}`)
+    .then((res) => {
+      console.log(res.data);
+      const name = `${userData}의 ${workerStatusDate.year}년 ${workerStatusDate.month}월 근로`;
+      makeExcelByMonth(res.data, name)
+    })
+    .catch((err) => {
+      console.err({error: err});
+    })
+  }
+
+  const monthStatus = async() => {
+    await axios
+    .put(`http://localhost:8080/stats/excel/${monthStatusDate.year}/${monthStatusDate.month}`)
+    .then((res) => {
+      console.log(res.data);
+      const name = `${monthStatusDate.year}년 ${monthStatusDate.month}월 근로 통계`;
+      makeExcelByMonth(res.data, name)
+    })
+    .catch((err) => {
+      console.err({error: err});
+    })
+  }
+
   return (
-    <div className='TotalSession'>
-      <div className='TotalMain'>
-        <div className='TotalSearchBar'>
+    <div className="TotalSession">
+      <div className="TotalMain">
+        <div className="Main-title">근로 통계 Excel 다운로드</div>
+        <div className="Worker-Status">
+          <div className="status-title">근무자별 통계 Excel</div>
+          <select
+            className="worker-status-select"
+            onChange={setUserDataHandler}
+          >
+            {userList.map((user) => (
+              <option key={user.user_id} value={user.user_id}>
+                {user.name}
+              </option>
+            ))}
+          </select>
           <input
+            className="month-status-select"
             type="month"
             format="YYYY-MM"
             required
             onChange={(e) => {
-              setStatusDate({
-                year: (e.target.value).slice(0, 4),
-                month: (e.target.value).slice(5, 7),
-              })
+              setWorkerStatusDate({
+                year: e.target.value.slice(0, 4),
+                month: e.target.value.slice(5, 7),
+              });
             }}
           />
-          <button className='totalSearch_btn' onClick={() => TotalCheck()}>조회</button>
+          <button
+            className="download"
+            onClick={downWorkerStatus}>다운로드</button>
         </div>
-        <div className='TotalWorkerList'>
-          {totalWorker()}
+
+        <div className="Month-Status">
+          <div className="status-title">월별 통계 Excel</div>
+          <input
+            className="month-status-select"
+            type="month"
+            format="YYYY-MM"
+            required
+            onChange={(e) => {
+              setMonthStatusDate({
+                year: e.target.value.slice(0, 4),
+                month: e.target.value.slice(5, 7),
+              });
+            }}
+          />
+          <button
+            className="download"
+            onClick={monthStatus}>다운로드</button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default TotalSession
+export default TotalSession;

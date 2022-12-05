@@ -1,20 +1,227 @@
-.ManualWorkSession{
-    width: 100%;
-    height: auto;
+.ManualWorkSession {
+  width: 100%;
+  height: auto;
 }
 
-.ManualWorkMain{
-    width: 100%;
-    height: 100%;
-    border-top: 3px solid #A87EFF;
-    background-color: white;
+.ManualWorkMain {
+  width: 100%;
+  height: 100%;
+  border-top: 3px solid #a87eff;
+  background-color: white;
 }
 
-.Main-title{
-    width: 100%;
-    font-size: 30px;
-    text-align: left;
-    color: #A87EFF;
-    font-weight: bold;
-    margin: 30px;
+.Main-title {
+  width: 100%;
+  font-size: 30px;
+  text-align: left;
+  color: #a87eff;
+  font-weight: bold;
+  margin: 30px;
+}
+
+.SelectUserBar {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.select-worker {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 30px;
+}
+
+.worker-select {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+
+.worker-name {
+  width: 150px;
+  font-size: 20px;
+  text-align: center;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.select-manual-worker {
+  width: 200px;
+  height: 35px;
+  border-radius: 20px;
+  background-color: white;
+  border-color: #a87eff;
+  font-size: 25px;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.select-manual-worktype {
+  width: 200px;
+  height: 35px;
+  border-radius: 20px;
+  background-color: white;
+  border-color: #a87eff;
+  font-size: 25px;
+  text-align: center;
+}
+
+.selectWorkTime {
+  margin: 0 30px;
+}
+
+.manual-time {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.time-name {
+  width: 120px;
+  font-size: 20px;
+  margin-right: 5px;
+  text-align: end;
+  vertical-align: middle;
+}
+
+.manual-date {
+  width: 200px;
+  height: 35px;
+  margin: 0 0px;
+  color: black;
+  background-color: #e0d1ff;
+  font-size: 20px;
+}
+
+.manualBtn {
+  margin: 0 30px;
+}
+
+.manual-btn {
+  width: 200px;
+  height: 35px;
+  margin: 100px;
+  color: white;
+  background-color: #a87eff;
+  border: none;
+  border-radius: 20px;
+  font-size: 25px;
+  justify-content: end;
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1199px){
+    .worker-name {
+        width: 150px;
+        font-size: 16px;
+        text-align: center;
+        vertical-align: middle;
+        text-align: center;
+      }
+      
+      .select-manual-worker {
+        width: 200px;
+        height: 30px;
+        border-radius: 20px;
+        background-color: white;
+        border-color: #a87eff;
+        font-size: 20px;
+        text-align: center;
+        margin: 30px 0;
+      }
+      
+      .selectWorkTime {
+        margin: 0 30px;
+      }
+      
+      .time-name {
+        width: 120px;
+        font-size: 18px;
+        margin-right: 5px;
+        text-align: end;
+        vertical-align: middle;
+      }
+      
+      .manual-date {
+        width: 200px;
+        height: 30px;
+        margin: 0 0px;
+        color: black;
+        background-color: #e0d1ff;
+        font-size: 18px;
+      }
+      
+      .manualBtn {
+        margin: 0 30px;
+      }
+      
+      .manual-btn {
+        width: 200px;
+        height: 30px;
+        margin: 80px;
+        color: white;
+        background-color: #a87eff;
+        border: none;
+        border-radius: 20px;
+        font-size: 20px;
+        justify-content: end;
+      }
+}
+
+@media only screen and (min-width: 625px) and (max-width: 899px){
+    .worker-name {
+        width: 150px;
+        font-size: 13px;
+        text-align: center;
+        vertical-align: middle;
+        text-align: center;
+      }
+      
+      .select-manual-worker {
+        width: 200px;
+        height: 25px;
+        border-radius: 20px;
+        background-color: white;
+        border-color: #a87eff;
+        font-size: 15px;
+        text-align: center;
+        margin: 30px 10px;
+      }
+      
+      .selectWorkTime {
+        margin: 0 30px;
+      }
+      
+      .time-name {
+        width: 120px;
+        font-size: 15px;
+        margin-right: 5px;
+        text-align: end;
+        vertical-align: middle;
+      }
+      
+      .manual-date {
+        width: 200px;
+        height: 25px;
+        margin: 0 0px;
+        color: black;
+        background-color: #e0d1ff;
+        font-size: 15px;
+      }
+      
+      .manual-btn {
+        width: 150px;
+        height: 25px;
+        margin: 80px;
+        color: white;
+        background-color: #a87eff;
+        border: none;
+        border-radius: 20px;
+        font-size: 18px;
+        justify-content: end;
+      }
 }
