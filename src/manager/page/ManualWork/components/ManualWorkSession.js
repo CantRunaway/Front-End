@@ -4,7 +4,24 @@ import axios from "axios";
 
 function ManualWorkSession() {
   const [userList, setUserList] = useState([]); //근로자 이름 목록 받아오기
-  const [userData, setUserData] = useState(); //선택된 근로자의 아이디값 받기
+  const [manual_date, setManual_date] = useState(); //선택된 근로자의 아이디값 받기
+  const [workType, setWorkType] = useState([]); //근로종류 받아오기
+
+  // 보낼 데이터 세팅 객체
+  const [manualData, setManualData] = useState
+  (
+    {
+      user_id: "",
+      work_type_index: "",
+      start_time: "",
+      end_time: "",
+    }
+  );
+
+  useEffect(() => {
+    getUserName();
+    getWorkType();
+  }, []);
 
   //근로자 이름 목록 받아오기
   const getUserName = async () => {
@@ -18,8 +35,6 @@ function ManualWorkSession() {
       });
   };
 
-  //근로종류 받아오기
-  const [workType, setWorkType] = useState([]);
   const getWorkType = async () => {
     await axios
       .get("http://localhost:8080/workType")
@@ -31,66 +46,55 @@ function ManualWorkSession() {
       });
   };
 
-  useEffect(() => {
-    getUserName();
-    getWorkType();
-  }, []);
-
-  //선택한 근로자의 아이디값 가져오기
-  const setUserDataHandler = (e) => {
-    setUserData(e.target.value);
-  };
-
-  // 보낼 데이터 담김, 선택한 학번
-  const [checkData, setCheckData] = useState([]);
-
-  const singleChecked = (e, index, value) => {
-    let checked = e.target.checked;
-
-    if (checked) {
-      setCheckData([...checkData, value]);
-      console.log("check");
-    } else if (!checked && checkData.includes(value)) {
-      setCheckData(checkData.filter((el) => el !== value));
+  const postDataHandler = () => {
+    let nullCheck = false
+    for (const [key, value] of Object.entries(manualData)) {
+      nullCheck = true
+      if(value === ''){
+        alert("모든 항목을 선택해주세요")
+        nullCheck = false
+        break
+      }
     }
-    console.log(checkData);
-  };
 
-  //출근
-  const workOk = async () => {
+    if(manualData.start_time > manualData.end_time){
+      alert("출근 시간이 퇴근 시간보다 클 수 없습니다.")
+      nullCheck = false
+    }
+
+    if(nullCheck){
+      postWorkTime()
+    }
+  }
+
+  // 데이터 보내기
+  const postWorkTime = async () => {
     await axios
-      .post(checkData)
+      .post("http://localhost:8080/commute/insertCommute", manualData)
       .then((res) => {
-        console.log(checkData);
-        alert("삭제");
+        alert("등록되었습니다.")
       })
       .catch((err) => {
+        alert("등록 실패 ")
         console.error({ error: err });
-        alert("삭제 실패");
       });
   };
 
-  //수동 출퇴근 시간
-  const [manualDate, setManualDate] = useState([]);
-  const [start, setStart] = useState([]);
-  const [end, setEnd] = useState();
-
-  //새로운 수동 출퇴근
-  //새로운 모집 데이터 등록
-  const [manualData, setManualtData] = useState({
-    // work_type_index: "",
-    work_start: "",
-    work_end: "",
-    worker_id: "",
-  });
-
   const onChangeRecruit = (e) => {
-    setManualtData({
-      ...manualData,
-      [e.target.name]: e.target.value,
-      work_start: manualDate + " " + start,
-      work_end: manualDate + " " + end,
-    });
+    let time
+    if(e.target.name === "start_time" || e.target.name === "end_time"){
+      time = manual_date + " " + e.target.value
+      setManualData({
+        ...manualData,
+        [e.target.name]: time
+      })
+    }
+    else{
+      setManualData({
+        ...manualData,
+        [e.target.name]: e.target.value
+      })
+    }
   };
 
   return (
@@ -102,9 +106,11 @@ function ManualWorkSession() {
             <div className="worker-select">
               <div className="worker-name">근로자명</div>
               <select
-              className="select-manual-worker"
-              onChange={setUserDataHandler}
+                className="select-manual-worker"
+                onChange={onChangeRecruit}
+                name='user_id'
               >
+                <option value='' >선택</option>
                 {userList.map((user) => (
                   <option key={user.user_id} value={user.user_id}>
                     {user.name}
@@ -119,6 +125,7 @@ function ManualWorkSession() {
               onChange={onChangeRecruit}
               name="work_type_index"
             >
+              <option value='' >선택</option>
               {workType.map((type) => (
                 <option key={type.work_type_index} value={type.work_type_index}>
                   {type.work_type_name}
@@ -133,46 +140,37 @@ function ManualWorkSession() {
               <div className="time-name">날짜</div>
               <input
                 className="manual-date"
-                name="manual-date"
+                name="manual_date"
                 type="date"
                 required
-                onChange={(e) => {
-                  setManualDate(e.target.value);
-                  console.log(e.target.value);
-                }}
+                onChange={(e) => setManual_date(e.target.value)}
               />
             </div>
             <div className="manual-time">
               <div className="time-name">출근시간</div>
               <input
                 className="manual-date"
-                name="manual_start"
+                name="start_time"
                 form="H:mm"
                 type="time"
                 step="1800"
                 required
-                onChange={(e) => {
-                  setStart(e.target.value);
-                  console.log(e.target.value);
-                }}
+                onChange={onChangeRecruit}
               />
               <div className="time-name">퇴근시간</div>
               <input
                 className="manual-date"
-                name="manual_end"
+                name="end_time"
                 form="H:mm"
                 type="time"
                 step="1800"
                 required
-                onChange={(e) => {
-                  setEnd(e.target.value);
-                  console.log(e.target.value);
-                }}
+                onChange={onChangeRecruit}
               />
             </div>
           </div>
           <div className="manualBtn">
-            <button className="manual-btn">푸하하ㅏ</button>
+            <button className="manual-btn" onClick={postDataHandler}>등록</button>
           </div>
         </div>
       </div>

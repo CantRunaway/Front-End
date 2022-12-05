@@ -58,6 +58,7 @@
   font-size: 25px;
   text-align: center;
   margin: 30px 0;
+  cursor: pointer;
 }
 
 .select-manual-worktype {
@@ -87,6 +88,7 @@
   margin-right: 5px;
   text-align: end;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 .manual-date {
@@ -96,6 +98,7 @@
   color: black;
   background-color: #e0d1ff;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .manualBtn {
@@ -112,6 +115,7 @@
   border-radius: 20px;
   font-size: 25px;
   justify-content: end;
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 900px) and (max-width: 1199px){
@@ -121,6 +125,7 @@
         text-align: center;
         vertical-align: middle;
         text-align: center;
+        cursor: pointer;
       }
       
       .select-manual-worker {
@@ -132,6 +137,7 @@
         font-size: 20px;
         text-align: center;
         margin: 30px 0;
+        cursor: pointer;
       }
       
       .selectWorkTime {
@@ -144,6 +150,7 @@
         margin-right: 5px;
         text-align: end;
         vertical-align: middle;
+        cursor: pointer;
       }
       
       .manual-date {
@@ -153,6 +160,7 @@
         color: black;
         background-color: #e0d1ff;
         font-size: 18px;
+        cursor: pointer;
       }
       
       .manualBtn {
@@ -169,6 +177,7 @@
         border-radius: 20px;
         font-size: 20px;
         justify-content: end;
+        cursor: pointer;
       }
 }
 
@@ -179,6 +188,7 @@
         text-align: center;
         vertical-align: middle;
         text-align: center;
+        cursor: pointer;
       }
       
       .select-manual-worker {
@@ -190,10 +200,12 @@
         font-size: 15px;
         text-align: center;
         margin: 30px 10px;
+        cursor: pointer;
       }
       
       .selectWorkTime {
         margin: 0 30px;
+        cursor: pointer;
       }
       
       .time-name {
@@ -202,6 +214,7 @@
         margin-right: 5px;
         text-align: end;
         vertical-align: middle;
+        cursor: pointer;
       }
       
       .manual-date {
@@ -211,6 +224,7 @@
         color: black;
         background-color: #e0d1ff;
         font-size: 15px;
+        cursor: pointer;
       }
       
       .manual-btn {
@@ -223,5 +237,6 @@
         border-radius: 20px;
         font-size: 18px;
         justify-content: end;
+        cursor: pointer;
       }
 }

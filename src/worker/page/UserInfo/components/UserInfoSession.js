@@ -74,7 +74,6 @@ function UserInfoSession() {
       ...user,
       [e.target.name] : e.target.value,
     });
-    console.log(user);
   };
 
   const backSpace = () =>{
