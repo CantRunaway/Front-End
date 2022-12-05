@@ -80,7 +80,7 @@ const WorkerMainPage = () => {
             attend===1 ?
             "출근"
              : 
-            "퇴근 중"
+            "퇴근"
           }
       </div>
 

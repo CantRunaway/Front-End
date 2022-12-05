@@ -39,7 +39,7 @@ function TemporaryWorkSession(){
 
     // 결근 신청
     const requistAsense = async() => {
-        await axios.post(`http://localhost:8080/absence/${sessionStorage.user_id}`, postData)
+        await axios.post(`http://localhost:8080/absence/createList/${sessionStorage.user_id}`, postData)
         .then((res) => {
             alert('요청되었습니다.')
         })

@@ -28,7 +28,6 @@ function AccessRestrictions({permission}) {
     })
     .catch((err) => {
       console.error({error:err});
-      navigate('/');
     })
   }
 

@@ -10,7 +10,10 @@ function UserInfoPage() {
   return (
     <div className='user-info-page'>
       {
-        permission ? <AccessRestrictions className='modal' permission={setPermission} /> : <UserInfoSession />
+        permission ? 
+          <AccessRestrictions className='modal' permission={setPermission} /> 
+        : 
+          <UserInfoSession />
       }
     </div>
   )

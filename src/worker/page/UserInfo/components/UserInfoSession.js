@@ -12,7 +12,7 @@ function UserInfoSession() {
   const [user, setUser] = useState(
     {
       user_id: '',
-      password: null,
+      password: '',
       name: '',
       grade: '',
       phone: '',
@@ -30,7 +30,7 @@ function UserInfoSession() {
       setUser(
         {
           user_id: res.data[0].user_id,
-          password: null,
+          password: '',
           name: res.data[0].name,
           grade: res.data[0].grade,
           phone: res.data[0].phone,
@@ -53,10 +53,10 @@ function UserInfoSession() {
   }, [])
 
   const update = async() => {
-    await axios.post(`http://localhost:8080/users/update/${sessionStorage.getItem('user_id')}`, user)
+    await axios.post(`http://localhost:8080/users/update`, user)
     .then((res) => {
       alert('정보 수정에 성공했습니다.')
-      navigate(`/${sessionStorage.getItem('user_id')}/main`);
+      navigate(`/main`);
     })
     .catch((err) => {
       console.error({error:err})

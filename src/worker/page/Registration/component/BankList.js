@@ -4,7 +4,7 @@ import axios from "axios"
 
 const BankList = ({onChangeUser, bank_name}) => {
   const [banks, setBanks] = useState([]);
-  const [value, setValue] = useState()
+  const [value, setValue] = useState(bank_name)
 
   useEffect(() => {
     if (banks === []) return;
@@ -17,19 +17,6 @@ const BankList = ({onChangeUser, bank_name}) => {
       })
    }, []);
 
-   useEffect(()=>{
-    checkValue()
-  },[banks])
-
-   const checkValue = () => {
-    banks.map((bank) => {
-      if(bank.bank_name === bank_name){
-        setValue(bank.bank_index)
-      }
-    })
-   }
-
-
    const bankList = banks.map((bank) => (
     <option
        key = {bank.bank_index}
@@ -39,10 +26,10 @@ const BankList = ({onChangeUser, bank_name}) => {
     </option>))
 
     return (
-    <select className='registration-bank-list' required name='bank_name' onChange={onChangeUser} value={value}>
-            <option value='' >--선택--</option>
-            {bankList}
-    </select>
+      <select className='registration-bank-list' required name='bank_name' onChange={onChangeUser} value={value}>
+              <option value='' >--선택--</option>
+              {bankList}
+      </select>
     );
 }
 
