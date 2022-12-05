@@ -21,7 +21,7 @@
   margin: 30px;
 }
 
-.SearchMain {
+.statusWorkerTotal {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -95,21 +95,6 @@
   font-size: 20px;
 }
 
-.comfirm-chb {
-  width: 20px;
-}
-
-.comfirmDelete_btn {
-  width: 200px;
-  height: 35px;
-  font-size: 20px;
-  text-align: center;
-  color: white;
-  background-color: #a87eff;
-  border-radius: 20px;
-  border: none;
-}
-
 .workerComfirmTotal {
   display: flex;
   flex-direction: column;
@@ -167,17 +152,6 @@
     border-radius: 20px;
     border: none;
   }
-
-  /* .comfirmDelete_btn {
-    width: 100px;
-    height: 30px;
-    font-size: 15px;
-    text-align: center;
-    color: white;
-    background-color: #a87eff;
-    border-radius: 20px;
-    border: none;
-  } */
 }
 
 @media only screen and (min-width: 670px) and (max-width: 899px) {
