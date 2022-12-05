@@ -19,22 +19,6 @@ const DepartmentList = ({onChangeUser, userMajor}) => {
 
    }, []);
 
-  useEffect(()=>{
-    checkValue()
-  },[departments])
-
-   const checkValue = () => {
-    if(departments === null){
-      return checkValue()
-    }
-    departments.map((workType) => {
-      if(workType.department_name === userMajor){
-        setValue(workType.department_index)
-      }
-    })
-   }
-   
-
    const departmentLists = departments.map((workType) => (
     <option
        key = {workType.department_index}

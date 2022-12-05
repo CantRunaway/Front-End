@@ -26,18 +26,6 @@ const WorkTypeList = ({work_type_name, onChangeUser}) => {
     {workType.work_type_name}
     </option>))
 
-    useEffect(()=>{
-      checkValue()
-    },[workTypes])
-
-    const checkValue = () => {
-      workTypes.map((workType) => {
-        if(workType.work_type_name === work_type_name){
-          setWorkTypevalue(workType.work_type_index)
-        }
-      })
-    }
-
     return (
         <select className='registration-work-type-list' required name='work_type_name' onChange={onChangeUser} value={workTypevalue}>
             <option value='' >--선택--</option>
