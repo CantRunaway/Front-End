@@ -73,7 +73,7 @@ function TemporalWorkReqeustSession() {
     await axios
       .post("http://localhost:8080/overtime/admit", overTimeCheck)
       .then((res) => {
-        setTemporalData(res.data);
+        setTemporalData([]);
 
         alert("승인되었습니다.");
       })
@@ -87,7 +87,7 @@ function TemporalWorkReqeustSession() {
     await axios
       .post("http://localhost:8080/overtime/refuse", overTimeCheck)
       .then((res) => {
-        setTemporalData(res.data);
+        setTemporalData([]);
         alert("거부되었습니다.");
       })
       .catch((err) => {
@@ -98,13 +98,14 @@ function TemporalWorkReqeustSession() {
   //결근 승인
   const absApprovalClicked = async () => {
     await axios
-      .post("http://localhost:8080/absence/admit", absenceCheck)
+      .post("http://localhost:8080/absence/response/admit", absenceCheck)
       .then((res) => {
         alert("성공적으로 승인되었습니다.");
         setAbsenceCheck([]);
         getAbsenceData();
       })
       .catch((err) => {
+        console.log(absenceCheck);
         alert("요청에 오류가 있습니다.");
         console.log({ error: err });
       });
@@ -113,7 +114,7 @@ function TemporalWorkReqeustSession() {
   //결근 거부
   const absRefuseClicked = async () => {
     await axios
-      .post("http://localhost:8080/absence/refuse", absenceCheck)
+      .post("http://localhost:8080/absence/response/refuse", absenceCheck)
       .then((res) => {
         alert("거부되었습니다.");
         setAbsenceCheck([]);
@@ -219,13 +220,13 @@ function TemporalWorkReqeustSession() {
             <div className="temporal_button">
               <button
                 className="temporal_btn"
-                onClick={() => temApprovalClicked()}
+                onClick={() => absApprovalClicked()}
               >
                 승인
               </button>
               <button
                 className="temporal_btn"
-                onClick={() => temRefuseClicked()}
+                onClick={() => absRefuseClicked()}
               >
                 거부
               </button>

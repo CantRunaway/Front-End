@@ -75,18 +75,16 @@ function TemporalManagementSession() {
 
   //새로운 모집 데이터 등록
   const [recruitData, setRecruitData] = useState({
-    work_type_index: "",
+    work_type_index: "1",
     work_start: "",
     work_end: "",
-    recruit_worker: "",
+    recruit_worker: "1",
   });
 
   const onChangeRecruit = (e) => {
     setRecruitData({
       ...recruitData,
       [e.target.name]: e.target.value,
-      work_start: recDate + " " + start,
-      work_end: recDate + " " + end,
     });
   };
 
@@ -179,6 +177,10 @@ function TemporalManagementSession() {
                   required
                   onChange={(e) => {
                     setStart(e.target.value);
+                    setRecruitData({
+                      ...recruitData,
+                      "work_start": recDate + " " + e.target.value,
+                    });
                     console.log(e.target.value);
                   }}
                 />
@@ -191,6 +193,10 @@ function TemporalManagementSession() {
                   required
                   onChange={(e) => {
                     setEnd(e.target.value);
+                    setRecruitData({
+                      ...recruitData,
+                      "work_end": recDate + " " + e.target.value,
+                    });
                     {
                       console.log(e.target.value);
                     }
@@ -203,7 +209,7 @@ function TemporalManagementSession() {
                 name="work_type_index"
               >
                 {workType.map((type) => (
-                  <option key={type.work_type_index} value={type.work_type_index}>
+                  <option name = {type.work_type_index} key={type.work_type_index} value={type.work_type_index}>
                     {type.work_type_name}
                   </option>
                 ))}

@@ -50,6 +50,7 @@ function AccessRestrictions({permission}) {
   const handleModal = () => {
     permission(false);
     setIsOpen(false);
+    sessionStorage.setItem('password', loginInfo.password);
   }
 
   const comparePW = () => {

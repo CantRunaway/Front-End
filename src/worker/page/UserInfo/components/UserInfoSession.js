@@ -30,7 +30,7 @@ function UserInfoSession() {
       setUser(
         {
           user_id: res.data[0].user_id,
-          password: '',
+          password: sessionStorage.getItem("password"),
           name: res.data[0].name,
           grade: res.data[0].grade,
           phone: res.data[0].phone,
@@ -56,6 +56,7 @@ function UserInfoSession() {
     await axios.post(`http://localhost:8080/users/update`, user)
     .then((res) => {
       alert('정보 수정에 성공했습니다.')
+      sessionStorage.removeItem("password");
       navigate(`/main`);
     })
     .catch((err) => {
@@ -78,6 +79,7 @@ function UserInfoSession() {
 
   const backSpace = () =>{
     navigate(-1)
+    sessionStorage.removeItem("password");
   }
 
   return (
@@ -104,7 +106,8 @@ function UserInfoSession() {
             비밀번호 
             <input 
               type='password' 
-              className='pw-input' 
+              className='pw-input'
+              placeholder= '**********'
               name = "password"
               minLength={5}
               onChange={onChangeUser} 

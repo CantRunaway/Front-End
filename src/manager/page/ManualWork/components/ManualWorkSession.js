@@ -127,7 +127,7 @@ function ManualWorkSession() {
             >
               <option value='' >선택</option>
               {workType.map((type) => (
-                <option key={type.work_type_index} value={type.work_type_index}>
+                <option name = "work_type_index" key={type.work_type_index} value={type.work_type_index}>
                   {type.work_type_name}
                 </option>
               ))}

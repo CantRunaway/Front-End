@@ -55,7 +55,7 @@ function TotalSession() {
       makeExcelByMonth(res.data, name)
     })
     .catch((err) => {
-      console.err({error: err});
+      console.error({error: err});
     })
   }
 
@@ -68,7 +68,7 @@ function TotalSession() {
       makeExcelByMonth(res.data, name)
     })
     .catch((err) => {
-      console.err({error: err});
+      console.error({error: err});
     })
   }
 
